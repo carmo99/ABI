@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ABI</string>
+    <string name="title_mensaje">Mensaje</string>
+    <string name="title_contactos">Contactos</string>
+    <string name="title_foto">Foto del día</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="texto_foto">FOTO DEL DÍA</string>
+    <string name="texto_descripcion_foto_1">¡ES TIEMPO DE SUBIR</string>
+    <string name="texto_descripcion_foto_2">LA FOTO DEL DÍA!</string>
+    <string name="boton_foto_dia">SELECCIONA TU FOTO</string>
+    <string name="texto_mensaje">MENSAJE AYUDA </string>
+    <string name="boton_mensaje">GUARDAR MENSAJE</string>
+    <string name="entrada_mensaje">ESCRIBE AQUÍ TU MENSAJE</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps2">Map</string>
+</resources>

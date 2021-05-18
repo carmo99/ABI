@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blueintermediate"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textViewMensaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="@string/texto_mensaje"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/animation_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="272dp"
+        android:layout_height="254dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMensaje"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="MensajeAyuda.json"
+        app:lottie_loop="true" />
+
+    <Button
+        android:id="@+id/buttonMensaje"
+        android:layout_width="251dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="@string/boton_mensaje"
+        android:textSize="12sp"
+        app:backgroundTint="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputEditText" />
+
+    <ImageButton
+        android:id="@+id/imageButton_atras_mensaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/blueintermediate"
+        android:tint="@color/orange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_bx_arrow_back" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/textInputEditText"
+        android:layout_width="369dp"
+        android:layout_height="157dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_input_grey"
+        android:fontFamily="@font/muli_extrabold"
+        android:gravity="top"
+        android:hint="@string/entrada_mensaje"
+        android:textAlignment="center"
+        android:textColor="@color/grisLetras"
+        android:textColorHint="@color/grisLetras"
+        app:layout_constraintBottom_toTopOf="@+id/buttonMensaje"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animation_view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blueintermediate"
+    android:padding="10dp"
+    tools:context=".SingUpActivity">
+
+    <TextView
+        android:id="@+id/textViewReg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="REGISTRARSE"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custom_constrain"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReg">
+
+        <TextView
+            android:id="@+id/textViewTextoRegistro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/muli_extrabold"
+            android:text="LLENA LOS DETALLES DE \nTU CUENTA"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewNombreUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="26dp"
+            android:fontFamily="@font/muli_extrabold"
+            android:text="NOMBRE DE USUARIO"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTextoRegistro" />
+
+        <EditText
+            android:id="@+id/editTextNombreUsuario"
+            android:layout_width="320dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custom_input"
+            android:drawableLeft="@drawable/ic_user"
+            android:elevation="8dp"
+            android:ems="10"
+            android:hint="   Nombre"
+            android:inputType="textPersonName"
+            android:paddingLeft="15dp"
+            android:textColorHint="@color/grisHint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNombreUsuario" />
+
+        <TextView
+            android:id="@+id/textViewCorreo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/muli_extrabold"
+            android:text="CORREO"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNombreUsuario" />
+
+        <EditText
+            android:id="@+id/editTextCorreo"
+            android:layout_width="320dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custom_input"
+            android:drawableLeft="@drawable/ic_email"
+            android:elevation="8dp"
+            android:ems="10"
+            android:hint="   nombre@correo.com"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="15dp"
+            android:textColorHint="@color/grisHint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCorreo" />
+
+        <TextView
+            android:id="@+id/textViewContrasena"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/muli_extrabold"
+            android:text="CONTRASEÑA"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextCorreo" />
+
+        <EditText
+            android:id="@+id/editTextContrasena"
+            android:layout_width="320dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custom_input"
+            android:drawableLeft="@drawable/ic_lock"
+            android:elevation="8dp"
+            android:ems="10"
+            android:hint="   ********"
+            android:inputType="textPassword"
+            android:paddingLeft="15dp"
+            android:textColorHint="@color/grisHint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewContrasena" />
+
+        <TextView
+            android:id="@+id/textViewTelefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/muli_extrabold"
+            android:text="TELEFONO"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextContrasena" />
+
+        <EditText
+            android:id="@+id/editTextTelefono"
+            android:layout_width="320dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custom_input"
+            android:drawableLeft="@drawable/ic_phone"
+            android:elevation="8dp"
+            android:ems="10"
+            android:hint="   5555555555"
+            android:inputType="number"
+            android:paddingLeft="15dp"
+            android:textColorHint="@color/grisHint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTelefono" />
+
+        <Button
+            android:id="@+id/buttonRegistrarse"
+            android:layout_width="243dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/custom_button"
+            android:fontFamily="@font/muli_extrabold"
+            android:text="REGISTRARSE"
+            app:backgroundTint="@color/orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTelefono" />
+
+        <TextView
+            android:id="@+id/textViewLogIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/muli_extrabold"
+            android:text="SI YA TIENES UNA CUENTA \n INICIA SESIÓN"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonRegistrarse" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
