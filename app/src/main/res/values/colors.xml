@@ -14,6 +14,8 @@
     <color name="greylight">#E2E8F6</color>
     <color name="grisHint">#7B8794</color>
     <color name="grisLetras">#B5BAC5</color>
+    <color name="ourwhite">#FFFFFF</color>
+    <color name="ourblack">#000000</color>
 
     <color name="transparency">#00FFFFFF</color>
 

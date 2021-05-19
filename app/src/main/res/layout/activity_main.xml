@@ -7,8 +7,9 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <FrameLayout
             android:id="@+id/nav_host_fragment"
@@ -18,6 +19,7 @@
             tools:layout_editor_absoluteY="666dp"></FrameLayout>
 
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/barlayout"
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_marginTop="16dp"

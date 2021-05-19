@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/fragment_mensaje"
         android:icon="@drawable/ic_message_nav"
         android:title="@string/title_mensaje" />
 
@@ -12,7 +12,7 @@
         android:title="@string/title_contactos" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/fragment_foto"
         android:icon="@drawable/ic_photo_nav"
         android:title="@string/title_foto" />
 

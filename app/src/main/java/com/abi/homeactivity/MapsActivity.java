@@ -56,9 +56,9 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         uiSettings.setZoomControlsEnabled(false);
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Mi ubicación").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
+        LatLng escom = new LatLng(19.505, -99.146667);
+        mMap.addMarker(new MarkerOptions().position(escom).title("Mi ubicación").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
         float zoomlevel= 16;
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomlevel));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(escom, zoomlevel));
     }
 }

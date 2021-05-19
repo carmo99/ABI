@@ -1,25 +1,30 @@
-package com.abi.homeactivity.ui.home;
+package com.abi.homeactivity.ui.home.dummy;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
+
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.abi.homeactivity.LogInActivity;
 import com.abi.homeactivity.MainActivity;
 import com.abi.homeactivity.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FotoFragment#newInstance} factory method to
+ * Use the {@link MensajeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FotoFragment extends Fragment implements View.OnClickListener {
+public class MensajeFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,9 +36,10 @@ public class FotoFragment extends Fragment implements View.OnClickListener {
     private String mParam2;
 
     View vista;
-    ImageButton atras_foto;
+    ImageButton atras_mensaje;
 
-    public FotoFragment() {
+
+    public MensajeFragment() {
         // Required empty public constructor
     }
 
@@ -43,11 +49,11 @@ public class FotoFragment extends Fragment implements View.OnClickListener {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FotoFragment.
+     * @return A new instance of fragment MensajeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FotoFragment newInstance(String param1, String param2) {
-        FotoFragment fragment = new FotoFragment();
+    public static MensajeFragment newInstance(String param1, String param2) {
+        MensajeFragment fragment = new MensajeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -76,19 +82,23 @@ public class FotoFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        vista = inflater.inflate(R.layout.fragment_foto, container, false);
-        atras_foto = (ImageButton) vista.findViewById(R.id.imageButton_atras_foto);
-        atras_foto.setOnClickListener(this);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        vista = inflater.inflate(R.layout.fragment_mensaje, container, false);
+        atras_mensaje = (ImageButton) vista.findViewById(R.id.imageButton_atras_mensaje);
+        atras_mensaje.setOnClickListener(this);
         return vista;
     }
 
     @Override
     public void onClick(View view)
     {
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        startActivity(intent);
-        getActivity().finish();
+        if(view.getId() == R.id.imageButton_atras_mensaje)
+        {
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
     }
 }
