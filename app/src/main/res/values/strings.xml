@@ -14,4 +14,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps2">Map</string>
+    <string name="nuevo_contacto">Agregar un nuevo contacto</string>
+    <string name="contactos">CONTACTOS</string>
+    <string name="Nombre_usuario_contacto">NOMBRE DE USUARIO</string>
 </resources>

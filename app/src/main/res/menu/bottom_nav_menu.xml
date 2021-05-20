@@ -7,7 +7,7 @@
         android:title="@string/title_mensaje" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/fragment_contacto"
         android:icon="@drawable/ic_contacts_nav"
         android:title="@string/title_contactos" />
 

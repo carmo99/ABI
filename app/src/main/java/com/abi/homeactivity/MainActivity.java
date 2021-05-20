@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.abi.homeactivity.ui.home.ContactoFragment;
 import com.abi.homeactivity.ui.home.FotoFragment;
 import com.abi.homeactivity.ui.home.dummy.MensajeFragment;
 import com.google.android.material.appbar.AppBarLayout;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     MapsActivity mapafragment = new MapsActivity();
     FotoFragment fragment_foto = new FotoFragment();
     MensajeFragment fragment_mensaje = new MensajeFragment();
+    ContactoFragment fragment_contacto = new ContactoFragment();
+
     AppBarLayout appBarLayout;
     BottomNavigationView bottomNavigationView;
     int veces_apretado = 0;
@@ -75,6 +78,13 @@ public class MainActivity extends AppCompatActivity {
             else if(item.getItemId() == R.id.fragment_mensaje)
             {
                 loadFragmentM(fragment_mensaje);
+                appBarLayout.setVisibility(View.GONE);
+                bottomNavigationView.setVisibility(View.GONE);
+                return true;
+            }
+            else if(item.getItemId() == R.id.fragment_contacto)
+            {
+                loadFragmentM(fragment_contacto);
                 appBarLayout.setVisibility(View.GONE);
                 bottomNavigationView.setVisibility(View.GONE);
                 return true;

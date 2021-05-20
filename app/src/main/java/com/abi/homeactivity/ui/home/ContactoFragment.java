@@ -1,13 +1,17 @@
 package com.abi.homeactivity.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
+import com.abi.homeactivity.MainActivity;
 import com.abi.homeactivity.R;
 
 /**
@@ -15,7 +19,7 @@ import com.abi.homeactivity.R;
  * Use the {@link ContactoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ContactoFragment extends Fragment {
+public class ContactoFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +29,9 @@ public class ContactoFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    View vista;
+    ImageButton atras_contacto;
 
     public ContactoFragment() {
         // Required empty public constructor
@@ -55,12 +62,36 @@ public class ContactoFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */)
+        {
+
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contacto, container, false);
+        vista = inflater.inflate(R.layout.fragment_contacto, container, false);
+        atras_contacto = (ImageButton) vista.findViewById(R.id.imageButton_atras_contactos);
+        atras_contacto.setOnClickListener(this);
+        return vista;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.imageButton_atras_contactos)
+        {
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
     }
 }
