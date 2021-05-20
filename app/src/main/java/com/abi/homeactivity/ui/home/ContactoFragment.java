@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.abi.homeactivity.MainActivity;
 import com.abi.homeactivity.R;
+import com.abi.homeactivity.RegistroContactosActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +34,7 @@ public class ContactoFragment extends Fragment implements View.OnClickListener {
 
     View vista;
     ImageButton atras_contacto;
+    Button nuevo_contacto;
 
     public ContactoFragment() {
         // Required empty public constructor
@@ -82,6 +85,10 @@ public class ContactoFragment extends Fragment implements View.OnClickListener {
         vista = inflater.inflate(R.layout.fragment_contacto, container, false);
         atras_contacto = (ImageButton) vista.findViewById(R.id.imageButton_atras_contactos);
         atras_contacto.setOnClickListener(this);
+
+        nuevo_contacto = (Button)vista.findViewById(R.id.button_nuevo_contacto);
+        nuevo_contacto.setOnClickListener(this);
+
         return vista;
     }
 
@@ -90,6 +97,12 @@ public class ContactoFragment extends Fragment implements View.OnClickListener {
         if(view.getId() == R.id.imageButton_atras_contactos)
         {
             Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
+        else if(view.getId() == R.id.button_nuevo_contacto)
+        {
+            Intent intent = new Intent(getActivity(), RegistroContactosActivity.class);
             startActivity(intent);
             getActivity().finish();
         }
