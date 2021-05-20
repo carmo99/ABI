@@ -71,7 +71,7 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
             et_phone.setError("El teléfono es requerido");
         else
         {
-            Intent intent = new Intent(SingUpActivity.this, MainActivity.class);
+            Intent intent = new Intent(SingUpActivity.this, PrivacidadActivity.class);
             startActivity(intent);
             finish();
         }
