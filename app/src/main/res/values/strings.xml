@@ -21,4 +21,9 @@
     <string name="contactos">CONTACTOS</string>
     <string name="Nombre_usuario_contacto">NOMBRE DE USUARIO</string>
     <string name="nuevo_contacto">AGREGAR CONTACTO</string>
+    <!--Strings nombres del SideMenu-->
+    <string name="menu_DispositivoABI">Dispositivo ABI</string>
+    <string name="menu_informacionDia">Información del día</string>
+    <string name="menu_informacionLegal">Información Legal </string>
+    <string name="menu_configuracion">Configuración</string>
 </resources>

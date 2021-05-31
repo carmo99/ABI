@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_dispositivoABI"
+        android:icon="@drawable/ic_baseline_smart_toy"
+        android:title="@string/menu_DispositivoABI" />
+    <item
+        android:id="@+id/nav_infoDia"
+        android:icon="@drawable/ic_orange_book"
+        android:title="@string/menu_informacionDia" />
+    <item
+        android:id="@+id/nav_infoLegal"
+        android:icon="@drawable/ic_book_content_orange"
+        android:title="@string/menu_informacionLegal" />
+    <item
+        android:id="@+id/nav_infoConfiguracion"
+        android:icon="@drawable/ic_smallgear"
+        android:title="@string/menu_configuracion" />
+</menu>

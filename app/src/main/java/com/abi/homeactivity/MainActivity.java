@@ -1,10 +1,11 @@
 package com.abi.homeactivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.ImageView;
+
+
 
 import com.abi.homeactivity.ui.home.ContactoFragment;
 import com.abi.homeactivity.ui.home.FotoFragment;
@@ -14,10 +15,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
+import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,8 +31,11 @@ public class MainActivity extends AppCompatActivity {
     MensajeFragment fragment_mensaje = new MensajeFragment();
     ContactoFragment fragment_contacto = new ContactoFragment();
 
+
     AppBarLayout appBarLayout;
     BottomNavigationView bottomNavigationView;
+    DrawerLayout drawerLayout;
+    Toolbar toolbar;
     int veces_apretado = 0;
 
 
@@ -47,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
 
         appBarLayout = findViewById(R.id.barlayout);
         bottomNavigationView = findViewById(R.id.nav_view);
+        drawerLayout = findViewById(R.id.drawerLayout);
+        toolbar = findViewById(R.id.toolbar);
+
+        toolbar();
+        //menuHamburguesa.setOnClickListener( this );
+
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */)
         {
 
@@ -100,5 +114,25 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    void toolbar(){
+        setSupportActionBar(toolbar);
+
+        ActionBar ab = getSupportActionBar();
+        if (ab != null){
+            ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+            ab.setDisplayHomeAsUpEnabled( true );
+            ab.setTitle("");
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch ( item.getItemId() ){
+            case android.R.id.home:
+                drawerLayout.openDrawer( GravityCompat.START );
+            break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }
