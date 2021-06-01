@@ -1,4 +1,4 @@
-package com.abi.homeactivity.ui.home.dummy;
+package com.abi.homeactivity.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;

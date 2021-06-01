@@ -26,4 +26,6 @@
     <string name="menu_informacionDia">Información del día</string>
     <string name="menu_informacionLegal">Información Legal </string>
     <string name="menu_configuracion">Configuración</string>
+    <string name="Info_dia">INFORMACIÓN DEL DÍA</string>
+    <string name="info_legal">INFORMACIÓN LEGAL</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.abi.homeactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +14,7 @@ import com.abi.homeactivity.ui.home.FotoFragment;
 import com.abi.homeactivity.ui.home.dummy.MensajeFragment;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -21,6 +24,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.appcompat.widget.Toolbar;
 
@@ -30,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     FotoFragment fragment_foto = new FotoFragment();
     MensajeFragment fragment_mensaje = new MensajeFragment();
     ContactoFragment fragment_contacto = new ContactoFragment();
-
+    NavigationView nav_view_sidebar;
 
     AppBarLayout appBarLayout;
     BottomNavigationView bottomNavigationView;
@@ -57,9 +61,35 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.drawerLayout);
         toolbar = findViewById(R.id.toolbar);
+        nav_view_sidebar = findViewById(R.id.nav_view_sidebar);
+
+        nav_view_sidebar.setNavigationItemSelectedListener(item ->
+        {
+            switch (item.getItemId())
+            {
+                case R.id.nav_infoDia:
+                    Intent intent1 = new Intent(MainActivity.this, InformacionDiaActivity.class);
+                    startActivity(intent1);
+                    this.finish();
+                    return true;
+                case R.id.nav_dispositivoABI:
+                    Log.i("Opciones", "ABI");
+                    return true;
+                case R.id.nav_infoLegal:
+                    Intent intent2 = new Intent(MainActivity.this, InformacionLegalActivity.class);
+                    startActivity(intent2);
+                    this.finish();
+                    return true;
+                case R.id.nav_infoConfiguracion:
+                    Log.i("Opciones", "Configuracion");
+                    return true;
+            }
+            return false;
+        });
 
         toolbar();
         //menuHamburguesa.setOnClickListener( this );
+
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */)
         {
@@ -127,12 +157,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch ( item.getItemId() ){
+        switch ( item.getItemId() ) {
             case android.R.id.home:
-                drawerLayout.openDrawer( GravityCompat.START );
-            break;
+                drawerLayout.openDrawer(GravityCompat.START);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
