@@ -8,19 +8,39 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.abi.homeactivity.retrofit.ABIClient;
+import com.abi.homeactivity.retrofit.ABIService;
+import com.abi.homeactivity.retrofit.request.RequestLogin;
+import com.abi.homeactivity.retrofit.response.ResponseLogin;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener {
     Button b_login;
     EditText et_email, et_password;
     TextView tv_singup;
 
+    ABIClient abiClient;
+    ABIService abiService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+        retrofitInit();
         referenciar();
         eventos();
+    }
+
+    private void retrofitInit()
+    {
+        abiClient = ABIClient.getInstance();
+        abiService = abiClient.getABIService();
     }
 
     private void eventos()
@@ -67,9 +87,30 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
             et_password.setError("La contraseña es requerida");
         else
         {
-            Intent intent = new Intent(LogInActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            RequestLogin requestLogin = new RequestLogin(s_email, s_password);
+            Call<ResponseLogin> call = abiService.responselogin(requestLogin);
+            call.enqueue(new Callback<ResponseLogin>() {
+                @Override
+                public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
+                    if(response.isSuccessful())
+                    {
+                        Intent intent = new Intent(LogInActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(LogInActivity.this, "Algo falló", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseLogin> call, Throwable t)
+                {
+                    Toast.makeText(LogInActivity.this, "Problemas de conexión", Toast.LENGTH_LONG).show();
+
+                }
+            });
         }
     }
 }
