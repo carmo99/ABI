@@ -1,7 +1,5 @@
 package com.abi.homeactivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +8,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+
+import com.abi.homeactivity.common.Constantes;
+import com.abi.homeactivity.common.SharedPreferencesManager;
 import com.abi.homeactivity.retrofit.ABIClient;
 import com.abi.homeactivity.retrofit.ABIService;
 import com.abi.homeactivity.retrofit.request.RequestLogin;
@@ -18,6 +21,7 @@ import com.abi.homeactivity.retrofit.response.ResponseLogin;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener {
     Button b_login;
@@ -94,6 +98,11 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                 public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
                     if(response.isSuccessful())
                     {
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.PREF_TOKEN, response.body().getToken());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.PREF_NOMBRE, response.body().getUsuario().getNombre());
+
                         Intent intent = new Intent(LogInActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();

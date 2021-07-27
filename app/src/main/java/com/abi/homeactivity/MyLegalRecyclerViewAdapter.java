@@ -9,15 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.abi.homeactivity.dummy.DummyContent.DummyItem;
+
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem}.
- * TODO: Replace the implementation with code for your data type.
- */
+
 public class MyLegalRecyclerViewAdapter extends RecyclerView.Adapter<MyLegalRecyclerViewAdapter.ViewHolder> {
 
     private final List<Informacion> mValues;

@@ -6,9 +6,14 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
-
+import com.abi.homeactivity.common.Constantes;
+import com.abi.homeactivity.common.SharedPreferencesManager;
+import com.abi.homeactivity.retrofit.AuthABIClient;
+import com.abi.homeactivity.retrofit.AuthABIService;
+import com.abi.homeactivity.retrofit.response.ResponseFoto;
 import com.abi.homeactivity.ui.home.ContactoFragment;
 import com.abi.homeactivity.ui.home.FotoFragment;
 import com.abi.homeactivity.ui.home.dummy.MensajeFragment;
@@ -28,6 +33,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.appcompat.widget.Toolbar;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity {
 
     MapsActivity mapafragment = new MapsActivity();
@@ -42,11 +51,18 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     int veces_apretado = 0;
 
+    AuthABIService authABIService;
+    AuthABIClient authABIClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        String nombre = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_NOMBRE);
+        Log.i("Token2", nombre);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -62,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         toolbar = findViewById(R.id.toolbar);
         nav_view_sidebar = findViewById(R.id.nav_view_sidebar);
+
 
         nav_view_sidebar.setNavigationItemSelectedListener(item ->
         {
@@ -106,6 +123,8 @@ public class MainActivity extends AppCompatActivity {
         };
         this.getOnBackPressedDispatcher().addCallback(this, callback);
 
+        retrofitInit();
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -117,6 +136,23 @@ public class MainActivity extends AppCompatActivity {
                 loadFragmentM(fragment_foto);
                 appBarLayout.setVisibility(View.GONE);
                 bottomNavigationView.setVisibility(View.GONE);
+                Call<ResponseFoto> call = authABIService.getFotoDia();
+                call.enqueue(new Callback<ResponseFoto>() {
+                    @Override
+                    public void onResponse(Call<ResponseFoto> call, Response<ResponseFoto> response) {
+                        if (response.isSuccessful()){
+                            String fotoDia = response.body().getUrl();
+                            Log.i("FotoDia", fotoDia);
+                        }else{
+                            Toast.makeText(MainActivity.this, "Algo fallo", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseFoto> call, Throwable t) {
+                        Toast.makeText(MainActivity.this, "Error en la conexion", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 return true;
             }
             else if(item.getItemId() == R.id.fragment_mensaje)
@@ -136,6 +172,11 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
+    private void retrofitInit() {
+        authABIClient = AuthABIClient.getInstance();
+        authABIService = authABIClient.getAuthABIService();
+    }
 
     public void loadFragmentM(Fragment fragment)
     {
