@@ -1,7 +1,9 @@
 package com.abi.homeactivity.retrofit;
 
 import com.abi.homeactivity.retrofit.request.RequestLogin;
+import com.abi.homeactivity.retrofit.request.RequestMensaje;
 import com.abi.homeactivity.retrofit.response.ResponseLogin;
+import com.abi.homeactivity.retrofit.response.ResponseMensaje;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

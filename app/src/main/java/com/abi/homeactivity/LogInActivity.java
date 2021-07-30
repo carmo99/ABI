@@ -102,6 +102,8 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                                 .setSomeStringValue(Constantes.PREF_TOKEN, response.body().getToken());
                         SharedPreferencesManager
                                 .setSomeStringValue(Constantes.PREF_NOMBRE, response.body().getUsuario().getNombre());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.PREF_MENSAJE, response.body().getUsuario().getMensajeAyuda());
 
                         Intent intent = new Intent(LogInActivity.this, MainActivity.class);
                         startActivity(intent);

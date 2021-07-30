@@ -14,6 +14,7 @@ import com.abi.homeactivity.common.SharedPreferencesManager;
 import com.abi.homeactivity.retrofit.AuthABIClient;
 import com.abi.homeactivity.retrofit.AuthABIService;
 import com.abi.homeactivity.retrofit.response.ResponseFoto;
+import com.abi.homeactivity.retrofit.response.ResponseMensaje;
 import com.abi.homeactivity.ui.home.ContactoFragment;
 import com.abi.homeactivity.ui.home.FotoFragment;
 import com.abi.homeactivity.ui.home.dummy.MensajeFragment;
@@ -63,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
         String nombre = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_NOMBRE);
         Log.i("Token2", nombre);
+
+        String mensajeAyuda = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE);
+        Log.i("Token3", mensajeAyuda);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
