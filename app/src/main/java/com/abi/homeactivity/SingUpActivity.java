@@ -8,11 +8,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.abi.homeactivity.common.Constantes;
+import com.abi.homeactivity.common.SharedPreferencesManager;
+import com.abi.homeactivity.retrofit.ABIClient;
+import com.abi.homeactivity.retrofit.ABIService;
+import com.abi.homeactivity.retrofit.request.RequestCrearUsuario;
+import com.abi.homeactivity.retrofit.response.ResponseLogin;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SingUpActivity extends AppCompatActivity implements View.OnClickListener {
     Button b_singup;
     EditText et_name, et_email, et_password, et_phone;
     TextView tv_login;
+
+    ABIClient abiClient;
+    ABIService abiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -20,7 +35,14 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sing_up);
         referenciar();
+        retrofitInit();
         eventos();
+    }
+
+    private void retrofitInit()
+    {
+        abiClient = ABIClient.getInstance();
+        abiService = abiClient.getABIService();
     }
 
     private void eventos()
@@ -71,9 +93,36 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
             et_phone.setError("El teléfono es requerido");
         else
         {
-            Intent intent = new Intent(SingUpActivity.this, PrivacidadActivity.class);
-            startActivity(intent);
-            finish();
+            RequestCrearUsuario requestCrearUsuario = new RequestCrearUsuario(s_name,s_email,s_password,s_phone);
+            Call<ResponseLogin> call = abiService.responseSingUp(requestCrearUsuario);
+            call.enqueue(new Callback<ResponseLogin>() {
+                @Override
+                public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
+                    if(response.isSuccessful())
+                    {
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.PREF_TOKEN, response.body().getToken());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.PREF_NOMBRE, response.body().getUsuario().getNombre());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.PREF_MENSAJE, response.body().getUsuario().getMensajeAyuda());
+
+                        Intent intent = new Intent(SingUpActivity.this, PrivacidadActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(SingUpActivity.this, "Algo falló", Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<ResponseLogin> call, Throwable t) {
+                    Toast.makeText(SingUpActivity.this, "Problemas de conexión", Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
 
