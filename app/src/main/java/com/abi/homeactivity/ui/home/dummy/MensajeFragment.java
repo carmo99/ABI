@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+
 import android.widget.Toast;
 
 import com.abi.homeactivity.LogInActivity;
@@ -33,9 +34,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link MensajeFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class MensajeFragment extends Fragment implements View.OnClickListener {
 
-
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -54,11 +61,20 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
 
     String mensajeAyuda;
 
+
     public MensajeFragment() {
         // Required empty public constructor
     }
 
-
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment MensajeFragment.
+     */
+    // TODO: Rename and change types and number of parameters
     public static MensajeFragment newInstance(String param1, String param2) {
         MensajeFragment fragment = new MensajeFragment();
         Bundle args = new Bundle();
@@ -86,14 +102,11 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
-
         retrofitInit();
 
 
         mensajeAyuda = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE);
         Log.i("Token5", mensajeAyuda);
-
-
     }
 
     @Override
@@ -108,45 +121,40 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
         b_mensajeAyuda.setOnClickListener(this);
 
         ti_mensajeAyuda.setText(mensajeAyuda);
-
         return vista;
     }
 
     @Override
-    public void onClick(View view)
-    {
-        if(view.getId() == R.id.imageButton_atras_mensaje)
-        {
+    public void onClick(View view) {
+        if (view.getId() == R.id.imageButton_atras_mensaje) {
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
             getActivity().finish();
         }
-
-        if(view.getId() == R.id.buttonMensaje)
-        {
+        if (view.getId() == R.id.buttonMensaje) {
             actualizarMensaje();
         }
-
     }
-
     private void retrofitInit() {
         authABIClient = AuthABIClient.getInstance();
         authABIService = authABIClient.getAuthABIService();
     }
 
-    private void actualizarMensaje() {
-
+    private void actualizarMensaje()
+    {
         String s_mensajeAyuda = ti_mensajeAyuda.getText().toString();
-        if (s_mensajeAyuda.isEmpty()){
+        if (s_mensajeAyuda.isEmpty()) {
             ti_mensajeAyuda.setError("El mensaje es requerido");
         }
 
         RequestMensaje requestMensaje = new RequestMensaje(s_mensajeAyuda);
         Call<ResponseMensaje> call = authABIService.updateMensajeAyuda(requestMensaje);
-        call.enqueue(new Callback<ResponseMensaje>() {
+        call.enqueue(new Callback<ResponseMensaje>()
+        {
             @Override
             public void onResponse(Call<ResponseMensaje> call, Response<ResponseMensaje> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful())
+                {
                     requestMensaje.setMensajeAyuda(s_mensajeAyuda);
                     ti_mensajeAyuda.setText(s_mensajeAyuda);
                     SharedPreferencesManager
@@ -158,16 +166,10 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
                     Toast.makeText(MyApp.getContext(), "Algo ha ido mal", Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<ResponseMensaje> call, Throwable t) {
                 Toast.makeText(MyApp.getContext(), "Error en la conexion", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
     }
-
-
 }

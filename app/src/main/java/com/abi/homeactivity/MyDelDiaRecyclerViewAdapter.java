@@ -15,10 +15,10 @@ import java.util.List;
 
 public class MyDelDiaRecyclerViewAdapter extends RecyclerView.Adapter<MyDelDiaRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Informacion> mValues;
+    private final List<Noticia> mValues;
     private final Context context;
 
-    public MyDelDiaRecyclerViewAdapter(Context contexto, List<Informacion>items) {
+    public MyDelDiaRecyclerViewAdapter(Context contexto, List<Noticia>items) {
         mValues = items;
         context = contexto;
     }
@@ -33,8 +33,9 @@ public class MyDelDiaRecyclerViewAdapter extends RecyclerView.Adapter<MyDelDiaRe
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.textViewTitulo.setText(holder.mItem.getTituloInformacion());
-        Glide.with(context).load(holder.mItem.getUrlFoto())
+
+        holder.textViewTitulo.setText(holder.mItem.getTitulo());
+        Glide.with(context).load(holder.mItem.getFoto())
                 .centerCrop()
                 .into(holder.imagen);
     }
@@ -47,7 +48,7 @@ public class MyDelDiaRecyclerViewAdapter extends RecyclerView.Adapter<MyDelDiaRe
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView textViewTitulo;
         public final ImageView imagen;
-        public Informacion mItem;
+        public Noticia mItem;
 
         public ViewHolder(View view) {
             super(view);

@@ -11,9 +11,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.abi.homeactivity.common.MyApp;
+import com.abi.homeactivity.retrofit.ABIClient;
+import com.abi.homeactivity.retrofit.ABIService;
+import com.abi.homeactivity.retrofit.request.RequestInformacion;
+import com.abi.homeactivity.retrofit.response.ResponseClasificacion;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class LegalFragment extends Fragment {
         // TODO: Customize parameter argument names
         private static final String ARG_COLUMN_COUNT = "column-count";
@@ -21,9 +33,13 @@ public class LegalFragment extends Fragment {
         private int mColumnCount = 1;
         RecyclerView recyclerView;
 
-        List<Informacion> informacionList;
+        ABIClient abiClient;
+        ABIService abiService;
+
+        List<Noticia> informacionList;
 
         MyDelDiaRecyclerViewAdapter adapterInformacion;
+
 
         /**
          * Mandatory empty constructor for the fragment manager to instantiate the
@@ -49,6 +65,7 @@ public class LegalFragment extends Fragment {
             if (getArguments() != null) {
                 mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
             }
+            retrofitInit();
         }
 
         @Override
@@ -57,7 +74,8 @@ public class LegalFragment extends Fragment {
             View view = inflater.inflate(R.layout.fragment_item_list2, container, false);
 
             // Set the adapter
-            if (view instanceof RecyclerView) {
+            if (view instanceof RecyclerView)
+            {
                 Context context = view.getContext();
                 recyclerView = (RecyclerView) view;
                 if (mColumnCount <= 1) {
@@ -65,16 +83,40 @@ public class LegalFragment extends Fragment {
                 } else {
                     recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
                 }
-                informacionList = new ArrayList<>();
-
-                informacionList.add(new Informacion("¿Cómo denunciar un robo?", "https://www.eleconomista.com.mx/__export/1576085766329/sites/eleconomista/img/2019/12/11/robo-delito-mexico.jpg_554688468.jpg"));
-                informacionList.add(new Informacion("¿Cómo denunciar un secuestro?", "https://imagenes.milenio.com/fkaH7duA88o1sn284wZVug-1QgA=/958x596/https://www.milenio.com/uploads/media/2019/08/09/secuestro-especial_0_4_678_422.jpeg"));
-                informacionList.add(new Informacion("¿Cómo denunciar asalto?", "https://img.unocero.com/2019/07/delito-grave-robo-de-celular.jpg"));
-                informacionList.add(new Informacion("¿Cómo denunciar feminicidio?", "https://www.gob.mx/cms/uploads/article/main_image/26656/feminicidio-2.jpg"));
-
-                adapterInformacion = new MyDelDiaRecyclerViewAdapter(getActivity(),informacionList);
-                recyclerView.setAdapter(adapterInformacion);
+                retrofitInit();
+                cargarInfo();
             }
             return view;
         }
+
+    private void retrofitInit()
+    {
+        abiClient = ABIClient.getInstance();
+        abiService = abiClient.getABIService();
     }
+
+    private void cargarInfo()
+    {
+        Call<ResponseClasificacion> call = abiService.responseClasificacionLegal();
+        call.enqueue(new Callback<ResponseClasificacion>() {
+            @Override
+            public void onResponse(Call<ResponseClasificacion> call, Response<ResponseClasificacion> response) {
+                if(response.isSuccessful())
+                {
+                    informacionList = response.body().getNoticias();
+                    adapterInformacion = new MyDelDiaRecyclerViewAdapter(getActivity(),informacionList);
+                    recyclerView.setAdapter(adapterInformacion);
+                }
+                else
+                {
+                    Toast.makeText(MyApp.getContext(), "Algo falló", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseClasificacion> call, Throwable t) {
+                Toast.makeText(MyApp.getContext(), "Problemas de conexión", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+}

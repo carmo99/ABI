@@ -17,10 +17,10 @@ import java.util.List;
 
 public class MyLegalRecyclerViewAdapter extends RecyclerView.Adapter<MyLegalRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Informacion> mValues;
+    private final List<Noticia> mValues;
     private final Context context;
 
-    public MyLegalRecyclerViewAdapter(Context contexto, List<Informacion>items) {
+    public MyLegalRecyclerViewAdapter(Context contexto, List<Noticia>items) {
         mValues = items;
         context = contexto;
     }
@@ -35,8 +35,8 @@ public class MyLegalRecyclerViewAdapter extends RecyclerView.Adapter<MyLegalRecy
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.textViewTitulo.setText(holder.mItem.getTituloInformacion());
-        Glide.with(context).load(holder.mItem.getUrlFoto())
+        holder.textViewTitulo.setText(holder.mItem.getTitulo());
+        Glide.with(context).load(holder.mItem.getFoto())
                 .centerCrop()
                 .into(holder.imagen);
     }
@@ -49,7 +49,7 @@ public class MyLegalRecyclerViewAdapter extends RecyclerView.Adapter<MyLegalRecy
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView textViewTitulo;
         public final ImageView imagen;
-        public Informacion mItem;
+        public Noticia mItem;
 
         public ViewHolder(View view) {
             super(view);

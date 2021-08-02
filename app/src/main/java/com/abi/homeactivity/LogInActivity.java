@@ -92,6 +92,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         else
         {
             RequestLogin requestLogin = new RequestLogin(s_email, s_password);
+
             Call<ResponseLogin> call = abiService.responselogin(requestLogin);
             call.enqueue(new Callback<ResponseLogin>() {
                 @Override

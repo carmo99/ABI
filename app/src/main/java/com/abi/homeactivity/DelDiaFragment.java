@@ -8,12 +8,24 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.abi.homeactivity.common.MyApp;
+import com.abi.homeactivity.retrofit.ABIClient;
+import com.abi.homeactivity.retrofit.ABIService;
+import com.abi.homeactivity.retrofit.request.RequestInformacion;
+import com.abi.homeactivity.retrofit.response.ResponseClasificacion;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A fragment representing a list of Items.
@@ -26,8 +38,10 @@ public class DelDiaFragment extends Fragment {
     private int mColumnCount = 1;
     RecyclerView recyclerView;
 
-    List<Informacion> informacionList;
+    ABIClient abiClient;
+    ABIService abiService;
 
+    List<Noticia> informacionList;
     MyDelDiaRecyclerViewAdapter adapterInformacion;
 
     /**
@@ -70,16 +84,39 @@ public class DelDiaFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            informacionList = new ArrayList<>();
-
-            informacionList.add(new Informacion("Todo lo que debes saber del mes Pride", "https://img.chilango.com/2019/06/fiestas-pride-2019-1.jpg"));
-            informacionList.add(new Informacion("Las zonas más peligrosas de la CDMX", "https://www.aquien.mx/wp-content/uploads/2020/03/zonaspeligrosas-ssc.jpg"));
-            informacionList.add(new Informacion("Incidencia delictiva en la CDMX", "https://cdn-3.expansion.mx/c1/95/5fb13e8847ee9155b5463735cea9/cuartoscuro-719192-digital.jpeg"));
-            informacionList.add(new Informacion("Semáforo epidemiológico CDMX", "https://imagenes.milenio.com/yCy_3qwOEpVYdSzrx_W8dMzFA0Q=/958x596/https://www.milenio.com/uploads/media/2021/02/12/cdmx-regresa-semaforo-naranja-covid.jpg"));
-
-            adapterInformacion = new MyDelDiaRecyclerViewAdapter(getActivity(),informacionList);
-            recyclerView.setAdapter(adapterInformacion);
+            retrofitInit();
+            cargarInfo();
         }
         return view;
+    }
+    private void retrofitInit()
+    {
+        abiClient = ABIClient.getInstance();
+        abiService = abiClient.getABIService();
+    }
+
+    private void cargarInfo()
+    {
+        Call<ResponseClasificacion> call = abiService.responseClasificacionDia();
+        call.enqueue(new Callback<ResponseClasificacion>() {
+            @Override
+            public void onResponse(Call<ResponseClasificacion> call, Response<ResponseClasificacion> response) {
+                if(response.isSuccessful())
+                {
+                    informacionList = response.body().getNoticias();
+                    adapterInformacion = new MyDelDiaRecyclerViewAdapter(getActivity(),informacionList);
+                    recyclerView.setAdapter(adapterInformacion);
+                }
+                else
+                {
+                    Toast.makeText(MyApp.getContext(), "Algo falló", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseClasificacion> call, Throwable t) {
+                Toast.makeText(MyApp.getContext(), "Problemas de conexión", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
