@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         String mensajeAyuda = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE);
         Log.i("Token3", mensajeAyuda);
 
+        Log.i("ROL", SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ROL));
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

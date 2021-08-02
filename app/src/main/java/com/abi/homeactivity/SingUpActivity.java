@@ -106,6 +106,8 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
                                 .setSomeStringValue(Constantes.PREF_NOMBRE, response.body().getUsuario().getNombre());
                         SharedPreferencesManager
                                 .setSomeStringValue(Constantes.PREF_MENSAJE, response.body().getUsuario().getMensajeAyuda());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.PREF_ROL, response.body().getUsuario().getRol());
 
                         Intent intent = new Intent(SingUpActivity.this, PrivacidadActivity.class);
                         startActivity(intent);
