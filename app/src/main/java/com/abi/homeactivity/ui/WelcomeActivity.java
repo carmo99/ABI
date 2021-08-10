@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.abi.homeactivity.R;
 import com.abi.homeactivity.common.Constantes;
 import com.abi.homeactivity.common.MyApp;
 import com.abi.homeactivity.common.SharedPreferencesManager;
+import com.abi.homeactivity.popup.PopUpError;
 import com.abi.homeactivity.retrofit.AuthABIClient;
 import com.abi.homeactivity.retrofit.AuthABIService;
 import com.abi.homeactivity.retrofit.response.ResponseLogIn;
@@ -18,6 +20,8 @@ import com.abi.homeactivity.retrofit.response.ResponseLogIn;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.abi.homeactivity.common.SharedPreferencesManager.getSomeStringValue;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -30,6 +34,11 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        if(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_TOKEN) == null)
+        {
+            SharedPreferencesManager
+                    .setSomeStringValue(Constantes.PREF_TOKEN, "");
+        }
         retrofitInit();
         verifica();
     }
@@ -42,6 +51,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private void verifica()
     {
+        Log.i("TokenABC", "VERIFICA");
+
         Call<ResponseLogIn> call = authABIService.verificaJWT();
         call.enqueue(new Callback<ResponseLogIn>() {
             @Override
@@ -70,7 +81,11 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseLogIn> call, Throwable t)
             {
-                Toast.makeText(MyApp.getContext(), "Error en la conexion", Toast.LENGTH_SHORT).show();
+                Bundle parametros = new Bundle();
+                parametros.putString("Mensaje", "Error en la conexión, intentalo nuevamente");
+                Intent i = new Intent(getApplicationContext(), PopUpError.class);
+                i.putExtras(parametros);
+                startActivity(i);
             }
         });
     }
