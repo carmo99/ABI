@@ -1,5 +1,6 @@
 package com.abi.homeactivity.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.abi.homeactivity.informacion.InformacionLegalActivity;
 import com.abi.homeactivity.R;
 import com.abi.homeactivity.common.Constantes;
 import com.abi.homeactivity.common.SharedPreferencesManager;
+import com.abi.homeactivity.popup.PopUpLogOut;
 import com.abi.homeactivity.retrofit.AuthABIClient;
 import com.abi.homeactivity.retrofit.AuthABIService;
 import com.abi.homeactivity.retrofit.response.ResponseFoto;
@@ -36,9 +38,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-
+    public static Activity fa;
     ImageView perfil;
     MapsActivity mapafragment = new MapsActivity();
     FotoFragment fragment_foto = new FotoFragment();
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        fa = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -96,8 +99,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     startActivity(intent2);
                     this.finish();
                     return true;
-                case R.id.nav_infoConfiguracion:
-                    Log.i("Opciones", "Configuracion");
+                case R.id.nav_LogOut:
+                    Intent intent3 = new Intent(MainActivity.this, PopUpLogOut.class);
+                    startActivity(intent3);
                     return true;
             }
             return false;

@@ -25,9 +25,11 @@
     <string name="menu_DispositivoABI">Dispositivo ABI</string>
     <string name="menu_informacionDia">Información del día</string>
     <string name="menu_informacionLegal">Información Legal </string>
-    <string name="menu_configuracion">Configuración</string>
+    <string name="menu_logOut">Cerrar Sesión</string>
     <string name="Info_dia">INFORMACIÓN DEL DÍA</string>
     <string name="info_legal">INFORMACIÓN LEGAL</string>
     <string name="Error">Error</string>
     <string name="Ok">OK</string>
+    <string name="Cerrar_Sesion">Cerrar Sesión</string>
+    <string name="Seguro_cerrar_sesion">¿Está seguro que quiere cerrar sesión?</string>
 </resources>

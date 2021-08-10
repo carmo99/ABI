@@ -28,6 +28,8 @@ public class PopUpError extends AppCompatActivity implements View.OnClickListene
         txtMensaje = findViewById(R.id.textView_texto_error);
         txtCerrar = findViewById(R.id.textView_cerrar);
 
+
+
         txtCerrar.setOnClickListener(this);
 
         txtMensaje.setText(mensaje);
@@ -38,7 +40,7 @@ public class PopUpError extends AppCompatActivity implements View.OnClickListene
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*.8), (int)(height*.4));
+        getWindow().setLayout((int)(width*.8), (int)(height*.5));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
 
@@ -55,6 +57,5 @@ public class PopUpError extends AppCompatActivity implements View.OnClickListene
     public void onClick(View view)
     {
         finish();
-
     }
 }

@@ -14,7 +14,7 @@
         android:icon="@drawable/ic_book_content_orange"
         android:title="@string/menu_informacionLegal" />
     <item
-        android:id="@+id/nav_infoConfiguracion"
-        android:icon="@drawable/ic_smallgear"
-        android:title="@string/menu_configuracion" />
+        android:id="@+id/nav_LogOut"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/menu_logOut"/>
 </menu>

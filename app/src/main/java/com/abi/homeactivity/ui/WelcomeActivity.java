@@ -51,8 +51,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private void verifica()
     {
-        Log.i("TokenABC", "VERIFICA");
-
         Call<ResponseLogIn> call = authABIService.verificaJWT();
         call.enqueue(new Callback<ResponseLogIn>() {
             @Override
