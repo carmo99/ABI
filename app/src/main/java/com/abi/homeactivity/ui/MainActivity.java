@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -35,8 +36,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+
+    ImageView perfil;
     MapsActivity mapafragment = new MapsActivity();
     FotoFragment fragment_foto = new FotoFragment();
     MensajeFragment fragment_mensaje = new MensajeFragment();
@@ -58,15 +61,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        String nombre = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_NOMBRE);
-        Log.i("Token2", nombre);
-
-        String mensajeAyuda = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE);
-        Log.i("Token3", mensajeAyuda);
-
-        Log.i("ROL", SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ROL));
-
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -78,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
 
         appBarLayout = findViewById(R.id.barlayout);
         bottomNavigationView = findViewById(R.id.nav_view);
+        perfil = findViewById(R.id.imageViewProfilePrincipal);
+        perfil.setOnClickListener(this);
         drawerLayout = findViewById(R.id.drawerLayout);
         toolbar = findViewById(R.id.toolbar);
         nav_view_sidebar = findViewById(R.id.nav_view_sidebar);
@@ -207,5 +203,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        //TODO: Metodos para ir a cambio de perfil (Intent).
     }
 }
