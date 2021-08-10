@@ -3,7 +3,7 @@ package com.abi.homeactivity.retrofit.response;
 
 import java.util.List;
 
-import com.abi.homeactivity.Noticia;
+import com.abi.homeactivity.modelos.Noticia;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

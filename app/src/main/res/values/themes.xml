@@ -14,4 +14,14 @@
         <!-- Customize your theme here. -->
 
     </style>
+    <style name="Theme.HomeActivity.PopMe">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="Theme.HomeActivity.Cargando">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
 </resources>

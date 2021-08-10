@@ -19,9 +19,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HomeActivity">
-        <activity android:name=".InformacionLegalActivity"></activity>
-        <activity android:name=".InformacionDiaActivity" />
-        <activity android:name=".PrivacidadActivity" />
+        <activity android:name=".popup.PopUpCargando" android:theme="@style/Theme.HomeActivity.Cargando"></activity>
+        <activity
+            android:name=".popup.PopUpError"
+            android:theme="@style/Theme.HomeActivity.PopMe"></activity>
+        <activity android:name=".informacion.InformacionLegalActivity" />
+        <activity android:name=".informacion.InformacionDiaActivity" />
+        <activity android:name=".ui.PrivacidadActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -34,16 +38,14 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".MensajeActivity" />
-        <activity android:name=".FotoDiaActivity" />
-        <activity android:name=".SingUpActivity" />
-        <activity android:name=".LogInActivity" />
+        <activity android:name=".ui.SingUpActivity" />
+        <activity android:name=".ui.LogInActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".WelcomeActivity">
+        <activity android:name=".ui.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,13 +53,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name" />
         <activity
-            android:name=".RegistroContactosActivity"
+            android:name=".ui.RegistroContactosActivity"
             android:label="@string/app_name" />
         <activity
-            android:name=".MapsActivity"
+            android:name=".ui.MapsActivity"
             android:label="@string/title_activity_maps" />
     </application>
 

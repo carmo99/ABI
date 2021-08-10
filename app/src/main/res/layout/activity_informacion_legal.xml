@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blueintermediate"
-    tools:context=".InformacionDiaActivity">
+    tools:context=".informacion.InformacionDiaActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
@@ -48,7 +48,7 @@
 
     <fragment
         android:id="@+id/fragment2"
-        android:name="com.abi.homeactivity.LegalFragment"
+        android:name="com.abi.homeactivity.informacion.LegalFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"

@@ -2,7 +2,7 @@ package com.abi.homeactivity.retrofit;
 
 import com.abi.homeactivity.retrofit.request.RequestMensaje;
 import com.abi.homeactivity.retrofit.response.ResponseFoto;
-import com.abi.homeactivity.retrofit.response.ResponseLogin;
+import com.abi.homeactivity.retrofit.response.ResponseLogIn;
 import com.abi.homeactivity.retrofit.response.ResponseMensaje;
 
 import retrofit2.Call;
@@ -20,5 +20,5 @@ public interface AuthABIService {
     Call<ResponseMensaje> updateMensajeAyuda(@Body RequestMensaje requestMensaje);
 
     @POST("api/auth/verificacion")
-    Call<ResponseLogin> verificaJWT();
+    Call<ResponseLogIn> verificaJWT();
 }
