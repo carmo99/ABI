@@ -17,10 +17,12 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 
-public class MyLegalRecyclerViewAdapter extends RecyclerView.Adapter<MyLegalRecyclerViewAdapter.ViewHolder> {
+public class MyLegalRecyclerViewAdapter extends RecyclerView.Adapter<MyLegalRecyclerViewAdapter.ViewHolder>
+        implements View.OnClickListener{
 
     private final List<Noticia> mValues;
     private final Context context;
+    private View.OnClickListener listener;
 
     public MyLegalRecyclerViewAdapter(Context contexto, List<Noticia>items) {
         mValues = items;
@@ -46,6 +48,18 @@ public class MyLegalRecyclerViewAdapter extends RecyclerView.Adapter<MyLegalRecy
     @Override
     public int getItemCount() {
         return mValues.size();
+    }
+
+    public void setOnClickListener(View.OnClickListener listener)
+    {
+        this.listener = listener;
+    }
+    @Override
+    public void onClick(View view) {
+        if(listener!=null)
+        {
+            listener.onClick(view);
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

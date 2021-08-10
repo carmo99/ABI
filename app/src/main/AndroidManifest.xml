@@ -19,8 +19,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HomeActivity">
-        <activity android:name=".popup.PopUpCorrecto"
-            android:theme="@style/Theme.HomeActivity.PopMe"/>
+        <activity android:name=".popup.PopUpNoticia"
+            android:theme="@style/Theme.HomeActivity.PopMe" />
+        <activity
+            android:name=".popup.PopUpCorrecto"
+            android:theme="@style/Theme.HomeActivity.PopMe" />
         <activity
             android:name=".popup.PopUpCargando"
             android:theme="@style/Theme.HomeActivity.Cargando" />

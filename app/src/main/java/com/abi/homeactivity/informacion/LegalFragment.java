@@ -1,6 +1,7 @@
 package com.abi.homeactivity.informacion;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,6 +17,9 @@ import android.widget.Toast;
 import com.abi.homeactivity.R;
 import com.abi.homeactivity.common.MyApp;
 import com.abi.homeactivity.modelos.Noticia;
+import com.abi.homeactivity.popup.PopUpCargando;
+import com.abi.homeactivity.popup.PopUpError;
+import com.abi.homeactivity.popup.PopUpNoticia;
 import com.abi.homeactivity.retrofit.ABIClient;
 import com.abi.homeactivity.retrofit.ABIService;
 import com.abi.homeactivity.retrofit.response.ResponseClasificacion;
@@ -98,25 +102,48 @@ public class LegalFragment extends Fragment {
 
     private void cargarInfo()
     {
+        Intent iC = new Intent(MyApp.getContext(), PopUpCargando.class);
+        startActivity(iC);
         Call<ResponseClasificacion> call = abiService.responseClasificacionLegal();
         call.enqueue(new Callback<ResponseClasificacion>() {
             @Override
             public void onResponse(Call<ResponseClasificacion> call, Response<ResponseClasificacion> response) {
+                PopUpCargando.fa.finish();
                 if(response.isSuccessful())
                 {
                     informacionList = response.body().getNoticias();
                     adapterInformacion = new MyDelDiaRecyclerViewAdapter(getActivity(),informacionList);
+                    adapterInformacion.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String idNoticia = informacionList.get(recyclerView.getChildAdapterPosition(view)).getId();
+                            Bundle parametros = new Bundle();
+                            parametros.putString("IdNoticia", idNoticia);
+                            Intent i = new Intent(MyApp.getContext(), PopUpNoticia.class);
+                            i.putExtras(parametros);
+                            startActivity(i);
+                        }
+                    });
                     recyclerView.setAdapter(adapterInformacion);
                 }
                 else
                 {
-                    Toast.makeText(MyApp.getContext(), "Algo falló", Toast.LENGTH_LONG).show();
+                    Bundle parametros = new Bundle();
+                    parametros.putString("Mensaje", "Error del servidor, intentelo nuevamente");
+                    Intent i = new Intent(MyApp.getContext(), PopUpError.class);
+                    i.putExtras(parametros);
+                    startActivity(i);
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseClasificacion> call, Throwable t) {
-                Toast.makeText(MyApp.getContext(), "Problemas de conexión", Toast.LENGTH_LONG).show();
+                PopUpCargando.fa.finish();
+                Bundle parametros = new Bundle();
+                parametros.putString("Mensaje", "Error en la conexión, intentalo nuevamente");
+                Intent i = new Intent(MyApp.getContext(), PopUpError.class);
+                i.putExtras(parametros);
+                startActivity(i);
             }
         });
     }

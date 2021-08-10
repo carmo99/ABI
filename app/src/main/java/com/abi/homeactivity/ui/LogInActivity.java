@@ -140,8 +140,9 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onFailure(Call<ResponseLogIn> call, Throwable t)
                 {
+                    PopUpCargando.fa.finish();
                     Bundle parametros = new Bundle();
-                    parametros.putString("Mensaje", "Error en el servidor, intentalo nuevamente");
+                    parametros.putString("Mensaje", "Error en la conexión, intentalo nuevamente");
                     Intent i = new Intent(getApplicationContext(), PopUpError.class);
                     i.putExtras(parametros);
                     startActivity(i);
