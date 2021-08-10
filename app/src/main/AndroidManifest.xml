@@ -19,10 +19,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HomeActivity">
-        <activity android:name=".popup.PopUpCargando" android:theme="@style/Theme.HomeActivity.Cargando"></activity>
+        <activity android:name=".popup.PopUpCorrecto"
+            android:theme="@style/Theme.HomeActivity.PopMe"/>
+        <activity
+            android:name=".popup.PopUpCargando"
+            android:theme="@style/Theme.HomeActivity.Cargando" />
         <activity
             android:name=".popup.PopUpError"
-            android:theme="@style/Theme.HomeActivity.PopMe"></activity>
+            android:theme="@style/Theme.HomeActivity.PopMe" />
         <activity android:name=".informacion.InformacionLegalActivity" />
         <activity android:name=".informacion.InformacionDiaActivity" />
         <activity android:name=".ui.PrivacidadActivity" />

@@ -31,17 +31,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         retrofitInit();
-        //verifica();
-        new Handler().postDelayed(new Runnable()
-        {
-            public void run()
-            {
-                Intent intent = new Intent(WelcomeActivity.this, LogInActivity.class);
-                startActivity(intent);
-                finish();
-                // Cuando pasen los 5 segundos, pasamos a la actividad principal de la aplicación
-            };
-        }, DURACION_SPLASH);
+        verifica();
     }
 
     private void retrofitInit()
