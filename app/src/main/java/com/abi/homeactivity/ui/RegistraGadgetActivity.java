@@ -1,5 +1,6 @@
 package com.abi.homeactivity.ui;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -40,6 +41,18 @@ public class RegistraGadgetActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registra_gadget);
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */)
+        {
+
+            @Override
+            public void handleOnBackPressed()
+            {
+                Intent intent = new Intent(RegistraGadgetActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        };
+        this.getOnBackPressedDispatcher().addCallback(this, callback);
 
         referenciar();
         retrofitInit();
@@ -48,7 +61,9 @@ public class RegistraGadgetActivity extends AppCompatActivity implements View.On
     }
 
     private void eventos() {
+
         registrar_gadget.setOnClickListener(this);
+        atras_gadget.setOnClickListener(this);
     }
 
     private void referenciar(){
@@ -66,7 +81,7 @@ public class RegistraGadgetActivity extends AppCompatActivity implements View.On
     public void onClick(View view) {
 
         if (view.getId() == R.id.imageButton_atras_RegistraGadget) {
-            Intent intent = new Intent(RegistraGadgetActivity.this, MainActivity.class);
+            Intent intent = new Intent(MyApp.getContext(), MainActivity.class);
             startActivity(intent);
             finish();
         }
