@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blueintermediate"
+    tools:context=".ui.RegistraGadgetActivity">
+
+    <TextView
+        android:id="@+id/textViewRG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="REGISTRAR GADGET"
+        android:textColor="@color/ourwhite"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/animation_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="0dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRG"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="Animacion_Gadget.json"
+        app:lottie_loop="true" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="370dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/custom_constrain"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animation_view">
+
+
+        <EditText
+            android:id="@+id/editTextCodigoGadget"
+            android:layout_width="320dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:hint="       Código"
+            android:inputType="text"
+            android:textColor="@color/ourblack"
+            android:textColorHint="@color/ourblack"
+            app:layout_constraintBottom_toTopOf="@+id/buttonRegistraGadget"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muli_extrabold"
+            android:inputType="textMultiLine"
+            android:text="Ingresa el código de tu gadget"
+            android:textColor="@color/ourblack"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextCodigoGadget"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonRegistraGadget"
+            android:layout_width="251dp"
+            android:layout_height="41dp"
+            android:background="@drawable/custom_button"
+            android:fontFamily="@font/muli_extrabold"
+            android:text="@string/boton_registra_gadget"
+            android:textSize="12sp"
+            app:backgroundTint="@color/orange"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/editTextCodigoGadget"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/editTextCodigoGadget"
+            app:layout_constraintTop_toBottomOf="@+id/editTextCodigoGadget" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton_atras_RegistraGadget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/blueintermediate"
+        android:tint="@color/orange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_bx_arrow_back" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

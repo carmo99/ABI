@@ -13,8 +13,6 @@ import android.widget.Toast;
 import com.abi.homeactivity.informacion.InformacionDiaActivity;
 import com.abi.homeactivity.informacion.InformacionLegalActivity;
 import com.abi.homeactivity.R;
-import com.abi.homeactivity.common.Constantes;
-import com.abi.homeactivity.common.SharedPreferencesManager;
 import com.abi.homeactivity.popup.PopUpLogOut;
 import com.abi.homeactivity.retrofit.AuthABIClient;
 import com.abi.homeactivity.retrofit.AuthABIService;
@@ -93,6 +91,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     return true;
                 case R.id.nav_dispositivoABI:
                     Log.i("Opciones", "ABI");
+                    Intent intent4 = new Intent(MainActivity.this, RegistraGadgetActivity.class);
+                    startActivity(intent4);
+                    this.finish();
                     return true;
                 case R.id.nav_infoLegal:
                     Intent intent2 = new Intent(MainActivity.this, InformacionLegalActivity.class);

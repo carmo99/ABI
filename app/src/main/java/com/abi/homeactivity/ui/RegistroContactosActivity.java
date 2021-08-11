@@ -39,10 +39,10 @@ public class RegistroContactosActivity extends AppCompatActivity implements View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_registro_contactos);
-        anadir_contactos = findViewById(R.id.buttonAnadirContacto);
+        anadir_contactos = findViewById(R.id.buttonRegistraGadget);
         et_correo_RC = findViewById(R.id.editTextTextEmailRC);
         et_telefono_RC = findViewById(R.id.editTextPhoneRC);
-        atras_contacto = findViewById(R.id.imageButton_atras_nuevo_contacto);
+        atras_contacto = findViewById(R.id.imageButton_atras_registrar_contacto);
         atras_contacto.setOnClickListener(this);
         anadir_contactos.setOnClickListener(this);
         retrofitInit();
@@ -63,11 +63,11 @@ public class RegistroContactosActivity extends AppCompatActivity implements View
     @Override
     public void onClick(View view)
     {
-        if(view.getId() == R.id.buttonAnadirContacto)
+        if(view.getId() == R.id.buttonRegistraGadget)
         {
             registarContacto();
         }
-        else if( view.getId() == R.id.imageButton_atras_nuevo_contacto)
+        else if( view.getId() == R.id.imageButton_atras_registrar_contacto)
         {
             Intent intent = new Intent(RegistroContactosActivity.this, MainActivity.class);
             startActivity(intent);

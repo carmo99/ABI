@@ -21,6 +21,7 @@
         android:theme="@style/Theme.HomeActivity">
         <activity android:name=".popup.PopUpLogOut"
             android:theme="@style/Theme.HomeActivity.PopMe"/>
+        <activity android:name=".ui.RegistraGadgetActivity"></activity>
         <activity
             android:name=".popup.PopUpNoticia"
             android:theme="@style/Theme.HomeActivity.PopMe" />

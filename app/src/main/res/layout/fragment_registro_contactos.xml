@@ -10,7 +10,7 @@
 
 
     <TextView
-        android:id="@+id/textViewRC"
+        android:id="@+id/textViewRG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRC"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRG"
         app:lottie_autoPlay="true"
         app:lottie_fileName="Registro_contactos.json"
         app:lottie_loop="true" />
@@ -121,14 +121,14 @@
             android:hint="   5555555555"
             android:inputType="phone"
             android:textColorHint="@color/grisHint"
-            app:layout_constraintBottom_toTopOf="@+id/buttonAnadirContacto"
+            app:layout_constraintBottom_toTopOf="@+id/buttonRegistraGadget"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewPhoneRC" />
 
         <Button
-            android:id="@+id/buttonAnadirContacto"
+            android:id="@+id/buttonRegistraGadget"
             android:layout_width="251dp"
             android:layout_height="41dp"
             android:layout_marginTop="32dp"
@@ -147,7 +147,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
-        android:id="@+id/imageButton_atras_nuevo_contacto"
+        android:id="@+id/imageButton_atras_registrar_contacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"

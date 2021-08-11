@@ -32,4 +32,5 @@
     <string name="Ok">OK</string>
     <string name="Cerrar_Sesion">Cerrar Sesión</string>
     <string name="Seguro_cerrar_sesion">¿Está seguro que quiere cerrar sesión?</string>
+    <string name="boton_registra_gadget">REGISTRAR GADGET</string>
 </resources>
