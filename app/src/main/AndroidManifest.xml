@@ -22,8 +22,7 @@
         <activity android:name=".popup.PopUpLogOut"
             android:theme="@style/Theme.HomeActivity.PopMe"/>
         <activity android:name=".ui.RegistraGadgetActivity"></activity>
-        <activity
-            android:name=".popup.PopUpNoticia"
+        <activity android:name=".popup.PopUpNoticia"
             android:theme="@style/Theme.HomeActivity.PopMe" />
         <activity
             android:name=".popup.PopUpCorrecto"
@@ -51,6 +50,8 @@
 
         <activity android:name=".ui.SingUpActivity" />
         <activity android:name=".ui.LogInActivity" />
+        <activity android:name=".ui.DatosPerfil" />
+        <activity android:name=".ui.ActivityContrasenia" />
 
         <meta-data
             android:name="preloaded_fonts"

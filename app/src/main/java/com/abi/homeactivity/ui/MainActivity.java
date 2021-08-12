@@ -32,6 +32,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.appcompat.widget.Toolbar;
 
+import java.io.DataInputStream;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -212,6 +214,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        //TODO: Metodos para ir a cambio de perfil (Intent).
+        Intent i = new Intent( MainActivity.this, DatosPerfil.class);
+        startActivity( i );
+        this.finish();
     }
 }

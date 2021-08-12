@@ -2,11 +2,13 @@ package com.abi.homeactivity.retrofit;
 
 import com.abi.homeactivity.retrofit.request.RequestContacto;
 import com.abi.homeactivity.retrofit.request.RequestMensaje;
+import com.abi.homeactivity.retrofit.request.RequestPerfil;
 import com.abi.homeactivity.retrofit.request.RequestRegistraGadget;
 import com.abi.homeactivity.retrofit.response.ResponseFoto;
 import com.abi.homeactivity.retrofit.response.ResponseLogIn;
 import com.abi.homeactivity.retrofit.response.ResponseMensaje;
 import com.abi.homeactivity.retrofit.response.ResponseRegistraGadget;
+import com.abi.homeactivity.retrofit.response.ResponsetPerfil;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -30,6 +32,11 @@ public interface AuthABIService {
     Call<ResponseLogIn> registrarContacto(@Body RequestContacto requestContacto);
 
     @PUT("api/usuarios/gadget")
-    Call<ResponseRegistraGadget> registrarGadget(@Body RequestRegistraGadget requestRegistraGadget);
+    Call<ResponseRegistraGadget> registrarGadget(@Body RequestRegistraGadget requestRegistraGadget);;
 
+    @GET("api/usuarios")
+    Call<ResponsetPerfil> getPerfil();
+
+    @PUT("api/usuarios")
+    Call<ResponseLogIn> actualizarPerfil(@Body RequestPerfil requestPerfil);
 }

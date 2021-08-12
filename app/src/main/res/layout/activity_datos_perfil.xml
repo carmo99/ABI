@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blueintermediate"
+    android:padding="10dp"
+    tools:context=".ui.DatosPerfil">
+
+    <TextView
+        android:id="@+id/textViewTuPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TU PERFIL"
+        android:textColor="@color/ourwhite"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCambiarFoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTuPerfil"
+        app:srcCompat="@drawable/ic_profile" />
+
+    <Button
+        android:id="@+id/buttonCambiarFoto"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="CAMBIAR FOTO"
+        android:textColor="@color/ourwhite"
+        android:textSize="12sp"
+        app:backgroundTint="@color/orange"
+        app:layout_constraintBottom_toTopOf="@+id/textViewNombreU"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <EditText
+        android:id="@+id/editTextCorreoUsuario"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_input"
+        android:drawableLeft="@drawable/ic_email"
+        android:elevation="8dp"
+        android:ems="10"
+        android:hint="   nombre@correo.com"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="15dp"
+        android:textColor="@color/ourblack"
+        android:textColorHint="@color/grisHint"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTelefonoUsuario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <EditText
+        android:id="@+id/editTextTelefonoUsuario"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_input"
+        android:drawableLeft="@drawable/ic_phone"
+        android:elevation="8dp"
+        android:ems="10"
+        android:hint="   5555555555"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="15dp"
+        android:textColor="@color/ourblack"
+        android:textColorHint="@color/grisHint"
+        app:layout_constraintBottom_toTopOf="@+id/buttonActualizarDatos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTelefonoUsuario" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="CORREO"
+        android:textColor="@color/ourblack"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextCorreoUsuario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextNombreUsuario" />
+
+    <TextView
+        android:id="@+id/textViewTelefonoUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="TELEFONO"
+        android:textColor="@color/ourblack"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTelefonoUsuario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCorreoUsuario" />
+
+    <Button
+        android:id="@+id/buttonCambiarContrasenia"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="CAMBIAR CONTRASEÑA"
+        android:textColor="@color/ourwhite"
+        android:textSize="12sp"
+        app:backgroundTint="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonActualizarDatos" />
+
+    <TextView
+        android:id="@+id/textViewNombreU"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="NOMBRE DE USUARIO"
+        android:textColor="@color/ourblack"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextNombreUsuario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCambiarFoto" />
+
+    <EditText
+        android:id="@+id/editTextTextNombreUsuario"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_input"
+        android:drawableLeft="@drawable/ic_user"
+        android:elevation="8dp"
+        android:ems="10"
+        android:hint="   Nombre"
+        android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        android:textColor="@color/ourblack"
+        android:textColorHint="@color/grisHint"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNombreU" />
+
+    <Button
+        android:id="@+id/buttonActualizarDatos"
+        android:layout_width="243dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="ACTUALIZAR DATOS"
+        android:textColor="@color/ourwhite"
+        android:textSize="18sp"
+        app:backgroundTint="@color/orange"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCambiarContrasenia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTelefonoUsuario" />
+
+    <ImageButton
+        android:id="@+id/imageButtonDatosPerfilToMainActivity"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/blueintermediate"
+        android:tint="@color/orange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_bx_arrow_back" />
+</androidx.constraintlayout.widget.ConstraintLayout>

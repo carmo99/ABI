@@ -13,10 +13,14 @@ import android.widget.Toast;
 import com.abi.homeactivity.R;
 import com.abi.homeactivity.common.Constantes;
 import com.abi.homeactivity.common.SharedPreferencesManager;
+import com.abi.homeactivity.popup.PopUpCargando;
+import com.abi.homeactivity.popup.PopUpError;
 import com.abi.homeactivity.retrofit.ABIClient;
 import com.abi.homeactivity.retrofit.ABIService;
 import com.abi.homeactivity.retrofit.request.RequestCrearUsuario;
 import com.abi.homeactivity.retrofit.response.ResponseLogIn;
+
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -94,6 +98,8 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
             et_phone.setError("El teléfono es requerido");
         else
         {
+            Intent iC = new Intent(getApplicationContext(), PopUpCargando.class);
+            startActivity(iC);
             RequestCrearUsuario requestCrearUsuario = new RequestCrearUsuario(s_name,s_email,s_password,s_phone);
             Call<ResponseLogIn> call = abiService.responseSingUp(requestCrearUsuario);
             call.enqueue(new Callback<ResponseLogIn>() {
@@ -101,6 +107,7 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
                 public void onResponse(Call<ResponseLogIn> call, Response<ResponseLogIn> response) {
                     if(response.isSuccessful())
                     {
+                        PopUpCargando.fa.finish();
                         SharedPreferencesManager
                                 .setSomeStringValue(Constantes.PREF_TOKEN, response.body().getToken());
                         SharedPreferencesManager
@@ -116,14 +123,27 @@ public class SingUpActivity extends AppCompatActivity implements View.OnClickLis
                     }
                     else
                     {
-                        Toast.makeText(SingUpActivity.this, "Algo falló", Toast.LENGTH_LONG).show();
+                        try {
+                            PopUpCargando.fa.finish();
+                            String [] respuesta = response.errorBody().string().split("\"");
+                            Bundle parametros = new Bundle();
+                            parametros.putString("Mensaje", respuesta[3]);
+                            Intent i = new Intent(getApplicationContext(), PopUpError.class);
+                            i.putExtras( parametros );
+                            startActivity( i );
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
-
                 }
-
                 @Override
                 public void onFailure(Call<ResponseLogIn> call, Throwable t) {
-                    Toast.makeText(SingUpActivity.this, "Problemas de conexión", Toast.LENGTH_LONG).show();
+                    PopUpCargando.fa.finish();
+                    Bundle parametros = new Bundle();
+                    parametros.putString("Mensaje", "Error en la conexión, intentalo nuevamente");
+                    Intent i = new Intent(getApplicationContext(), PopUpError.class);
+                    i.putExtras( i );
+                    startActivity( i );
                 }
             });
         }
