@@ -12,6 +12,7 @@ import com.abi.homeactivity.R;
 import com.abi.homeactivity.common.Constantes;
 import com.abi.homeactivity.common.MyApp;
 import com.abi.homeactivity.common.SharedPreferencesManager;
+import com.abi.homeactivity.popup.PopUpCargando;
 import com.abi.homeactivity.popup.PopUpError;
 import com.abi.homeactivity.retrofit.AuthABIClient;
 import com.abi.homeactivity.retrofit.AuthABIService;
@@ -79,9 +80,14 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseLogIn> call, Throwable t)
             {
+                String mensaje = "Error en la conexión, intentalo nuevamente";
                 Bundle parametros = new Bundle();
-                parametros.putString("Mensaje", "Error en la conexión, intentalo nuevamente");
-                Intent i = new Intent(getApplicationContext(), PopUpError.class);
+                int caracteres_totales = mensaje.length();
+                caracteres_totales = caracteres_totales/21;
+                float espacio_total = (float)(.3 + (caracteres_totales)*.05);
+                parametros.putFloat("Espacio", espacio_total);
+                parametros.putString("Mensaje", mensaje);
+                Intent i = new Intent(MyApp.getContext(), PopUpError.class);
                 i.putExtras(parametros);
                 startActivity(i);
             }

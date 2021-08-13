@@ -148,8 +148,13 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
                     ti_mensajeAyuda.setText(s_mensajeAyuda);
                     SharedPreferencesManager.setSomeStringValue(Constantes.PREF_MENSAJE, s_mensajeAyuda);
 
+                    String mensaje = "¡Tu mensaje de ayuda ha sido actualizado!";
                     Bundle parametros = new Bundle();
-                    parametros.putString("Mensaje", "¡Tu mensaje de ayuda ha sido actualizado!");
+                    int caracteres_totales = mensaje.length();
+                    caracteres_totales = caracteres_totales/21;
+                    float espacio_total = (float)(.3 + (caracteres_totales)*.05);
+                    parametros.putFloat("Espacio", espacio_total);
+                    parametros.putString("Mensaje", mensaje);
                     Intent i = new Intent(MyApp.getContext(), PopUpCorrecto.class);
                     i.putExtras(parametros);
                     startActivity(i);
@@ -159,7 +164,11 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
                     try {
                         String respuesta [] = response.errorBody().string().split("\"");
                         Bundle parametros = new Bundle();
+                        int caracteres_totales = respuesta[3].length();
+                        caracteres_totales = caracteres_totales/21;
+                        float espacio_total = (float)(.3 + (caracteres_totales)*.05);
                         parametros.putString("Mensaje", respuesta[3]);
+                        parametros.putFloat("Espacio", espacio_total);
                         Intent i = new Intent(MyApp.getContext(), PopUpError.class);
                         i.putExtras(parametros);
                         startActivity(i);
@@ -172,8 +181,14 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onFailure(Call<ResponseMensaje> call, Throwable t)
             {
+                PopUpCargando.fa.finish();
+                String mensaje = "Error en la conexión, intentalo nuevamente";
                 Bundle parametros = new Bundle();
-                parametros.putString("Mensaje", "Error en la conexión, intentalo nuevamente");
+                int caracteres_totales = mensaje.length();
+                caracteres_totales = caracteres_totales/21;
+                float espacio_total = (float)(.3 + (caracteres_totales)*.05);
+                parametros.putFloat("Espacio", espacio_total);
+                parametros.putString("Mensaje", mensaje);
                 Intent i = new Intent(MyApp.getContext(), PopUpError.class);
                 i.putExtras(parametros);
                 startActivity(i);

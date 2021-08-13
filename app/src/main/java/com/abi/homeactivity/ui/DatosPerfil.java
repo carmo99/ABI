@@ -3,7 +3,6 @@ package com.abi.homeactivity.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -103,8 +102,14 @@ public class DatosPerfil extends AppCompatActivity implements View.OnClickListen
                     public void onResponse(Call<ResponseLogIn> call, Response<ResponseLogIn> response) {
                         PopUpCargando.fa.finish();
                         if ( response.isSuccessful()){
+
+                            String mensaje = "¡Datos actualizados exitosamente!";
                             Bundle parametros = new Bundle();
-                            parametros.putString("Mensaje", "Datos actualizados exitosamente");
+                            int caracteres_totales = mensaje.length();
+                            caracteres_totales = caracteres_totales/21;
+                            float espacio_total = (float)(.3 + (caracteres_totales)*.05);
+                            parametros.putFloat("Espacio", espacio_total);
+                            parametros.putString("Mensaje", mensaje);
                             Intent i = new Intent(MyApp.getContext(), PopUpCorrecto.class);
                             i.putExtras(parametros);
                             startActivity(i);
@@ -112,11 +117,14 @@ public class DatosPerfil extends AppCompatActivity implements View.OnClickListen
                             try {
                                 String respuesta [] = response.errorBody().string().split("\"");
                                 Bundle parametros = new Bundle();
+                                int caracteres_totales = respuesta[3].length();
+                                caracteres_totales = caracteres_totales/21;
+                                float espacio_total = (float)(.3 + (caracteres_totales)*.05);
                                 parametros.putString("Mensaje", respuesta[3]);
-                                Intent i = new Intent(MyApp.getContext(), PopUpError.class);
+                                parametros.putFloat("Espacio", espacio_total);
+                                Intent i = new Intent(getApplicationContext(), PopUpError.class);
                                 i.putExtras(parametros);
                                 startActivity(i);
-
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -126,8 +134,13 @@ public class DatosPerfil extends AppCompatActivity implements View.OnClickListen
                     @Override
                     public void onFailure(Call<ResponseLogIn> call, Throwable t) {
                         PopUpCargando.fa.finish();
+                        String mensaje = "Error en la conexión, intentalo nuevamente";
                         Bundle parametros = new Bundle();
-                        parametros.putString("Mensaje", "Error en la conexión, intentalo nuevamente");
+                        int caracteres_totales = mensaje.length();
+                        caracteres_totales = caracteres_totales/21;
+                        float espacio_total = (float)(.3 + (caracteres_totales)*.05);
+                        parametros.putFloat("Espacio", espacio_total);
+                        parametros.putString("Mensaje", mensaje);
                         Intent i = new Intent(MyApp.getContext(), PopUpError.class);
                         i.putExtras(parametros);
                         startActivity(i);

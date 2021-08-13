@@ -25,6 +25,7 @@ public class PopUpCorrecto extends AppCompatActivity implements View.OnClickList
 
         Bundle parametros = this.getIntent().getExtras();
         String mensaje = parametros.getString("Mensaje");
+        float numero = parametros.getFloat("Espacio");
 
         txtMensaje_c = findViewById(R.id.textView_texto_correcto);
         txtCerrar_c = findViewById(R.id.textView_cerrar_c);
@@ -39,7 +40,7 @@ public class PopUpCorrecto extends AppCompatActivity implements View.OnClickList
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*.8), (int)(height*.4));
+        getWindow().setLayout((int)(width*.8), (int)(height*numero));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
 

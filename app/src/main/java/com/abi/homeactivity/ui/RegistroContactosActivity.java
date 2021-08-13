@@ -2,6 +2,7 @@ package com.abi.homeactivity.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -101,8 +102,13 @@ public class RegistroContactosActivity extends AppCompatActivity implements View
                     PopUpCargando.fa.finish();
                     if(response.isSuccessful())
                     {
+                        String mensaje = "¡Contacto registrado exitosamente!";
                         Bundle parametros = new Bundle();
-                        parametros.putString("Mensaje", "Contacto registrado exitosamente");
+                        int caracteres_totales = mensaje.length();
+                        caracteres_totales = caracteres_totales/21;
+                        float espacio_total = (float)(.3 + (caracteres_totales)*.05);
+                        parametros.putFloat("Espacio", espacio_total);
+                        parametros.putString("Mensaje", mensaje);
                         Intent i = new Intent(MyApp.getContext(), PopUpCorrecto.class);
                         i.putExtras(parametros);
                         startActivity(i);
@@ -112,8 +118,12 @@ public class RegistroContactosActivity extends AppCompatActivity implements View
                         try {
                             String respuesta [] = response.errorBody().string().split("\"");
                             Bundle parametros = new Bundle();
+                            int caracteres_totales = respuesta[3].length();
+                            caracteres_totales = caracteres_totales/21;
+                            float espacio_total = (float)(.3 + (caracteres_totales)*.05);
                             parametros.putString("Mensaje", respuesta[3]);
-                            Intent i = new Intent(MyApp.getContext(), PopUpError.class);
+                            parametros.putFloat("Espacio", espacio_total);
+                            Intent i = new Intent(getApplicationContext(), PopUpError.class);
                             i.putExtras(parametros);
                             startActivity(i);
 
@@ -127,8 +137,13 @@ public class RegistroContactosActivity extends AppCompatActivity implements View
                 public void onFailure(Call<ResponseLogIn> call, Throwable t)
                 {
                     PopUpCargando.fa.finish();
+                    String mensaje = "Error en la conexión, intentalo nuevamente";
                     Bundle parametros = new Bundle();
-                    parametros.putString("Mensaje", "Error en la conexión, intentalo nuevamente");
+                    int caracteres_totales = mensaje.length();
+                    caracteres_totales = caracteres_totales/21;
+                    float espacio_total = (float)(.3 + (caracteres_totales)*.05);
+                    parametros.putFloat("Espacio", espacio_total);
+                    parametros.putString("Mensaje", mensaje);
                     Intent i = new Intent(MyApp.getContext(), PopUpError.class);
                     i.putExtras(parametros);
                     startActivity(i);
