@@ -1,6 +1,7 @@
 package com.abi.homeactivity.retrofit;
 
 import com.abi.homeactivity.retrofit.request.RequestContacto;
+import com.abi.homeactivity.retrofit.request.RequestContrasenia;
 import com.abi.homeactivity.retrofit.request.RequestMensaje;
 import com.abi.homeactivity.retrofit.request.RequestPerfil;
 import com.abi.homeactivity.retrofit.request.RequestRegistraGadget;
@@ -39,4 +40,7 @@ public interface AuthABIService {
 
     @PUT("api/usuarios")
     Call<ResponseLogIn> actualizarPerfil(@Body RequestPerfil requestPerfil);
+
+    @PUT("api/usuarios/contrasenia")
+    Call<ResponseLogIn> actualizarContrasenia(@Body RequestContrasenia requestContrasenia);
 }
