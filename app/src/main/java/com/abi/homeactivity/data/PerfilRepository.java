@@ -1,27 +1,20 @@
 package com.abi.homeactivity.data;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
 import com.abi.homeactivity.common.MyApp;
-import com.abi.homeactivity.popup.PopUpError;
 import com.abi.homeactivity.retrofit.AuthABIClient;
 import com.abi.homeactivity.retrofit.AuthABIService;
-import com.abi.homeactivity.retrofit.request.RequestPerfil;
 import com.abi.homeactivity.retrofit.response.ResponseLogIn;
 import com.abi.homeactivity.retrofit.response.ResponsetPerfil;
-
-import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PerfilRepository {
+public class PerfilRepository{
     AuthABIService authABIService;
     AuthABIClient authABIClient;
 
@@ -45,8 +38,6 @@ public class PerfilRepository {
             public void onResponse(Call<ResponsetPerfil> call, Response<ResponsetPerfil> response) {
                 if (response.isSuccessful()) {
                     perfilUsuario.setValue(response.body());
-                }else{
-                    Toast.makeText(MyApp.getContext(), "Algo ha ido mal", Toast.LENGTH_LONG).show();
                 }
             }
 

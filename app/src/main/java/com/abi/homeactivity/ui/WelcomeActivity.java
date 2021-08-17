@@ -4,15 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.abi.homeactivity.R;
 import com.abi.homeactivity.common.Constantes;
 import com.abi.homeactivity.common.MyApp;
 import com.abi.homeactivity.common.SharedPreferencesManager;
-import com.abi.homeactivity.popup.PopUpCargando;
 import com.abi.homeactivity.popup.PopUpError;
 import com.abi.homeactivity.retrofit.AuthABIClient;
 import com.abi.homeactivity.retrofit.AuthABIService;
@@ -21,8 +18,6 @@ import com.abi.homeactivity.retrofit.response.ResponseLogIn;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.abi.homeactivity.common.SharedPreferencesManager.getSomeStringValue;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -58,14 +53,55 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseLogIn> call, Response<ResponseLogIn> response) {
                 if(response.isSuccessful())
                 {
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.PREF_TOKEN, response.body().getToken());
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.PREF_NOMBRE, response.body().getUsuario().getNombre());
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.PREF_MENSAJE, response.body().getUsuario().getMensajeAyuda());
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.PREF_ROL, response.body().getUsuario().getRol());
+                    try {
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.PREF_TOKEN, response.body().getToken());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.PREF_NOMBRE, response.body().getUsuario().getNombre());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.PREF_MENSAJE, response.body().getUsuario().getMensajeAyuda());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.PREF_ROL, response.body().getUsuario().getRol());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.PREF_FOTO_PERFIL, response.body().getUsuario().getFotoPerfil());
+
+                        //DATOS CONTACTO DE EMERGENCIA 1.
+
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.NOMBRE_CONT_1, response.body().getUsuario().getContactoEmergencia1().getNombre());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.CORREO_CONT_1, response.body().getUsuario().getContactoEmergencia1().getCorreo());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.FOTO_CONT_1, response.body().getUsuario().getContactoEmergencia1().getFotoPerfil());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.TELEFONO_CONT_1, response.body().getUsuario().getContactoEmergencia1().getTelefono());
+
+                        //DATOS CONTACTO DE EMERGENCIA 2.
+
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.NOMBRE_CONT_2, response.body().getUsuario().getContactoEmergencia2().getNombre());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.CORREO_CONT_2, response.body().getUsuario().getContactoEmergencia2().getCorreo());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.FOTO_CONT_2, response.body().getUsuario().getContactoEmergencia2().getFotoPerfil());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.TELEFONO_CONT_2, response.body().getUsuario().getContactoEmergencia2().getTelefono());
+
+                        //DATOS CONTACTO DE EMERGENCIA 3.
+
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.NOMBRE_CONT_3, response.body().getUsuario().getContactoEmergencia3().getNombre());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.CORREO_CONT_3, response.body().getUsuario().getContactoEmergencia3().getCorreo());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.FOTO_CONT_3, response.body().getUsuario().getContactoEmergencia3().getFotoPerfil());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.TELEFONO_CONT_3, response.body().getUsuario().getContactoEmergencia3().getTelefono());
+                    }
+                    catch (Exception e)
+                    {
+                        Log.i("CONSTANTES", "ERROR LOGIN");
+                    }
                     Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();

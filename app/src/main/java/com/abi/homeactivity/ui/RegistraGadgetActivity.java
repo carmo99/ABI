@@ -107,9 +107,9 @@ public class RegistraGadgetActivity extends AppCompatActivity implements View.On
                 PopUpCargando.fa.finish();
                 if (response.isSuccessful())
                 {
+                    SharedPreferencesManager
+                            .setSomeStringValue(Constantes.PREF_ROL, "PREMIUM_ROLE");
                     requestRegistraGadget.setGadget(s_codigoGadget);
-                    et_codigoDeGadget.setText("Gadget registrado");
-
                     String mensaje = "¡Tu gadget ha sido registrado!";
                     Bundle parametros = new Bundle();
                     int caracteres_totales = mensaje.length();

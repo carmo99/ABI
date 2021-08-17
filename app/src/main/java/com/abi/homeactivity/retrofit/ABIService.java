@@ -1,7 +1,6 @@
 package com.abi.homeactivity.retrofit;
 
 import com.abi.homeactivity.retrofit.request.RequestCrearUsuario;
-import com.abi.homeactivity.retrofit.request.RequestInformacion;
 import com.abi.homeactivity.retrofit.request.RequestLogin;
 import com.abi.homeactivity.retrofit.response.ResponseClasificacion;
 import com.abi.homeactivity.retrofit.response.ResponseLogIn;

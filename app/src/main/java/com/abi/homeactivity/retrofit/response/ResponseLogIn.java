@@ -1,6 +1,7 @@
 
 package com.abi.homeactivity.retrofit.response;
 
+
 import com.abi.homeactivity.modelos.Usuario;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -13,9 +14,6 @@ public class ResponseLogIn {
     @SerializedName("token")
     @Expose
     private String token;
-    @SerializedName("msg")
-    @Expose
-    private String msg;
 
     /**
      * No args constructor for use in serialization
@@ -26,15 +24,13 @@ public class ResponseLogIn {
 
     /**
      * 
-     * @param msg
      * @param usuario
      * @param token
      */
-    public ResponseLogIn(Usuario usuario, String token, String msg) {
+    public ResponseLogIn(Usuario usuario, String token) {
         super();
         this.usuario = usuario;
         this.token = token;
-        this.msg = msg;
     }
 
     public Usuario getUsuario() {
@@ -51,14 +47,6 @@ public class ResponseLogIn {
 
     public void setToken(String token) {
         this.token = token;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
     }
 
 }
