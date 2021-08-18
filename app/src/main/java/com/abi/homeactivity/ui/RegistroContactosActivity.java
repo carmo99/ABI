@@ -21,6 +21,7 @@ import com.abi.homeactivity.retrofit.AuthABIClient;
 import com.abi.homeactivity.retrofit.AuthABIService;
 import com.abi.homeactivity.retrofit.request.RequestContacto;
 import com.abi.homeactivity.retrofit.response.ResponseLogIn;
+import com.abi.homeactivity.retrofit.response.ResponseObtenerContactos;
 
 import java.io.IOException;
 
@@ -106,6 +107,98 @@ public class RegistroContactosActivity extends AppCompatActivity implements View
                     PopUpCargando.fa.finish();
                     if(response.isSuccessful())
                     {
+                        Call <ResponseObtenerContactos> call1 = authABIService.obtenercontactos();
+                        call1.enqueue(new Callback<ResponseObtenerContactos>() {
+                            @Override
+                            public void onResponse(Call<ResponseObtenerContactos> call1, Response<ResponseObtenerContactos> response1)
+                            {
+                                //DATOS CONTACTO DE EMERGENCIA 1.
+                                if(response1.body().getContactoEmergencia1() == null)
+                                {
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.NOMBRE_CONT_1, "");
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.CORREO_CONT_1, "");
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.FOTO_CONT_1, "");
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.TELEFONO_CONT_1, "");
+                                }
+                                else
+                                {
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.NOMBRE_CONT_1, response1.body().getContactoEmergencia1().getNombre());
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.CORREO_CONT_1, response1.body().getContactoEmergencia1().getCorreo());
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.FOTO_CONT_1, response1.body().getContactoEmergencia1().getFotoPerfil());
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.TELEFONO_CONT_1, response1.body().getContactoEmergencia1().getTelefono());
+                                }
+
+                                //DATOS CONTACTO DE EMERGENCIA 2.
+                                if(response1.body().getContactoEmergencia2() == null)
+                                {
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.NOMBRE_CONT_2, "");
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.CORREO_CONT_2, "");
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.FOTO_CONT_2, "");
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.TELEFONO_CONT_2, "");
+                                }
+                                else
+                                {
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.NOMBRE_CONT_2, response1.body().getContactoEmergencia2().getNombre());
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.CORREO_CONT_2, response1.body().getContactoEmergencia2().getCorreo());
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.FOTO_CONT_2, response1.body().getContactoEmergencia2().getFotoPerfil());
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.TELEFONO_CONT_2, response1.body().getContactoEmergencia2().getTelefono());
+                                }
+
+                                //DATOS CONTACTO DE EMERGENCIA 3.
+                                if(response1.body().getContactoEmergencia3() == null)
+                                {
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.NOMBRE_CONT_3, "");
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.CORREO_CONT_3, "");
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.FOTO_CONT_3, "");
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.TELEFONO_CONT_3, "");
+                                }
+                                else
+                                {
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.NOMBRE_CONT_3, response1.body().getContactoEmergencia3().getNombre());
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.CORREO_CONT_3, response1.body().getContactoEmergencia3().getCorreo());
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.FOTO_CONT_3, response1.body().getContactoEmergencia3().getFotoPerfil());
+                                    SharedPreferencesManager
+                                            .setSomeStringValue(Constantes.TELEFONO_CONT_3, response1.body().getContactoEmergencia3().getTelefono());
+                                }
+                            }
+                            @Override
+                            public void onFailure(Call<ResponseObtenerContactos> call1, Throwable t1)
+                            {
+                                String mensaje = "Error en la conexión, intentalo nuevamente";
+                                Bundle parametros = new Bundle();
+                                int caracteres_totales = mensaje.length();
+                                caracteres_totales = caracteres_totales/21;
+                                float espacio_total = (float)(.3 + (caracteres_totales)*.05);
+                                parametros.putFloat("Espacio", espacio_total);
+                                parametros.putString("Mensaje", mensaje);
+                                Intent i = new Intent(MyApp.getContext(), PopUpError.class);
+                                i.putExtras(parametros);
+                                startActivity(i);
+                            }
+                        });
                         String mensaje = "¡Contacto registrado exitosamente!";
                         Bundle parametros = new Bundle();
                         int caracteres_totales = mensaje.length();

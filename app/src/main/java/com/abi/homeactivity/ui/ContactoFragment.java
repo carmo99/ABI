@@ -51,104 +51,9 @@ public class ContactoFragment extends Fragment implements View.OnClickListener {
     Button nuevo_contacto;
     TextView nom_cont_1, nom_cont_2, nom_cont_3;
     ImageView ima_cont_1, ima_cont_2, ima_cont_3, puntos_cont_1, puntos_cont_2, puntos_cont_3;
-    AuthABIService authABIService;
-    AuthABIClient authABIClient;
 
 
     public ContactoFragment() {
-        retrofitInit();
-        Call <ResponseObtenerContactos> call = authABIService.obtenercontactos();
-        call.enqueue(new Callback<ResponseObtenerContactos>() {
-            @Override
-            public void onResponse(Call<ResponseObtenerContactos> call, Response<ResponseObtenerContactos> response)
-            {
-                //DATOS CONTACTO DE EMERGENCIA 1.
-                if(response.body().getContactoEmergencia1() == null)
-                {
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.NOMBRE_CONT_1, "");
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.CORREO_CONT_1, "");
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.FOTO_CONT_1, "");
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.TELEFONO_CONT_1, "");
-                }
-                else
-                {
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.NOMBRE_CONT_1, response.body().getContactoEmergencia1().getNombre());
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.CORREO_CONT_1, response.body().getContactoEmergencia1().getCorreo());
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.FOTO_CONT_1, response.body().getContactoEmergencia1().getFotoPerfil());
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.TELEFONO_CONT_1, response.body().getContactoEmergencia1().getTelefono());
-                }
-
-                //DATOS CONTACTO DE EMERGENCIA 2.
-                if(response.body().getContactoEmergencia2() == null)
-                {
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.NOMBRE_CONT_2, "");
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.CORREO_CONT_2, "");
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.FOTO_CONT_2, "");
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.TELEFONO_CONT_2, "");
-                }
-                else
-                {
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.NOMBRE_CONT_2, response.body().getContactoEmergencia2().getNombre());
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.CORREO_CONT_2, response.body().getContactoEmergencia2().getCorreo());
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.FOTO_CONT_2, response.body().getContactoEmergencia2().getFotoPerfil());
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.TELEFONO_CONT_2, response.body().getContactoEmergencia2().getTelefono());
-                }
-
-                //DATOS CONTACTO DE EMERGENCIA 3.
-                if(response.body().getContactoEmergencia3() == null)
-                {
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.NOMBRE_CONT_3, "");
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.CORREO_CONT_3, "");
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.FOTO_CONT_3, "");
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.TELEFONO_CONT_3, "");
-                }
-                else
-                {
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.NOMBRE_CONT_3, response.body().getContactoEmergencia3().getNombre());
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.CORREO_CONT_3, response.body().getContactoEmergencia3().getCorreo());
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.FOTO_CONT_3, response.body().getContactoEmergencia3().getFotoPerfil());
-                    SharedPreferencesManager
-                            .setSomeStringValue(Constantes.TELEFONO_CONT_3, response.body().getContactoEmergencia3().getTelefono());
-                }
-            }
-            @Override
-            public void onFailure(Call<ResponseObtenerContactos> call, Throwable t)
-            {
-                String mensaje = "Error en la conexión, intentalo nuevamente";
-                Bundle parametros = new Bundle();
-                int caracteres_totales = mensaje.length();
-                caracteres_totales = caracteres_totales/21;
-                float espacio_total = (float)(.3 + (caracteres_totales)*.05);
-                parametros.putFloat("Espacio", espacio_total);
-                parametros.putString("Mensaje", mensaje);
-                Intent i = new Intent(MyApp.getContext(), PopUpError.class);
-                i.putExtras(parametros);
-                startActivity(i);
-            }
-        });
     }
 
     /**
@@ -196,7 +101,6 @@ public class ContactoFragment extends Fragment implements View.OnClickListener {
         vista = inflater.inflate(R.layout.fragment_contacto, container, false);
         referenciar();
         eventos();
-        Log.i("PRUEBA", "MSG CREATE: " + SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1));
         if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) == null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) == "")
         {
             nom_cont_1.setText("Nombre de Contacto 1");
@@ -235,12 +139,6 @@ public class ContactoFragment extends Fragment implements View.OnClickListener {
         }
 
         return vista;
-    }
-
-    private void retrofitInit()
-    {
-        authABIClient = AuthABIClient.getInstance();
-        authABIService = authABIClient.getAuthABIService();
     }
 
     private void eventos()
