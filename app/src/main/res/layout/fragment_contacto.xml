@@ -93,9 +93,9 @@
                 android:id="@+id/more_contacto_1"
                 android:layout_width="43dp"
                 android:layout_height="30dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView_contacto_1"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_more_3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -142,9 +142,9 @@
                 android:id="@+id/more_contacto_2"
                 android:layout_width="43dp"
                 android:layout_height="30dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView_contacto_2"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_more_3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -191,9 +191,9 @@
                 android:id="@+id/more_contacto_3"
                 android:layout_width="43dp"
                 android:layout_height="30dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView_contacto_3"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_more_3" />
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -53,20 +53,31 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseLogIn> call, Response<ResponseLogIn> response) {
                 if(response.isSuccessful())
                 {
-                    try {
-                        SharedPreferencesManager
-                                .setSomeStringValue(Constantes.PREF_TOKEN, response.body().getToken());
-                        SharedPreferencesManager
-                                .setSomeStringValue(Constantes.PREF_NOMBRE, response.body().getUsuario().getNombre());
-                        SharedPreferencesManager
-                                .setSomeStringValue(Constantes.PREF_MENSAJE, response.body().getUsuario().getMensajeAyuda());
-                        SharedPreferencesManager
-                                .setSomeStringValue(Constantes.PREF_ROL, response.body().getUsuario().getRol());
-                        SharedPreferencesManager
-                                .setSomeStringValue(Constantes.PREF_FOTO_PERFIL, response.body().getUsuario().getFotoPerfil());
+                    SharedPreferencesManager
+                            .setSomeStringValue(Constantes.PREF_TOKEN, response.body().getToken());
+                    SharedPreferencesManager
+                            .setSomeStringValue(Constantes.PREF_NOMBRE, response.body().getUsuario().getNombre());
+                    SharedPreferencesManager
+                            .setSomeStringValue(Constantes.PREF_MENSAJE, response.body().getUsuario().getMensajeAyuda());
+                    SharedPreferencesManager
+                            .setSomeStringValue(Constantes.PREF_ROL, response.body().getUsuario().getRol());
+                    SharedPreferencesManager
+                            .setSomeStringValue(Constantes.PREF_FOTO_PERFIL, response.body().getUsuario().getFotoPerfil());
 
-                        //DATOS CONTACTO DE EMERGENCIA 1.
-
+                    //DATOS CONTACTO DE EMERGENCIA 1.
+                    if(response.body().getUsuario().getContactoEmergencia1() == null)
+                    {
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.NOMBRE_CONT_1, "");
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.CORREO_CONT_1, "");
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.FOTO_CONT_1, "");
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.TELEFONO_CONT_1, "");
+                    }
+                    else
+                    {
                         SharedPreferencesManager
                                 .setSomeStringValue(Constantes.NOMBRE_CONT_1, response.body().getUsuario().getContactoEmergencia1().getNombre());
                         SharedPreferencesManager
@@ -75,9 +86,22 @@ public class WelcomeActivity extends AppCompatActivity {
                                 .setSomeStringValue(Constantes.FOTO_CONT_1, response.body().getUsuario().getContactoEmergencia1().getFotoPerfil());
                         SharedPreferencesManager
                                 .setSomeStringValue(Constantes.TELEFONO_CONT_1, response.body().getUsuario().getContactoEmergencia1().getTelefono());
+                    }
 
-                        //DATOS CONTACTO DE EMERGENCIA 2.
-
+                    //DATOS CONTACTO DE EMERGENCIA 2.
+                    if(response.body().getUsuario().getContactoEmergencia2() == null)
+                    {
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.NOMBRE_CONT_2, "");
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.CORREO_CONT_2, "");
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.FOTO_CONT_2, "");
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.TELEFONO_CONT_2, "");
+                    }
+                    else
+                    {
                         SharedPreferencesManager
                                 .setSomeStringValue(Constantes.NOMBRE_CONT_2, response.body().getUsuario().getContactoEmergencia2().getNombre());
                         SharedPreferencesManager
@@ -86,9 +110,22 @@ public class WelcomeActivity extends AppCompatActivity {
                                 .setSomeStringValue(Constantes.FOTO_CONT_2, response.body().getUsuario().getContactoEmergencia2().getFotoPerfil());
                         SharedPreferencesManager
                                 .setSomeStringValue(Constantes.TELEFONO_CONT_2, response.body().getUsuario().getContactoEmergencia2().getTelefono());
+                    }
 
-                        //DATOS CONTACTO DE EMERGENCIA 3.
-
+                    //DATOS CONTACTO DE EMERGENCIA 3.
+                    if(response.body().getUsuario().getContactoEmergencia3() == null)
+                    {
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.NOMBRE_CONT_3, "");
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.CORREO_CONT_3, "");
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.FOTO_CONT_3, "");
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.TELEFONO_CONT_3, "");
+                    }
+                    else
+                    {
                         SharedPreferencesManager
                                 .setSomeStringValue(Constantes.NOMBRE_CONT_3, response.body().getUsuario().getContactoEmergencia3().getNombre());
                         SharedPreferencesManager
@@ -98,10 +135,7 @@ public class WelcomeActivity extends AppCompatActivity {
                         SharedPreferencesManager
                                 .setSomeStringValue(Constantes.TELEFONO_CONT_3, response.body().getUsuario().getContactoEmergencia3().getTelefono());
                     }
-                    catch (Exception e)
-                    {
-                        Log.i("CONSTANTES", "ERROR LOGIN");
-                    }
+
                     Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();

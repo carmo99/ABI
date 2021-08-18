@@ -8,6 +8,7 @@ import com.abi.homeactivity.retrofit.request.RequestRegistraGadget;
 import com.abi.homeactivity.retrofit.response.ResponseFoto;
 import com.abi.homeactivity.retrofit.response.ResponseLogIn;
 import com.abi.homeactivity.retrofit.response.ResponseMensaje;
+import com.abi.homeactivity.retrofit.response.ResponseObtenerContactos;
 import com.abi.homeactivity.retrofit.response.ResponseRegistraGadget;
 import com.abi.homeactivity.retrofit.response.ResponsetPerfil;
 
@@ -42,4 +43,8 @@ public interface AuthABIService {
 
     @PUT("api/usuarios/contrasenia")
     Call<ResponseLogIn> actualizarContrasenia(@Body RequestContrasenia requestContrasenia);
+
+    @GET("api/premium/contactos")
+    Call <ResponseObtenerContactos> obtenercontactos();
+
 }

@@ -11,7 +11,9 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.abi.homeactivity.R;
+import com.abi.homeactivity.common.Constantes;
 import com.abi.homeactivity.common.MyApp;
+import com.abi.homeactivity.common.SharedPreferencesManager;
 import com.abi.homeactivity.popup.PopUpCargando;
 import com.abi.homeactivity.popup.PopUpCorrecto;
 import com.abi.homeactivity.popup.PopUpError;
@@ -82,16 +84,19 @@ public class RegistroContactosActivity extends AppCompatActivity implements View
 
     private void registarContacto()
     {
-        Intent iC = new Intent(MyApp.getContext(), PopUpCargando.class);
-        startActivity(iC);
         String s_correo_RC = et_correo_RC.getText().toString();
         String s_telefono_RC = et_telefono_RC.getText().toString();
         if(s_correo_RC.isEmpty())
+        {
             et_correo_RC.setError("El correo es requerido");
-        else if(s_telefono_RC.isEmpty())
+        }
+        else if(s_telefono_RC.isEmpty()) {
             et_telefono_RC.setError("El correo es requerido");
+        }
         else
         {
+            Intent iC = new Intent(MyApp.getContext(), PopUpCargando.class);
+            startActivity(iC);
             RequestContacto requestContacto = new RequestContacto(s_correo_RC, s_telefono_RC);
             Call<ResponseLogIn> call = authABIService.registrarContacto(requestContacto);
             call.enqueue(new Callback<ResponseLogIn>() {
