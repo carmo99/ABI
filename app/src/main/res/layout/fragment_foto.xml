@@ -7,58 +7,62 @@
     android:background="@color/blueintermediate"
     tools:context=".ui.MainActivity">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation_view"
+    <ImageView
+        android:id="@+id/imagenDia"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_foto_dia"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewMensajeSubido"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="FotoDia.json"
-        app:lottie_loop="true" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_arriba_2"
+        app:srcCompat="@drawable/ic_upload" />
 
     <TextView
         android:id="@+id/textViewMensaje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="24dp"
         android:fontFamily="@font/muli_extrabold"
         android:text="@string/texto_foto"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/textView_arriba_1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView_arriba_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:fontFamily="@font/muli_extrabold"
         android:text="@string/texto_descripcion_foto_2"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/animation_view"
+        app:layout_constraintBottom_toTopOf="@+id/imagenDia"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_arriba_1" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView_arriba_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:fontFamily="@font/muli_extrabold"
         android:text="@string/texto_descripcion_foto_1"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintBottom_toTopOf="@+id/textView_arriba_2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMensaje" />
 
@@ -66,7 +70,6 @@
         android:id="@+id/button_foto_dia"
         android:layout_width="251dp"
         android:layout_height="41dp"
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/muli_extrabold"
@@ -75,8 +78,9 @@
         app:backgroundTint="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animation_view" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewMensajeSubido" />
 
     <ImageButton
         android:id="@+id/imageButton_atras_foto"
@@ -89,4 +93,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_bx_arrow_back" />
+
+    <TextView
+        android:id="@+id/textViewMensajeSubido"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/muli_extrabold"
+        android:textAlignment="center"
+        android:textColor="@color/ourwhite"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_foto_dia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagenDia" />
 </androidx.constraintlayout.widget.ConstraintLayout>

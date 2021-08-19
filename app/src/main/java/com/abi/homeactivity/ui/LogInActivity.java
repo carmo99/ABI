@@ -117,6 +117,8 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                                 .setSomeStringValue(Constantes.PREF_ROL, response.body().getUsuario().getRol());
                         SharedPreferencesManager
                                 .setSomeStringValue(Constantes.PREF_FOTO_PERFIL, response.body().getUsuario().getFotoPerfil());
+                        SharedPreferencesManager
+                                .setSomeStringValue(Constantes.PREF_FOTO_DIA, response.body().getUsuario().getFotoDia());
 
                         //DATOS CONTACTO DE EMERGENCIA 1.
                         if(response.body().getUsuario().getContactoEmergencia1() == null)

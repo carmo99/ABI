@@ -92,7 +92,6 @@ public class DatosPerfil extends AppCompatActivity implements View.OnClickListen
         perfilViewModel = new ViewModelProvider(this).get(PerfilViewModel.class);
         fotoPerfil = findViewById(R.id.foto_perfil_datos);
         Glide.with(MyApp.getContext()).load(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FOTO_PERFIL))
-                .centerCrop()
                 .dontAnimate()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
@@ -157,7 +156,6 @@ public class DatosPerfil extends AppCompatActivity implements View.OnClickListen
                     startActivity(i);
                     SharedPreferencesManager.setSomeStringValue(Constantes.PREF_FOTO_PERFIL, response.body().getUsuario().getFotoPerfil());
                     Glide.with(MyApp.getContext()).load(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FOTO_PERFIL))
-                            .centerCrop()
                             .dontAnimate()
                             .diskCacheStrategy(DiskCacheStrategy.NONE)
                             .skipMemoryCache(true)

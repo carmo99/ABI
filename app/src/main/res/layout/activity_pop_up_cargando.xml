@@ -7,7 +7,7 @@
     android:background="#00000000"
     tools:context=".popup.PopUpCargando">
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation_view"
+        android:id="@+id/imagenDia"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginTop="40dp"

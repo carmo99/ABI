@@ -8,7 +8,7 @@
     tools:context=".popup.PopUpError">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation_view"
+        android:id="@+id/imagenDia"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginTop="40dp"
@@ -30,7 +30,7 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animation_view" />
+        app:layout_constraintTop_toBottomOf="@+id/imagenDia" />
 
     <TextView
         android:id="@+id/textView_texto_cerrar"

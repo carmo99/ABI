@@ -15,14 +15,14 @@
         android:text="@string/texto_mensaje"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/animation_view"
+        app:layout_constraintBottom_toTopOf="@+id/imagenDia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation_view"
+        android:id="@+id/imagenDia"
         android:layout_width="272dp"
         android:layout_height="254dp"
         android:layout_marginTop="60dp"
@@ -76,6 +76,6 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonMensaje"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animation_view" />
+        app:layout_constraintTop_toBottomOf="@+id/imagenDia" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

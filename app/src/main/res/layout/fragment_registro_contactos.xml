@@ -18,7 +18,7 @@
         android:text="REGISTRO DE CONTACTO"
         android:textColor="@color/ourwhite"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/animation_view"
+        app:layout_constraintBottom_toTopOf="@+id/imagenDia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation_view"
+        android:id="@+id/imagenDia"
         android:layout_width="0dp"
         android:layout_height="280dp"
         android:layout_marginTop="16dp"
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animation_view">
+        app:layout_constraintTop_toBottomOf="@+id/imagenDia">
 
         <TextView
             android:id="@+id/textView6"

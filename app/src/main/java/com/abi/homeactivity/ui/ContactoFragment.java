@@ -110,7 +110,6 @@ public class ContactoFragment extends Fragment implements View.OnClickListener {
         {
             nom_cont_1.setText(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1));
             Glide.with(MyApp.getContext()).load(SharedPreferencesManager.getSomeStringValue(Constantes.FOTO_CONT_1))
-                    .centerCrop()
                     .into(ima_cont_1);
         }
         if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) == null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) == "")
@@ -122,7 +121,6 @@ public class ContactoFragment extends Fragment implements View.OnClickListener {
         {
             nom_cont_2.setText(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2));
             Glide.with(MyApp.getContext()).load(SharedPreferencesManager.getSomeStringValue(Constantes.FOTO_CONT_2))
-                    .centerCrop()
                     .into(ima_cont_2);
         }
         if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) == null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) == "")
@@ -134,7 +132,6 @@ public class ContactoFragment extends Fragment implements View.OnClickListener {
         {
             nom_cont_3.setText(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3));
             Glide.with(MyApp.getContext()).load(SharedPreferencesManager.getSomeStringValue(Constantes.FOTO_CONT_3))
-                    .centerCrop()
                     .into(ima_cont_3);
         }
 

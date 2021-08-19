@@ -15,10 +15,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.abi.homeactivity.R;
 import com.abi.homeactivity.common.Constantes;
 import com.abi.homeactivity.common.MyApp;
+import com.abi.homeactivity.common.SharedPreferencesManager;
 import com.abi.homeactivity.popup.PopUpCargando;
 import com.abi.homeactivity.popup.PopUpCorrecto;
 import com.abi.homeactivity.popup.PopUpError;
@@ -26,6 +29,7 @@ import com.abi.homeactivity.retrofit.AuthABIClient;
 import com.abi.homeactivity.retrofit.AuthABIService;
 import com.abi.homeactivity.retrofit.response.ResponseLogIn;
 import com.abi.homeactivity.ui.MainActivity;
+import com.bumptech.glide.Glide;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -49,6 +53,8 @@ public class ActivityFotoDia extends AppCompatActivity implements View.OnClickLi
 
     ImageButton atras_foto;
     Button botonSubir;
+    ImageView fotoDia;
+    TextView arriba_1, arriba_2, mensaje_subido;
 
     MutableLiveData<String> fotoNueva;
     PermissionListener allpermissionsListener;
@@ -74,8 +80,29 @@ public class ActivityFotoDia extends AppCompatActivity implements View.OnClickLi
         fotoNueva = new MutableLiveData<>();
         atras_foto = findViewById(R.id.imageButton_atras_foto);
         botonSubir = findViewById(R.id.button_foto_dia);
+        fotoDia = findViewById(R.id.imagenDia);
+        arriba_1 = findViewById(R.id.textView_arriba_1);
+        arriba_2 = findViewById(R.id.textView_arriba_2);
+        mensaje_subido = findViewById(R.id.textViewMensajeSubido);
+
         botonSubir.setOnClickListener(this);
         atras_foto.setOnClickListener(this);
+
+        if(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FOTO_DIA) == null || SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FOTO_DIA) == "")
+        {
+            fotoDia.setImageResource(R.drawable.ic_upload);
+            arriba_1.setText(R.string.texto_descripcion_foto_1);
+            arriba_2.setText(R.string.texto_descripcion_foto_2);
+            mensaje_subido.setText(R.string.texto_descripcion_abajo);
+        }
+        else
+        {
+            arriba_1.setText(R.string.texto_descripcion_foto_1_subida);
+            arriba_2.setText(R.string.texto_descripcion_foto_2_subida);
+            mensaje_subido.setText(R.string.texto_descripcion_abajo_subida);
+            Glide.with(MyApp.getContext()).load(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FOTO_DIA))
+                    .into(fotoDia);
+        }
         retrofitInit();
 
     }
@@ -162,6 +189,14 @@ public class ActivityFotoDia extends AppCompatActivity implements View.OnClickLi
                 PopUpCargando.fa.finish();
                 if(response.isSuccessful())
                 {
+                    SharedPreferencesManager
+                            .setSomeStringValue(Constantes.PREF_FOTO_DIA, response.body().getUsuario().getFotoDia());
+                    arriba_1.setText(R.string.texto_descripcion_foto_1_subida);
+                    arriba_2.setText(R.string.texto_descripcion_foto_2_subida);
+                    mensaje_subido.setText(R.string.texto_descripcion_abajo_subida);
+                    Glide.with(MyApp.getContext()).load(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FOTO_DIA))
+                            .centerCrop()
+                            .into(fotoDia);
                     String mensaje = "¡Tu foto del día ha sido actualizada!";
                     Bundle parametros = new Bundle();
                     int caracteres_totales = mensaje.length();
