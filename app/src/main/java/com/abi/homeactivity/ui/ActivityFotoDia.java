@@ -195,7 +195,6 @@ public class ActivityFotoDia extends AppCompatActivity implements View.OnClickLi
                     arriba_2.setText(R.string.texto_descripcion_foto_2_subida);
                     mensaje_subido.setText(R.string.texto_descripcion_abajo_subida);
                     Glide.with(MyApp.getContext()).load(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FOTO_DIA))
-                            .centerCrop()
                             .into(fotoDia);
                     String mensaje = "¡Tu foto del día ha sido actualizada!";
                     Bundle parametros = new Bundle();
