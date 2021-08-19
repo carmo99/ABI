@@ -90,15 +90,14 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     {
         String s_email = et_email.getText().toString();
         String s_password=et_password.getText().toString();
-        Intent iC = new Intent(getApplicationContext(), PopUpCargando.class);
-        startActivity(iC);
-
         if(s_email.isEmpty())
             et_email.setError("El correo es requerido");
         else if(s_password.isEmpty())
             et_password.setError("La contraseña es requerida");
         else
         {
+            Intent iC = new Intent(getApplicationContext(), PopUpCargando.class);
+            startActivity(iC);
             RequestLogin requestLogin = new RequestLogin(s_email, s_password);
             Call<ResponseLogIn> call = abiService.responselogin(requestLogin);
             call.enqueue(new Callback<ResponseLogIn>() {

@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonFoto"
+        app:layout_constraintBottom_toTopOf="@+id/button_foto_dia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
@@ -63,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewMensaje" />
 
     <Button
-        android:id="@+id/buttonFoto"
+        android:id="@+id/button_foto_dia"
         android:layout_width="251dp"
         android:layout_height="41dp"
         android:layout_marginTop="20dp"

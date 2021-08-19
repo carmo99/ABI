@@ -14,6 +14,7 @@ public class Constantes
     public static final String PREF_MENSAJE     = "PREF_MENSAJE";
     public static final String PREF_ROL         = "PREF_ROL";
     public static final String PREF_FOTO_PERFIL = "PREF_FOTO_PERFIL";
+    public static final int FOTO_SELECCIONADA   = 1;
 
     public static final String NOMBRE_CONT_1    = "NOMBRE_CONT_1";
     public static final String FOTO_CONT_1      = "FOTO_CONT_1";

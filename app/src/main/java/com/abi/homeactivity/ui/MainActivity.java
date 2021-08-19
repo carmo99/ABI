@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 
 import com.abi.homeactivity.common.Constantes;
@@ -20,7 +20,6 @@ import com.abi.homeactivity.popup.PopUpError;
 import com.abi.homeactivity.popup.PopUpLogOut;
 import com.abi.homeactivity.retrofit.AuthABIClient;
 import com.abi.homeactivity.retrofit.AuthABIService;
-import com.abi.homeactivity.retrofit.response.ResponseFoto;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -36,21 +35,17 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.appcompat.widget.Toolbar;
 
-import java.io.DataInputStream;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static Activity fa;
     ImageView perfil;
     MapsActivity mapafragment = new MapsActivity();
-    FotoFragment fragment_foto = new FotoFragment();
     MensajeFragment fragment_mensaje = new MensajeFragment();
     ContactoFragment fragment_contacto = new ContactoFragment();
     NavigationView nav_view_sidebar;
+
+    TextView textUsuario;
+    ImageView imageUsuario;
 
     AppBarLayout appBarLayout;
     BottomNavigationView bottomNavigationView;
@@ -76,6 +71,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .build();
         loadFragmentM(mapafragment);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        textUsuario = findViewById(R.id.texto_hamburguesa);
+        imageUsuario = findViewById(R.id.imagen_hamburguesa);
+        //textUsuario.setText(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_NOMBRE));
+        //Glide.with(MyApp.getContext()).load(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FOTO_PERFIL))
+             //   .centerCrop()
+              //  .into(imageUsuario);
+
 
         appBarLayout = findViewById(R.id.barlayout);
         bottomNavigationView = findViewById(R.id.nav_view);
@@ -147,9 +150,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 boolean espremium = ValidaPremium();
                 if(espremium)
                 {
-                    loadFragmentM(fragment_foto);
-                    appBarLayout.setVisibility(View.GONE);
-                    bottomNavigationView.setVisibility(View.GONE);
+                    Intent i = new Intent(MyApp.getContext(), ActivityFotoDia.class);
+                    startActivity(i);
+                    finish();
                 }
                 else
                 {

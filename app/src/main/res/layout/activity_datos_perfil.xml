@@ -16,14 +16,14 @@
         android:textColor="@color/ourwhite"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintBottom_toTopOf="@+id/foto_perfil_datos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/foto_perfil_datos"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginTop="16dp"
@@ -47,7 +47,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textViewNombreU"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/foto_perfil_datos" />
 
     <EditText
         android:id="@+id/editTextCorreoUsuario"

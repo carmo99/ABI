@@ -12,11 +12,15 @@ import com.abi.homeactivity.retrofit.response.ResponseObtenerContactos;
 import com.abi.homeactivity.retrofit.response.ResponseRegistraGadget;
 import com.abi.homeactivity.retrofit.response.ResponsetPerfil;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 
 public interface AuthABIService {
 
@@ -47,4 +51,11 @@ public interface AuthABIService {
     @GET("api/premium/contactos")
     Call <ResponseObtenerContactos> obtenercontactos();
 
+    @Multipart
+    @POST("api/usuarios/foto")
+    Call<ResponseLogIn> cambiarFotoPerfil(@Part MultipartBody.Part image, @Part("archivo") RequestBody description);
+
+    @Multipart
+    @PUT("api/premium/foto")
+    Call<ResponseLogIn> cambiarFotoDia(@Part MultipartBody.Part image, @Part("archivo") RequestBody description);
 }
