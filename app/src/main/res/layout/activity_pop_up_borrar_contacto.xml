@@ -37,7 +37,7 @@
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/muli_extrabold"
         android:text="¿Quieres eliminar este contacto?"
@@ -70,7 +70,7 @@
         android:layout_marginEnd="75dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/muli_extrabold"
-        android:text="Aceptar"
+        android:text="Eliminar"
         android:textColor="@color/ourwhite"
         app:backgroundTint="@color/orange"
         app:layout_constraintEnd_toEndOf="parent"
