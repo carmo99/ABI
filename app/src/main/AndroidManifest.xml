@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.abi.homeactivity" >
+    package="com.abi.homeactivity">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -21,7 +21,16 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HomeActivity" >
+        android:theme="@style/Theme.HomeActivity">
+        <activity
+            android:name=".popup.PopUpCambioContraseniaOlvidada"
+            android:theme="@style/Theme.HomeActivity.PopMe"/>
+        <activity
+            android:name=".popup.PopUpVerificaOTP"
+            android:theme="@style/Theme.HomeActivity.PopMe"/>
+        <activity
+            android:name=".popup.PopUpGeneraOTP"
+            android:theme="@style/Theme.HomeActivity.PopMe" />
         <activity
             android:name=".ui.ActivityFotoDia"
             android:exported="true" />
@@ -65,7 +74,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ui.WelcomeActivity" >
+        <activity android:name=".ui.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

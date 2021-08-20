@@ -17,6 +17,7 @@ import com.abi.homeactivity.common.MyApp;
 import com.abi.homeactivity.common.SharedPreferencesManager;
 import com.abi.homeactivity.popup.PopUpCargando;
 import com.abi.homeactivity.popup.PopUpError;
+import com.abi.homeactivity.popup.PopUpGeneraOTP;
 import com.abi.homeactivity.retrofit.ABIClient;
 import com.abi.homeactivity.retrofit.ABIService;
 import com.abi.homeactivity.retrofit.request.RequestLogin;
@@ -32,7 +33,7 @@ import retrofit2.Response;
 public class LogInActivity extends AppCompatActivity implements View.OnClickListener {
     Button b_login;
     EditText et_email, et_password;
-    TextView tv_singup;
+    TextView tv_singup, tv_olvideContrasenia;
 
     ABIClient abiClient;
     ABIService abiService;
@@ -57,6 +58,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
     {
         b_login.setOnClickListener(this);
         tv_singup.setOnClickListener(this);
+        tv_olvideContrasenia.setOnClickListener(this);
     }
 
     private void referenciar()
@@ -65,6 +67,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         et_email = findViewById(R.id.editTexttCorreo);
         et_password = findViewById(R.id.editTextPassword);
         tv_singup = findViewById(R.id.textViewRegistrarse);
+        tv_olvideContrasenia = findViewById(R.id.textViewOlvideContrasenia);
     }
 
     @Override
@@ -78,6 +81,15 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         {
             gotosingup();
         }
+        else if (view.getId() == R.id.textViewOlvideContrasenia){
+            gotoPopUpOlvideContrasenia();
+        }
+    }
+
+    private void gotoPopUpOlvideContrasenia()
+    {
+        Intent intent = new Intent(LogInActivity.this, PopUpGeneraOTP.class);
+        startActivity(intent);
     }
 
     private void gotosingup()
