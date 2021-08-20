@@ -22,12 +22,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HomeActivity">
+        <activity android:name=".popup.PopUpBorrarContacto"></activity>
         <activity
             android:name=".popup.PopUpCambioContraseniaOlvidada"
-            android:theme="@style/Theme.HomeActivity.PopMe"/>
+            android:theme="@style/Theme.HomeActivity.PopMe" />
         <activity
             android:name=".popup.PopUpVerificaOTP"
-            android:theme="@style/Theme.HomeActivity.PopMe"/>
+            android:theme="@style/Theme.HomeActivity.PopMe" />
         <activity
             android:name=".popup.PopUpGeneraOTP"
             android:theme="@style/Theme.HomeActivity.PopMe" />
