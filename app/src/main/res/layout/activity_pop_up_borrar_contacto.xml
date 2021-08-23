@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bordeBorrarContacto"
+    android:background="@drawable/custom_borde_borrar_contacto"
     tools:context=".popup.PopUpBorrarContacto">
 
     <com.airbnb.lottie.LottieAnimationView
@@ -52,13 +52,14 @@
         android:id="@+id/buttonCancelarBorrarContacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="75dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/muli_extrabold"
         android:text="Cancelar"
         android:textColor="@color/ourwhite"
         app:backgroundTint="@color/orange"
+        app:layout_constraintEnd_toStartOf="@+id/buttonAceptarBorrarContacto"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -67,13 +68,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="75dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/muli_extrabold"
         android:text="Eliminar"
         android:textColor="@color/ourwhite"
         app:backgroundTint="@color/orange"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonCancelarBorrarContacto"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
 

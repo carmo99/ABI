@@ -10,6 +10,7 @@ import com.abi.homeactivity.retrofit.response.ResponseLogIn;
 import com.abi.homeactivity.retrofit.response.ResponseMensaje;
 import com.abi.homeactivity.retrofit.response.ResponseObtenerContactos;
 import com.abi.homeactivity.retrofit.response.ResponseRegistraGadget;
+import com.abi.homeactivity.retrofit.response.ResponseUnaNoticia;
 import com.abi.homeactivity.retrofit.response.ResponsetPerfil;
 
 import okhttp3.MultipartBody;
@@ -21,6 +22,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public interface AuthABIService {
 
@@ -58,4 +60,7 @@ public interface AuthABIService {
     @Multipart
     @PUT("api/premium/foto")
     Call<ResponseLogIn> cambiarFotoDia(@Part MultipartBody.Part image, @Part("archivo") RequestBody description);
+
+    @POST("api/premium/borrar/contactos/{contacto}")
+    Call<ResponseLogIn> borrarContacto(@Path("contacto") String NoContacto);
 }

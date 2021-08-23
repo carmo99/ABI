@@ -1,5 +1,6 @@
 package com.abi.homeactivity.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -19,6 +20,7 @@ import com.abi.homeactivity.R;
 import com.abi.homeactivity.common.Constantes;
 import com.abi.homeactivity.common.MyApp;
 import com.abi.homeactivity.common.SharedPreferencesManager;
+import com.abi.homeactivity.popup.PopUpBorrarContacto;
 import com.abi.homeactivity.popup.PopUpError;
 import com.abi.homeactivity.retrofit.AuthABIClient;
 import com.abi.homeactivity.retrofit.AuthABIService;
@@ -35,7 +37,8 @@ import retrofit2.Response;
  * Use the {@link ContactoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ContactoFragment extends Fragment implements View.OnClickListener {
+public class ContactoFragment extends Fragment implements View.OnClickListener
+{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -101,40 +104,6 @@ public class ContactoFragment extends Fragment implements View.OnClickListener {
         vista = inflater.inflate(R.layout.fragment_contacto, container, false);
         referenciar();
         eventos();
-        if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) == null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) == "")
-        {
-            nom_cont_1.setText("Nombre de Contacto 1");
-            ima_cont_1.setImageResource(R.drawable.ic_profile);
-        }
-        else
-        {
-            nom_cont_1.setText(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1));
-            Glide.with(MyApp.getContext()).load(SharedPreferencesManager.getSomeStringValue(Constantes.FOTO_CONT_1))
-                    .into(ima_cont_1);
-        }
-        if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) == null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) == "")
-        {
-            nom_cont_2.setText("Nombre de Contacto 2");
-            ima_cont_2.setImageResource(R.drawable.ic_profile);
-        }
-        else
-        {
-            nom_cont_2.setText(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2));
-            Glide.with(MyApp.getContext()).load(SharedPreferencesManager.getSomeStringValue(Constantes.FOTO_CONT_2))
-                    .into(ima_cont_2);
-        }
-        if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) == null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) == "")
-        {
-            nom_cont_3.setText("Nombre de Contacto 3");
-            ima_cont_3.setImageResource(R.drawable.ic_profile);
-        }
-        else
-        {
-            nom_cont_3.setText(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3));
-            Glide.with(MyApp.getContext()).load(SharedPreferencesManager.getSomeStringValue(Constantes.FOTO_CONT_3))
-                    .into(ima_cont_3);
-        }
-
         return vista;
     }
 
@@ -176,5 +145,77 @@ public class ContactoFragment extends Fragment implements View.OnClickListener {
             startActivity(intent);
             getActivity().finish();
         }
+        else if(view.getId() == R.id.more_contacto_1)
+        {
+            if(!(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) == null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) == ""))
+            {
+                Bundle parametros = new Bundle();
+                parametros.putString("Contacto", "contactoEmergencia1");
+                Intent intent = new Intent(getActivity(), PopUpBorrarContacto.class);
+                intent.putExtras(parametros);
+                startActivity(intent);
+            }
+        }
+        else if(view.getId() == R.id.more_contacto_2)
+        {
+            if(!(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) == null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) == ""))
+            {
+                Bundle parametros = new Bundle();
+                parametros.putString("Contacto", "contactoEmergencia2");
+                Intent intent = new Intent(getActivity(), PopUpBorrarContacto.class);
+                intent.putExtras(parametros);
+                startActivity(intent);
+            }
+        }
+        else if(view.getId() == R.id.more_contacto_3)
+        {
+            if(!(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) == null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) == ""))
+            {
+                Bundle parametros = new Bundle();
+                parametros.putString("Contacto", "contactoEmergencia3");
+                Intent intent = new Intent(getActivity(), PopUpBorrarContacto.class);
+                intent.putExtras(parametros);
+                startActivity(intent);
+            }
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) == null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) == "")
+        {
+            nom_cont_1.setText("Nombre de Contacto 1");
+            ima_cont_1.setImageResource(R.drawable.ic_profile);
+        }
+        else
+        {
+            nom_cont_1.setText(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1));
+            Glide.with(MyApp.getContext()).load(SharedPreferencesManager.getSomeStringValue(Constantes.FOTO_CONT_1))
+                    .into(ima_cont_1);
+        }
+        if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) == null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) == "")
+        {
+            nom_cont_2.setText("Nombre de Contacto 2");
+            ima_cont_2.setImageResource(R.drawable.ic_profile);
+        }
+        else
+        {
+            nom_cont_2.setText(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2));
+            Glide.with(MyApp.getContext()).load(SharedPreferencesManager.getSomeStringValue(Constantes.FOTO_CONT_2))
+                    .into(ima_cont_2);
+        }
+        if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) == null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) == "")
+        {
+            nom_cont_3.setText("Nombre de Contacto 3");
+            ima_cont_3.setImageResource(R.drawable.ic_profile);
+        }
+        else
+        {
+            nom_cont_3.setText(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3));
+            Glide.with(MyApp.getContext()).load(SharedPreferencesManager.getSomeStringValue(Constantes.FOTO_CONT_3))
+                    .into(ima_cont_3);
+        }
+
     }
 }

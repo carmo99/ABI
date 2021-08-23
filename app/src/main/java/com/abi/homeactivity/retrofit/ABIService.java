@@ -18,7 +18,7 @@ import retrofit2.http.Path;
 
 public interface ABIService
 {
-    @POST("api/auth/login/")
+    @POST("api/auth/login")
     Call<ResponseLogIn> responselogin (@Body RequestLogin requestLogin);
 
     @POST("api/usuarios")
