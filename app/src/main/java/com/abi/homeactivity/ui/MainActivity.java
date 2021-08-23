@@ -44,9 +44,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ContactoFragment fragment_contacto = new ContactoFragment();
     NavigationView nav_view_sidebar;
 
-    TextView textUsuario;
-    ImageView imageUsuario;
-
     AppBarLayout appBarLayout;
     BottomNavigationView bottomNavigationView;
     DrawerLayout drawerLayout;
@@ -72,14 +69,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         loadFragmentM(mapafragment);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        textUsuario = findViewById(R.id.texto_hamburguesa);
-        imageUsuario = findViewById(R.id.imagen_hamburguesa);
-        //textUsuario.setText(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_NOMBRE));
-        //Glide.with(MyApp.getContext()).load(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FOTO_PERFIL))
-             //   .centerCrop()
-              //  .into(imageUsuario);
-
-
         appBarLayout = findViewById(R.id.barlayout);
         bottomNavigationView = findViewById(R.id.nav_view);
         perfil = findViewById(R.id.imageViewProfilePrincipal);
@@ -87,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         drawerLayout = findViewById(R.id.drawerLayout);
         toolbar = findViewById(R.id.toolbar);
         nav_view_sidebar = findViewById(R.id.nav_view_sidebar);
-
 
         nav_view_sidebar.setNavigationItemSelectedListener(item ->
         {

@@ -16,7 +16,9 @@
         <entry key="app/src/main/res/layout/fragment_foto.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_registro_contactos.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.20108695652173914" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.2125" />
         <entry key="app/src/main/res/menu/menu_sidemenu.xml" value="0.2125" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22864583333333333" />
       </map>
     </option>
   </component>

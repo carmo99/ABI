@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:orientation="vertical"
+    android:layout_height="150dp"
     android:background="@drawable/side_nav_bar_blue"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <ImageView
@@ -19,17 +18,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/texto_hamburguesa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="Esli Hernandez"
-        app:layout_constraintEnd_toEndOf="@+id/imagen_hamburguesa"
-        app:layout_constraintStart_toStartOf="@+id/imagen_hamburguesa"
-        app:layout_constraintTop_toBottomOf="@+id/imagen_hamburguesa" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
