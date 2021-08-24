@@ -27,9 +27,10 @@
         android:background="@drawable/custom_constrain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.736"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLogoInicio">
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLogoInicio"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/textViewTextoInicioS"
@@ -68,6 +69,7 @@
             android:drawableLeft="@drawable/ic_email"
             android:elevation="8dp"
             android:ems="10"
+            android:fontFamily="@font/muli"
             android:hint="   nombre@correo.com"
             android:inputType="textEmailAddress"
             android:paddingLeft="15dp"
@@ -99,6 +101,7 @@
             android:drawableLeft="@drawable/ic_lock"
             android:elevation="8dp"
             android:ems="10"
+            android:fontFamily="@font/muli"
             android:hint="    ********"
             android:inputType="textPassword"
             android:paddingLeft="15dp"

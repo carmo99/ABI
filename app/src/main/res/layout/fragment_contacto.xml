@@ -16,7 +16,7 @@
         android:fontFamily="@font/muli_extrabold"
         android:text="@string/contactos"
         android:textColor="@color/ourwhite"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/imagenDia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

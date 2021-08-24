@@ -209,7 +209,6 @@ public class RegistroContactosActivity extends AppCompatActivity implements View
                         Intent i = new Intent(MyApp.getContext(), PopUpCorrecto.class);
                         i.putExtras(parametros);
                         startActivity(i);
-                        finish();
                     }
                     else
                     {

@@ -266,6 +266,7 @@ public class DatosPerfil extends AppCompatActivity implements View.OnClickListen
                         startActivity(i);
                     }
                 });
+                break;
             case R.id.buttonCambiarFoto:
                 checkPermissions();
                 break;

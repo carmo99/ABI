@@ -8,7 +8,7 @@
     tools:context=".popup.PopUpBorrarContacto">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animationcambiaContraseniaOTP"
+        android:id="@+id/animacionborrarcontacto"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginTop="32dp"
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11"
         app:lottie_autoPlay="true"
-        app:lottie_fileName="CambioContrasenia.json"
+        app:lottie_fileName="AnimacionBorrarContacto.json"
         app:lottie_loop="true" />
 
     <TextView
@@ -46,7 +46,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animationcambiaContraseniaOTP" />
+        app:layout_constraintTop_toBottomOf="@+id/animacionborrarcontacto" />
 
     <Button
         android:id="@+id/buttonCancelarBorrarContacto"
