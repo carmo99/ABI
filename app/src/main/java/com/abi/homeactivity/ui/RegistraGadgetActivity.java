@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.abi.homeactivity.R;
+import com.abi.homeactivity.VincularABIActivity;
 import com.abi.homeactivity.common.Constantes;
 import com.abi.homeactivity.common.MyApp;
 import com.abi.homeactivity.common.SharedPreferencesManager;
@@ -117,8 +118,8 @@ public class RegistraGadgetActivity extends AppCompatActivity implements View.On
                     float espacio_total = (float)(.3 + (caracteres_totales)*.05);
                     parametros.putFloat("Espacio", espacio_total);
                     parametros.putString("Mensaje", mensaje);
-                    Intent i = new Intent(MyApp.getContext(), PopUpCorrecto.class);
-                    i.putExtras(parametros);
+                    Intent i = new Intent(MyApp.getContext(), VincularABIActivity.class);
+                    //i.putExtras(parametros);
                     startActivity(i);
                 }
                 else {

@@ -1,13 +1,23 @@
 package com.abi.homeactivity.ui;
 
+import android.Manifest;
 import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.abi.homeactivity.common.Constantes;
@@ -26,14 +36,24 @@ import com.google.android.material.navigation.NavigationView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.appcompat.widget.Toolbar;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.UUID;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -52,6 +72,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     AuthABIService authABIService;
     AuthABIClient authABIClient;
+
+    //Necesario para el Bluetooth, (tia porfa no lo borres)
+    Handler bluetoothIn;
+    final int handlerState = 0;
+    private BluetoothAdapter btAdapter = null;
+    private BluetoothSocket btSocket = null;
+    private StringBuilder DataStringIn = new StringBuilder();
+    private ConnectedThread MyConexionBt;
+    private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
 
     @Override
@@ -79,8 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         nav_view_sidebar.setNavigationItemSelectedListener(item ->
         {
-            switch (item.getItemId())
-            {
+            switch (item.getItemId()) {
                 case R.id.nav_infoDia:
                     Intent intent1 = new Intent(MainActivity.this, InformacionDiaActivity.class);
                     startActivity(intent1);
@@ -109,15 +137,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //menuHamburguesa.setOnClickListener( this );
 
 
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */)
-        {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
 
             @Override
-            public void handleOnBackPressed()
-            {
+            public void handleOnBackPressed() {
                 veces_apretado++;
-                if(veces_apretado == 2)
-                {
+                if (veces_apretado == 2) {
                     finish();
                 }
             }
@@ -126,6 +151,58 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         retrofitInit();
 
+
+        if (SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MAC) != null) {
+            boolean espremium = ValidaPremium();
+            if (espremium) {
+                conectarBluetooth();
+            }
+            Log.i("dir_mac", SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MAC));
+        }
+
+
+        if (ActivityCompat.checkSelfPermission(
+                MainActivity.this, Manifest.permission.SEND_SMS)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                MainActivity.this, Manifest
+                        .permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]
+                    {Manifest.permission.SEND_SMS,}, 1000);
+
+
+        }
+    }
+
+    private void conectarBluetooth() {
+        bluetoothIn = new Handler(){
+            public  void handleMessage(android.os.Message msg){
+                if (msg.what == handlerState){
+
+                }
+            }
+        };
+
+        btAdapter = BluetoothAdapter.getDefaultAdapter();
+        VerificarEstadoBT();
+
+    }
+
+    private void VerificarEstadoBT() {
+        if (btAdapter == null)
+        {
+            Toast.makeText(getBaseContext(), "El dispositivo no soporta Bluetooth", Toast.LENGTH_SHORT).show();
+        }else {
+            if (btAdapter.isEnabled()){
+            }else{
+                Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableIntent, 1);
+            }
+        }
+    }
+
+    private BluetoothSocket createBluetoothSocket(BluetoothDevice device ) throws IOException
+    {
+        return device.createRfcommSocketToServiceRecord(BTMODULEUUID);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -252,5 +329,110 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent i = new Intent( MainActivity.this, DatosPerfil.class);
         startActivity( i );
         this.finish();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if ( SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MAC) != null)
+        {
+            boolean espremium = ValidaPremium();
+            if ( espremium )
+            {
+                BluetoothDevice device = btAdapter.getRemoteDevice( SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MAC) );
+
+                try{
+                    btSocket = createBluetoothSocket(device);
+                }catch (IOException e){
+                    Toast.makeText(getBaseContext(), "La creacion del socket fallo", Toast.LENGTH_SHORT).show();
+                }
+
+                try {
+                    btSocket.connect();
+                }catch (IOException e)
+                {
+                    try {
+                        btSocket.close();
+                    }catch (IOException e2)
+                    {}
+                }
+                MyConexionBt = new ConnectedThread(btSocket);
+                MyConexionBt.start();
+            }
+            Log.i("dir_mac", SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MAC) );
+        }
+
+    }
+    private class ConnectedThread extends Thread
+    {
+        private BufferedReader mmInStream = null;
+        private final OutputStream mmOutStream;
+
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+        public ConnectedThread(BluetoothSocket socket)
+        {
+            InputStream tmpIn = null;
+            OutputStream tmpOut = null;
+
+            try {
+                tmpIn = socket.getInputStream();
+                tmpOut = socket.getOutputStream();
+            } catch (IOException e){
+            }
+
+            mmInStream = new BufferedReader( new InputStreamReader(tmpIn, StandardCharsets.UTF_8));
+            mmOutStream = tmpOut;
+        }
+
+        public void run()
+        {
+            byte[] byte_in = new byte[50];
+
+            while(true)
+            {
+                try {
+                    String mensaje = mmInStream.readLine();
+                    Log.i("abi_boton", mensaje);
+                    if ( mensaje.equals("boton")){
+                        if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) != null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) != "")
+                        {
+                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_1), SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE));
+                        }
+                        if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) != null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) != "")
+                        {
+                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_2), SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE));
+                        }
+                        if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) != null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) != "")
+                        {
+                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_3), SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE));
+                        }
+                    }
+                    //bluetoothIn.obtainMessage(handlerState, ch).sendToTarget();
+                }catch (IOException e){
+                    break;
+                }
+            }
+        }
+
+        public void write(String input)
+        {
+            try {
+                mmOutStream.write(input.getBytes());
+            }catch (IOException e)
+            {
+                Toast.makeText(getBaseContext(), "La conexion fallo", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void enviarMensaje (String numero, String mensaje){
+        try {
+            SmsManager sms = SmsManager.getDefault();
+            sms.sendTextMessage(numero,null,mensaje,null,null);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -33,5 +33,8 @@ public class Constantes
     public static final String TELEFONO_CONT_3  = "TELEFONO_CONT_3";
     public static final String CORREO_CONT_3    = "CORREO_CONT_3";
 
+    //BLUETOOTH
+    public static final String PREF_MAC = "PREF_MAC";
+
 
 }
