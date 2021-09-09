@@ -26,4 +26,5 @@ public class SharedPreferencesManager {
     {
         return getSharedPreferences().getString(dataLabel, null);
     }
+
 }

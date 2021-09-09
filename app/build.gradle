@@ -70,4 +70,7 @@ dependencies {
 
     implementation 'com.airbnb.android:lottie:3.7.0'
 
+    //Ubicación
+    implementation "com.google.android.gms:play-services-location:15.0.1"
+
 }

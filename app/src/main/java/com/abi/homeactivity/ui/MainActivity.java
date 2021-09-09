@@ -8,6 +8,7 @@ import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,6 +31,9 @@ import com.abi.homeactivity.popup.PopUpError;
 import com.abi.homeactivity.popup.PopUpLogOut;
 import com.abi.homeactivity.retrofit.AuthABIClient;
 import com.abi.homeactivity.retrofit.AuthABIService;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ContactoFragment fragment_contacto = new ContactoFragment();
     NavigationView nav_view_sidebar;
 
+
     AppBarLayout appBarLayout;
     BottomNavigationView bottomNavigationView;
     DrawerLayout drawerLayout;
@@ -85,6 +90,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (ActivityCompat.checkSelfPermission(MyApp.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MyApp.getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            ActivityCompat.requestPermissions( this, new String[]
+                    {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION}, 1000);
+
+        }
         fa = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -161,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
+
         if (ActivityCompat.checkSelfPermission(
                 MainActivity.this, Manifest.permission.SEND_SMS)
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
@@ -171,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         }
+
     }
 
     private void conectarBluetooth() {
@@ -435,4 +454,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             e.printStackTrace();
         }
     }
+
+
 }

@@ -36,5 +36,8 @@ public class Constantes
     //BLUETOOTH
     public static final String PREF_MAC = "PREF_MAC";
 
+    //Ubicacion
+    public static String PREF_LATITUD = "PREF_LATITUD";
+    public static String PREF_LONGITUD = "PREF_LONGITUD";
 
 }
