@@ -21,8 +21,11 @@ public interface ABIService
     @POST("api/auth/login")
     Call<ResponseLogIn> responselogin (@Body RequestLogin requestLogin);
 
-    @POST("api/usuarios")
-    Call<ResponseLogIn> responseSingUp (@Body RequestCrearUsuario requestCrearUsuario);
+    @POST("api/usuarios/verificar")
+    Call<ResponseLogIn> responseSingUpVerificar (@Body RequestCrearUsuario requestCrearUsuario);
+
+    @POST("api/usuarios/salvar")
+    Call<ResponseLogIn> responseSingUpSalvar (@Body RequestCrearUsuario requestCrearUsuario);
 
     @GET("api/informacion/todas/I_LEGAL")
     Call<ResponseClasificacion> responseClasificacionLegal ();
