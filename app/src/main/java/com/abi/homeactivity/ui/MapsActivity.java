@@ -34,6 +34,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
@@ -44,6 +45,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     private Double latitud = 0.0;
     private Double longitud = 0.0;
     private final int TIEMPO = 5000;
+    private Marker currentMarker = null;
 
     Handler handler = new Handler();
 
@@ -109,10 +111,18 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                                     latitud = location.getLatitude();
                                     longitud = location.getLongitude();
                                     LatLng myUbicacion = new LatLng(latitud, longitud);
-                                    Log.i("Latitud", latitud+" Longitud: "+ longitud);
-                                    mMap.addMarker(new MarkerOptions().position(myUbicacion).title("Mi ubicación").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-                                    float zoomlevel= 16;
-                                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myUbicacion, zoomlevel));
+                                    Log.i("Latitud ", latitud + " Longitud: "+ longitud);
+                                    if ( currentMarker == null){
+                                        currentMarker = mMap.addMarker(new MarkerOptions().position(myUbicacion).title("Mi ubicación").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                                        float zoomlevel= 16;
+                                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myUbicacion, zoomlevel));
+                                    }else {
+                                        mMap.clear();
+                                        currentMarker.remove();
+                                        currentMarker = mMap.addMarker(new MarkerOptions().position(myUbicacion).title("Mi ubicación").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                                        float zoomlevel= 16;
+                                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myUbicacion, zoomlevel));
+                                    }
                                 }
                             }
                         });
