@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.abi.homeactivity.R;
@@ -42,6 +43,8 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
     View vista;
     ImageButton atras_mensaje;
 
+    TextView op1, op2, op3, op4;
+
     Button b_mensajeAyuda;
     TextInputEditText ti_mensajeAyuda;
 
@@ -49,6 +52,7 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
     AuthABIClient authABIClient;
 
     String mensajeAyuda;
+    String opcionDeMensaje;
 
 
     public MensajeFragment() {
@@ -98,6 +102,10 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
     {
         atras_mensaje.setOnClickListener(this);
         b_mensajeAyuda.setOnClickListener(this);
+        op1.setOnClickListener(this);
+        op2.setOnClickListener(this);
+        op3.setOnClickListener(this);
+        op4.setOnClickListener(this);
     }
 
     private void referenciar()
@@ -105,6 +113,10 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
         atras_mensaje = (ImageButton) vista.findViewById(R.id.imageButton_atras_mensaje);
         ti_mensajeAyuda = (TextInputEditText) vista.findViewById(R.id.textInputEditText);
         b_mensajeAyuda = (Button) vista.findViewById(R.id.buttonMensaje);
+        op1 = (TextView) vista.findViewById(R.id.textViewOpcion1);
+        op2 = (TextView) vista.findViewById(R.id.textViewOpcion2);
+        op3 = (TextView) vista.findViewById(R.id.textViewOpcion3);
+        op4 = (TextView) vista.findViewById(R.id.textViewOpcion4);
 
     }
 
@@ -117,13 +129,35 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view)
     {
-        if (view.getId() == R.id.imageButton_atras_mensaje) {
+        if (view.getId() == R.id.imageButton_atras_mensaje)
+        {
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
             getActivity().finish();
         }
-        if (view.getId() == R.id.buttonMensaje) {
+        else if(view.getId() == R.id.buttonMensaje)
+        {
             actualizarMensaje();
+        }
+        else if (view.getId() == R.id.textViewOpcion1)
+        {
+            opcionDeMensaje= op1.getText().toString();
+            ti_mensajeAyuda.setText(opcionDeMensaje);
+        }
+        else if (view.getId() == R.id.textViewOpcion2)
+        {
+            opcionDeMensaje= op2.getText().toString();
+            ti_mensajeAyuda.setText(opcionDeMensaje);
+        }
+        else if (view.getId() == R.id.textViewOpcion3)
+        {
+            opcionDeMensaje= op3.getText().toString();
+            ti_mensajeAyuda.setText(opcionDeMensaje);
+        }
+        else if (view.getId() == R.id.textViewOpcion4)
+        {
+            opcionDeMensaje= op4.getText().toString();
+            ti_mensajeAyuda.setText(opcionDeMensaje);
         }
     }
 

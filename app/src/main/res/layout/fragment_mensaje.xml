@@ -11,23 +11,20 @@
         android:id="@+id/textViewMensaje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/muli_extrabold"
         android:text="@string/texto_mensaje"
         android:textColor="@color/white"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/imagenDia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/imagenDia"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/textInputEditText"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMensaje"
@@ -39,8 +36,7 @@
         android:id="@+id/buttonMensaje"
         android:layout_width="251dp"
         android:layout_height="41dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/muli_extrabold"
         android:text="@string/boton_mensaje"
@@ -48,15 +44,14 @@
         app:backgroundTint="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputEditText" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton_atras_mensaje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:background="@color/blueintermediate"
         android:tint="@color/orange"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +62,6 @@
         android:id="@+id/textInputEditText"
         android:layout_width="369dp"
         android:layout_height="157dp"
-        android:layout_marginTop="30dp"
         android:background="@drawable/custom_input_grey"
         android:fontFamily="@font/muli_extrabold"
         android:foregroundGravity="center"
@@ -76,9 +70,77 @@
         android:textAlignment="center"
         android:textColor="@color/grisLetras"
         android:textColorHint="@color/grisLetras"
-        app:layout_constraintBottom_toTopOf="@+id/buttonMensaje"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagenDia" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="Puedes seleccionar alguna de las siguientes opciones:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputEditText" />
+
+    <TextView
+        android:id="@+id/textViewOpcion1"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        android:autoText="false"
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/muli"
+        android:text="Me encuentro en peligro, ubícame en la aplicación de ABI"
+        android:textAlignment="center"
+        android:textColor="@color/ourblack"
+        app:autoSizeTextType="none"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textViewOpcion2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="56dp"
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/muli"
+        android:text="Necesito de tu ayuda"
+        android:textAlignment="center"
+        android:textColor="@color/ourblack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textViewOpcion3"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/muli"
+        android:text="Algo me ocurre, "
+        android:textAlignment="center"
+        android:textColor="@color/ourblack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOpcion1" />
+
+    <TextView
+        android:id="@+id/textViewOpcion4"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="44dp"
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/muli"
+        android:text="Ayudame lo antes posible"
+        android:textAlignment="center"
+        android:textColor="@color/ourblack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOpcion2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
