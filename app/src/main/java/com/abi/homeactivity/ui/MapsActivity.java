@@ -88,6 +88,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
         UiSettings uiSettings = mMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(false);
+        SharedPreferencesManager.setSomeStringValue(Constantes.PREF_CONTADOR, null);
         actualizarUbicacion();
 
         // Add a marker in Sydney and move the camera
@@ -99,7 +100,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         handler.postDelayed(new Runnable() {
             public void run()
             {
-                if(sale == false)
+                if(sale == false && SharedPreferencesManager.getSomeStringValue(Constantes.PREF_CONTADOR) == null)
                 {
                     Log.i("Entra", "Entra a matar");
                     handler.removeCallbacks(this);
@@ -147,6 +148,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        SharedPreferencesManager.setSomeStringValue(Constantes.PREF_CONTADOR, "Esperando");
         sale = false;
     }
 
