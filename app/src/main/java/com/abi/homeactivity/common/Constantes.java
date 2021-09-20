@@ -39,5 +39,6 @@ public class Constantes
     //Ubicacion
     public static String PREF_LATITUD = "PREF_LATITUD";
     public static String PREF_LONGITUD = "PREF_LONGITUD";
+    public static String PREF_CONTADOR = "PREF_CONTADOR";
 
 }

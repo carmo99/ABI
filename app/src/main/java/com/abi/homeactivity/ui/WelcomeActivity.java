@@ -27,6 +27,12 @@ public class WelcomeActivity extends AppCompatActivity {
     AuthABIClient authABIClient;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        SharedPreferencesManager.setSomeStringValue(Constantes.PREF_CONTADOR, null);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);

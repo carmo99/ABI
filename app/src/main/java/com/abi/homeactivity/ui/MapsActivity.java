@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentActivity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -38,26 +40,36 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.util.Map;
+
 public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Activity activity;
     private FusedLocationProviderClient fusedLocationClient;
     private Double latitud = 0.0;
     private Double longitud = 0.0;
     private final int TIEMPO = 5000;
     private Marker currentMarker = null;
+    private boolean sale=true, entra = true;
+
+    public MapsActivity(Activity a)
+    {
+        activity=a;
+    }
 
     Handler handler = new Handler();
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.i("Entra", "Inicia Mapa");
     }
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.activity_maps, container, false);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
@@ -76,32 +88,37 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
         UiSettings uiSettings = mMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(false);
-
         actualizarUbicacion();
 
         // Add a marker in Sydney and move the camera
 
 
     }
-
-    private void actualizarUbicacion() {
-
+    private void actualizarUbicacion()
+    {
         handler.postDelayed(new Runnable() {
-            public void run() {
-
+            public void run()
+            {
+                if(sale == false)
+                {
+                    Log.i("Entra", "Entra a matar");
+                    handler.removeCallbacks(this);
+                    return;
+                }
+                Log.i("Entra", "Salde de matar");
                 // función a ejecutar
-                fusedLocationClient = LocationServices.getFusedLocationProviderClient(MyApp.getContext());
-                if (ActivityCompat.checkSelfPermission(MyApp.getContext(),
+                fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
+                if (ActivityCompat.checkSelfPermission(activity,
                         Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                        && ActivityCompat.checkSelfPermission(MyApp.getContext(),
+                        && ActivityCompat.checkSelfPermission(activity,
                         Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 }
                 fusedLocationClient.getLastLocation()
-                        .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+                        .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
                             @Override
                             public void onSuccess(Location location) {
                                 // Got last known location. In some rare situations this can be null.
-                                if (location != null)
+                                if (location != null) 
                                 {
                                     latitud = location.getLatitude();
                                     longitud = location.getLongitude();
@@ -125,6 +142,12 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                 handler.postDelayed(this, TIEMPO);
             }
         }, TIEMPO);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        sale = false;
     }
 
     @Override

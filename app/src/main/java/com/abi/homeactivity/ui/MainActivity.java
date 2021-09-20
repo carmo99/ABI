@@ -63,7 +63,7 @@ import java.util.UUID;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static Activity fa;
     ImageView perfil;
-    MapsActivity mapafragment = new MapsActivity();
+    MapsActivity mapafragment = new MapsActivity(this);
     MensajeFragment fragment_mensaje = new MensajeFragment();
     ContactoFragment fragment_contacto = new ContactoFragment();
     NavigationView nav_view_sidebar;
@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private StringBuilder DataStringIn = new StringBuilder();
     private ConnectedThread MyConexionBt;
     private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+
+
 
 
     @Override
