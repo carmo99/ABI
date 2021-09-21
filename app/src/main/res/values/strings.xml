@@ -39,4 +39,39 @@
     <string name="Seguro_cerrar_sesion">¿Está seguro que quiere cerrar sesión?</string>
     <string name="boton_registra_gadget">REGISTRAR GADGET</string>
     <string name="Leido">He leído y acepto los términos y condiciones de uso</string>
+
+    <string name="Aviso_Privacidad">
+        I. IDENTIFICACIÓN DEL RESPONSABLE\n
+        De conformidad con lo establecido en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (en lo sucesivo la “Ley”) y su Reglamento le informamos que ABI, S.A. de C.V., sus filiales y/o subsidiarias (en lo sucesivo el “Responsable”), con domicilio en Cofranco 10-A 108, U.H. Tabla Honda, C.P. 54140, Tlalnepantla, Estado de México, (la “Dirección de Contacto”) tratará los datos personales que Usted como Titular nos proporcione en términos del presente Aviso de Privacidad (en lo sucesivo “Aviso”).
+        \n\n
+        II. DATOS PERSONALES QUE RECABAMOS\n
+        Los datos personales y datos personales sensibles que recabaremos serán aquellos que usted haya ingresado al momento de hacer su registro en la aplicación ABI, y serán tratados y resguardados con base en los principios establecidos en la Ley y su Reglamento, los cuales son: licitud, consentimiento, información, calidad, finalidad, lealtad, proporcionalidad y responsabilidad. Para cumplir con las finalidades que se mencionan en el presente Aviso, requerimos que nos proporcione los siguientes Datos:
+        \na) Si usted es un contacto de emergencia, requeriremos los siguientes datos personales
+        Nombre de usuario, Correo electrónico, Número de teléfono.
+        \nb) Si usted es un usuario premium, requeriremos los siguientes datos de su organización
+        Nombre de usuario, Correo electrónico, Número de teléfono, Ubicación geográfica, foto del día.
+        \n\n
+        III. FINALIDADES DEL TRATAMIENTO DE SUS DATOS PERSONALES\n
+        El responsable, sus filiales y/o subsidiarias, recaban sus datos personales y datos personales sensibles con el objeto de utilizarlos para los siguientes fines:
+        \na) Hacer un enlace entre los contactos de emergencia y los usuarios premium.
+        \nb) Enviar los datos pertinentes como lo son la ubicación geográfica y la foto del día de los usuarios premium a los contactos de emergencia.
+        \n\n
+        IV. TRANSFERENCIA DE SUS DATOS PERSONALES\n
+        Le informamos que sus datos personales como lo son la ubicación geográfica y la foto del día serán transferidos a las personas que usted seleccione como “contactos de emergencia”, esto con la finalidad de que usted pueda recibir ayuda lo más pronto posible si se encuentra en una situación de peligro. Por lo anterior solicitamos su consentimiento expreso para la transferencia de sus datos. Por favor seleccione “Si acepto las condiciones descritas anteriormente” al final del aviso de privacidad, o bien “No acepto las condiciones descritas anteriormente.
+        \n\n
+        V. MEDIOS PARA LIMITAR EL USO O DIVULGACIÓN DE SUS DATOS PERSONALES\n
+        Hacemos de su conocimiento que sus datos personales y datos personales sensibles serán resguardados bajo estrictas medidas de seguridad administrativas, técnicas y físicas las cuales han sido implementadas, en términos del Reglamento, con el objeto de proteger y garantizar sus datos personales contra daño, pérdida, alteración, destrucción o el uso, acceso o tratamiento no autorizados.
+        \n\n
+        VI. MEDIOS PARA REVOCAR EL CONSENTIMIENTO PARA EL TRATAMIENTO DE SUS DATOS PERSONALES\n
+        Usted podrá revocar su consentimiento para el tratamiento de sus datos personales de la misma forma por la cual otorgo su consentimiento. Asimismo Usted tiene derecho de: (i) Acceder a sus datos personales en nuestro poder y conocer los detalles del tratamiento de los mismos, (ii) Rectificarlos en caso de ser inexactos o incompletos, (iii) Cancelarlos cuando considere que no se requieren para alguna de las finalidades señaladas en el presente Aviso, estén siendo utilizados para finalidades no consentidas o haya finalizado la relación contractual o de servicio, u (iv) Oponerse al tratamiento de los mismos para fines específicos, según lo disponga la Ley”). Para el ejercicio de sus Derechos, deberá presentar una Solicitud al siguiente correo electrónico: jocaes911@gmail.com acompañada de la siguiente información y documentos:
+        \na) Su nombre, domicilio y correo electrónico para poder comunicarle la respuesta a la Solicitud
+        \nb) Una copia de los documentos que acrediten su identidad (copia de IFE, pasaporte o cualquier otra identificación oficial) o en su caso, los documentos que acrediten su representación legal, cuyo original deberá presentar para poder recibir la respuesta del responsable.
+        \nc) Una descripción clara y precisa de los datos personales respecto de los cuales busca ejercer alguno de los Derechos
+        \nd) Cualquier documento o información que facilite la localización de sus datos personales;
+        \ne) En caso de solicitar una rectificación de sus datos personales, deberá de indicar también, las modificaciones a realizarse y aportar la documentación que sustente su petición.
+        El Oficial de Privacidad responderá y dará seguimiento a su Solicitud de Derechos en los plazos establecidos por la Ley. De igual manera, Usted podrá revocar su consentimiento para el tratamiento de sus datos personales siguiendo el mismo procedimiento que el mencionado para el ejercicio de sus Derechos.
+        \n\n
+        VII. CAMBIOS O MODIFICACIONES AL PRESENTE AVISO\n
+        El responsable se reserva el derecho de efectuar en cualquier momento modificaciones o actualizaciones al presente Aviso, en el entendido de que toda modificación al mismo se hará de su conocimiento por correo electrónico. Solicitamos su consentimiento expreso para el tratamiento de sus datos personales. Por favor seleccione “Si acepto las condiciones descritas anteriormente” al final del aviso de privacidad, o bien “No acepto las condiciones descritas anteriormente.
+    </string>
 </resources>

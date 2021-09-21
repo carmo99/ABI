@@ -27,7 +27,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HomeActivity">
-        <activity android:name=".VincularABIActivity"></activity>
+        <activity android:name=".ui.VincularABIActivity"></activity>
         <activity
             android:name=".popup.PopUpBorrarContacto"
             android:theme="@style/Theme.HomeActivity.PopMe" />

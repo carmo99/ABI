@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 import com.abi.homeactivity.R;
 import com.abi.homeactivity.common.Constantes;
@@ -35,6 +37,8 @@ public class PrivacidadActivity extends AppCompatActivity implements View.OnClic
 
     String s_name,s_email,s_password,s_phone;
 
+    TextView aviso_privacidad;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +52,8 @@ public class PrivacidadActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_privacidad);
         b_aceptar = findViewById(R.id.button_aviso);
         checkBox = findViewById(R.id.checkBoxLeido);
+        aviso_privacidad = findViewById(R.id.textView_aviso);
+        aviso_privacidad.setMovementMethod(new ScrollingMovementMethod());
         retrofitInit();
         b_aceptar.setOnClickListener(this);
     }

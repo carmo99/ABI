@@ -2,6 +2,7 @@ package com.abi.homeactivity.ui;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -13,6 +14,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -40,6 +42,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 public class MapsActivity extends Fragment implements OnMapReadyCallback {
@@ -49,9 +53,10 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     private FusedLocationProviderClient fusedLocationClient;
     private Double latitud = 0.0;
     private Double longitud = 0.0;
-    private final int TIEMPO = 5000;
+    private int TIEMPO = 500;
     private Marker currentMarker = null;
-    private boolean sale=true, entra = true;
+    private boolean sale=true;
+    private int contador = 0;
 
     public MapsActivity(Activity a)
     {
@@ -63,7 +68,6 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.i("Entra", "Inicia Mapa");
     }
 
     @Nullable
@@ -102,44 +106,57 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
             {
                 if(sale == false && SharedPreferencesManager.getSomeStringValue(Constantes.PREF_CONTADOR) == null)
                 {
-                    Log.i("Entra", "Entra a matar");
                     handler.removeCallbacks(this);
                     return;
                 }
-                Log.i("Entra", "Salde de matar");
-                // función a ejecutar
-                fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
-                if (ActivityCompat.checkSelfPermission(activity,
-                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                        && ActivityCompat.checkSelfPermission(activity,
-                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                }
-                fusedLocationClient.getLastLocation()
-                        .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
-                            @Override
-                            public void onSuccess(Location location) {
-                                // Got last known location. In some rare situations this can be null.
-                                if (location != null) 
-                                {
-                                    latitud = location.getLatitude();
-                                    longitud = location.getLongitude();
-                                    LatLng myUbicacion = new LatLng(latitud, longitud);
-                                    Log.i("Latitud ", latitud + " Longitud: "+ longitud);
-                                    if ( currentMarker == null){
-                                        currentMarker = mMap.addMarker(new MarkerOptions().position(myUbicacion).title("Mi ubicación").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-                                        float zoomlevel= 16;
-                                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myUbicacion, zoomlevel));
-                                    }else {
-                                        mMap.clear();
-                                        currentMarker.remove();
-                                        currentMarker = mMap.addMarker(new MarkerOptions().position(myUbicacion).title("Mi ubicación").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-                                        float zoomlevel= 16;
-                                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myUbicacion, zoomlevel));
+                Log.i("Latitud", ""+SharedPreferencesManager.getSomeStringValue(Constantes.PREF_CONTADOR_TIEMPO));
+                if(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_CONTADOR_TIEMPO).equals("30") ||
+                        SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ESTADO).equals("EMERGENCIA"))
+                {
+                    SharedPreferencesManager.setSomeStringValue(Constantes.PREF_CONTADOR_TIEMPO, "0");
+                    // función a ejecutar
+                    fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
+                    if (ActivityCompat.checkSelfPermission(activity,
+                            Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                            && ActivityCompat.checkSelfPermission(activity,
+                            Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    }
+                    fusedLocationClient.getLastLocation()
+                            .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
+                                @RequiresApi(api = Build.VERSION_CODES.O)
+                                @Override
+                                public void onSuccess(Location location) {
+                                    // Got last known location. In some rare situations this can be null.
+                                    if (location != null)
+                                    {
+                                        latitud = location.getLatitude();
+                                        longitud = location.getLongitude();
+                                        SharedPreferencesManager.setSomeStringValue(Constantes.PREF_LATITUD, String.valueOf(latitud));
+                                        SharedPreferencesManager.setSomeStringValue(Constantes.PREF_LONGITUD, String.valueOf(longitud));
+                                        SharedPreferencesManager.setSomeStringValue(Constantes.PREF_FECHA,""+DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(LocalDateTime.now()));
+                                        LatLng myUbicacion = new LatLng(latitud, longitud);
+                                        Log.i("Latitud ", latitud + " Longitud: "+ longitud);
+                                        if ( currentMarker == null){
+                                            currentMarker = mMap.addMarker(new MarkerOptions().position(myUbicacion).title("Mi ubicación").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                                            float zoomlevel= 16;
+                                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myUbicacion, zoomlevel));
+                                        }else {
+                                            mMap.clear();
+                                            currentMarker.remove();
+                                            currentMarker = mMap.addMarker(new MarkerOptions().position(myUbicacion).title("Mi ubicación").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                                            float zoomlevel= 16;
+                                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myUbicacion, zoomlevel));
+                                        }
                                     }
                                 }
-                            }
-                        });
-
+                            });
+                }
+                else
+                {
+                    SharedPreferencesManager.setSomeStringValue(Constantes.PREF_CONTADOR_TIEMPO,Integer.toString(
+                            (Integer.parseInt(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_CONTADOR_TIEMPO))+1)
+                    ));
+                }
                 handler.postDelayed(this, TIEMPO);
             }
         }, TIEMPO);

@@ -35,6 +35,8 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferencesManager.setSomeStringValue(Constantes.PREF_CONTADOR_TIEMPO, "0");
+        SharedPreferencesManager.setSomeStringValue(Constantes.PREF_ESTADO, "NORMAL");
         setContentView(R.layout.activity_welcome);
         if(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_TOKEN) == null)
         {

@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     AuthABIService authABIService;
     AuthABIClient authABIClient;
 
-    //Necesario para el Bluetooth, (tia porfa no lo borres)
     Handler bluetoothIn;
     final int handlerState = 0;
     private BluetoothAdapter btAdapter = null;
@@ -415,18 +414,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 try {
                     String mensaje = mmInStream.readLine();
                     Log.i("abi_boton", mensaje);
-                    if ( mensaje.equals("boton")){
+                    if ( mensaje.equals("Alert"))
+                    {
+                        String sms = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE) +
+                                "\nÚltima información conocida:\nFecha: "+
+                                SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FECHA)
+                                +"\nUbicación: http://maps.google.com/maps?q="+
+                                SharedPreferencesManager.getSomeStringValue(Constantes.PREF_LATITUD)+","+
+                                SharedPreferencesManager.getSomeStringValue(Constantes.PREF_LONGITUD)
+                                +"\nFoto del día: "+SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FOTO_DIA);
+
+                        SharedPreferencesManager.setSomeStringValue(Constantes.PREF_ESTADO, "EMERGENCIA");
                         if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) != null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) != "")
                         {
-                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_1), SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE));
+                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_1),sms);
                         }
                         if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) != null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) != "")
                         {
-                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_2), SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE));
+                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_2), sms);
                         }
                         if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) != null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) != "")
                         {
-                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_3), SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE));
+                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_3), sms);
                         }
                     }
                     //bluetoothIn.obtainMessage(handlerState, ch).sendToTarget();

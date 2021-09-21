@@ -1,4 +1,4 @@
-package com.abi.homeactivity;
+package com.abi.homeactivity.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,9 +14,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.abi.homeactivity.R;
 import com.abi.homeactivity.common.Constantes;
 import com.abi.homeactivity.common.SharedPreferencesManager;
-import com.abi.homeactivity.ui.MainActivity;
 
 import java.util.Set;
 
