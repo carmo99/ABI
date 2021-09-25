@@ -29,6 +29,7 @@ import com.abi.homeactivity.informacion.InformacionLegalActivity;
 import com.abi.homeactivity.R;
 import com.abi.homeactivity.popup.PopUpError;
 import com.abi.homeactivity.popup.PopUpLogOut;
+import com.abi.homeactivity.popup.PopUpOpcionGadget;
 import com.abi.homeactivity.retrofit.AuthABIClient;
 import com.abi.homeactivity.retrofit.AuthABIService;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -57,6 +58,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.UUID;
 
 
@@ -134,10 +136,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     return true;
                 case R.id.nav_dispositivoABI:
                     Log.i("Opciones", "ABI");
-                    Intent intent4 = new Intent(MainActivity.this, RegistraGadgetActivity.class);
-                    startActivity(intent4);
-                    this.finish();
-                    return true;
+                    if ( !ValidaPremium() ){
+                        Intent intent4 = new Intent(MainActivity.this, RegistraGadgetActivity.class);
+                        startActivity(intent4);
+                        this.finish();
+                        return true;
+                    }else {
+                        Intent intent3 = new Intent(MainActivity.this, PopUpOpcionGadget.class );
+                        startActivity(intent3);
+                        return true;
+                    }
                 case R.id.nav_infoLegal:
                     Intent intent2 = new Intent(MainActivity.this, InformacionLegalActivity.class);
                     startActivity(intent2);
@@ -416,13 +424,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.i("abi_boton", mensaje);
                     if ( mensaje.equals("Alert"))
                     {
-                        String sms = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE) +
+                        String mensaje_pre = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE) +
                                 "\nÚltima información conocida:\nFecha: "+
                                 SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FECHA)
                                 +"\nUbicación: http://maps.google.com/maps?q="+
                                 SharedPreferencesManager.getSomeStringValue(Constantes.PREF_LATITUD)+","+
                                 SharedPreferencesManager.getSomeStringValue(Constantes.PREF_LONGITUD)
                                 +"\nFoto del día: "+SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FOTO_DIA);
+                        SharedPreferencesManager.setSomeStringValue(Constantes.PREF_SMS, mensaje_pre );
+                        String sms = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_SMS);
+
+                        Log.i("sms", sms);
 
                         SharedPreferencesManager.setSomeStringValue(Constantes.PREF_ESTADO, "EMERGENCIA");
                         if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) != null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) != "")
@@ -459,7 +471,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void enviarMensaje (String numero, String mensaje){
         try {
             SmsManager sms = SmsManager.getDefault();
-            sms.sendTextMessage(numero,null,mensaje,null,null);
+            ArrayList<String> parts = sms.divideMessage(mensaje);
+            sms.sendMultipartTextMessage(numero,null,parts,null,null);
         }
         catch (Exception e) {
             e.printStackTrace();

@@ -43,4 +43,7 @@ public class Constantes
     public static String PREF_ESTADO            = "PREF_ESTADO";
     public static String PREF_CONTADOR          = "PREF_CONTADOR";
     public static String PREF_CONTADOR_TIEMPO   = "PREF_CONTADOR_TIEMPO";
+
+    //Mensaje
+    public static final String PREF_SMS          = "PRE_SMS";
 }

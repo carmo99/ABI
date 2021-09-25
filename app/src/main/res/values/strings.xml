@@ -37,6 +37,7 @@
     <string name="Ok">OK</string>
     <string name="Cerrar_Sesion">Cerrar Sesión</string>
     <string name="Seguro_cerrar_sesion">¿Está seguro que quiere cerrar sesión?</string>
+    <string name="Opciones_gadget">¿Qué deseas hacer?</string>
     <string name="boton_registra_gadget">REGISTRAR GADGET</string>
     <string name="Leido">He leído y acepto los términos y condiciones de uso</string>
 
@@ -74,4 +75,5 @@
         VII. CAMBIOS O MODIFICACIONES AL PRESENTE AVISO\n
         El responsable se reserva el derecho de efectuar en cualquier momento modificaciones o actualizaciones al presente Aviso, en el entendido de que toda modificación al mismo se hará de su conocimiento por correo electrónico. Solicitamos su consentimiento expreso para el tratamiento de sus datos personales. Por favor seleccione “Si acepto las condiciones descritas anteriormente” al final del aviso de privacidad, o bien “No acepto las condiciones descritas anteriormente.
     </string>
+    <string name="opcionesGdaget">Gadget</string>
 </resources>

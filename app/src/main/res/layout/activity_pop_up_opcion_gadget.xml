@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/custom_popup_error"
+    tools:context=".popup.PopUpOpcionGadget">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/imagenGadgetAcciones"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="Animacion_Gadget.json"
+        app:lottie_loop="true" />
+
+    <TextView
+        android:id="@+id/textView_gadget_opciones"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="@string/opcionesGdaget"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagenGadgetAcciones" />
+
+    <TextView
+        android:id="@+id/textView_texto_gadget_opciones"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="@string/Opciones_gadget"
+        android:textAlignment="center"
+        android:textColor="@color/grisHint"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_gadget_opciones" />
+
+    <TextView
+        android:id="@+id/textView_cerrar_pop_opciones_gadget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="X"
+        android:textColor="@color/ourblack"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_registrar_gadget"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="Registrar Gadget"
+        android:textAllCaps="false"
+        android:textColor="@color/ourwhite"
+        android:textSize="14sp"
+        app:backgroundTint="@color/orange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_texto_gadget_opciones" />
+
+    <Button
+        android:id="@+id/button_vincular_gadget"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/muli_extrabold"
+        android:text="Vincular Gadget"
+        android:textAllCaps="false"
+        android:textColor="@color/ourwhite"
+        android:textSize="14sp"
+        app:backgroundTint="@color/orange"
+        app:layout_constraintBottom_toBottomOf="@+id/button_registrar_gadget"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button_registrar_gadget"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,7 +17,7 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:name=".common.MyApp"
@@ -27,7 +28,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HomeActivity">
-        <activity android:name=".ui.VincularABIActivity"></activity>
+
+        <activity android:name=".ui.VincularABIActivity" />
         <activity
             android:name=".popup.PopUpBorrarContacto"
             android:theme="@style/Theme.HomeActivity.PopMe" />
@@ -59,6 +61,9 @@
         <activity
             android:name=".popup.PopUpError"
             android:theme="@style/Theme.HomeActivity.PopMe" />
+        <activity
+            android:name=".popup.PopUpOpcionGadget"
+            android:theme="@style/Theme.HomeActivity.PopMe"/>
         <activity android:name=".informacion.InformacionLegalActivity" />
         <activity android:name=".informacion.InformacionDiaActivity" />
         <activity android:name=".ui.PrivacidadActivity" />
