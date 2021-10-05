@@ -89,22 +89,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final UUID BTMODULEUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (ActivityCompat.checkSelfPermission(MyApp.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MyApp.getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            ActivityCompat.requestPermissions( this, new String[]
-                    {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION}, 1000);
-
-        }
         fa = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -424,30 +410,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.i("abi_boton", mensaje);
                     if ( mensaje.equals("Alert"))
                     {
-                        String mensaje_pre = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE) +
-                                "\nÚltima información conocida:\nFecha: "+
+                        String mensaje_pre = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE);
+
+                        String mensaje_2   ="Última información conocida:\nFecha: "+
                                 SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FECHA)
                                 +"\nUbicación: http://maps.google.com/maps?q="+
                                 SharedPreferencesManager.getSomeStringValue(Constantes.PREF_LATITUD)+","+
                                 SharedPreferencesManager.getSomeStringValue(Constantes.PREF_LONGITUD)
                                 +"\nFoto del día: "+SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FOTO_DIA);
-                        SharedPreferencesManager.setSomeStringValue(Constantes.PREF_SMS, mensaje_pre );
-                        String sms = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_SMS);
-
-                        Log.i("sms", sms);
 
                         SharedPreferencesManager.setSomeStringValue(Constantes.PREF_ESTADO, "EMERGENCIA");
                         if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) != null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) != "")
                         {
-                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_1),sms);
+                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_1),mensaje_pre, 1);
+                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_1),mensaje_2, 0);
                         }
                         if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) != null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) != "")
                         {
-                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_2), sms);
+                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_2), mensaje_pre, 1);
+                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_2), mensaje_2, 0);
                         }
                         if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) != null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) != "")
                         {
-                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_3), sms);
+                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_3), mensaje_pre, 1);
+                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_3), mensaje_2, 0);
                         }
                     }
                     //bluetoothIn.obtainMessage(handlerState, ch).sendToTarget();
@@ -468,15 +454,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void enviarMensaje (String numero, String mensaje){
-        try {
-            SmsManager sms = SmsManager.getDefault();
-            ArrayList<String> parts = sms.divideMessage(mensaje);
-            sms.sendMultipartTextMessage(numero,null,parts,null,null);
+    private void enviarMensaje (String numero, String mensaje, int bandera){
+
+        if ( bandera == 0){
+            try {
+                SmsManager sms = SmsManager.getDefault();
+                ArrayList<String> parts = sms.divideMessage(mensaje);
+                sms.sendMultipartTextMessage(numero,null,parts,null,null);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else{
+            try {
+                SmsManager sms = SmsManager.getDefault();
+                sms.sendTextMessage(numero, null, mensaje, null, null);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
 
