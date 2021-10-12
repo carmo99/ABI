@@ -35,6 +35,7 @@ public class Constantes
 
     //BLUETOOTH
     public static final String PREF_MAC         = "PREF_MAC";
+    public static String PREF_CON_BLUETOOTH     = "PREF_CON_BLUETOOTH";
 
     //Ubicacion
     public static String PREF_LATITUD           = "PREF_LATITUD";
@@ -43,7 +44,4 @@ public class Constantes
     public static String PREF_ESTADO            = "PREF_ESTADO";
     public static String PREF_CONTADOR          = "PREF_CONTADOR";
     public static String PREF_CONTADOR_TIEMPO   = "PREF_CONTADOR_TIEMPO";
-
-    //Mensaje
-    public static final String PREF_SMS          = "PRE_SMS";
 }

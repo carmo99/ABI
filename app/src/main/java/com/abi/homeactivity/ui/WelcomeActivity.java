@@ -43,6 +43,7 @@ public class WelcomeActivity extends AppCompatActivity {
             SharedPreferencesManager
                     .setSomeStringValue(Constantes.PREF_TOKEN, "");
         }
+        SharedPreferencesManager.setSomeStringValue(Constantes.PREF_CON_BLUETOOTH, null);
         retrofitInit();
         verifica();
     }

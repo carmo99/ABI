@@ -164,7 +164,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         retrofitInit();
 
 
-        if (SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MAC) != null) {
+        if (SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MAC) != null &&
+        SharedPreferencesManager.getSomeStringValue(Constantes.PREF_CON_BLUETOOTH) == null)
+        {
             boolean espremium = ValidaPremium();
             if (espremium) {
                 conectarBluetooth();
@@ -402,7 +404,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         public void run()
         {
             byte[] byte_in = new byte[50];
-
+            SharedPreferencesManager.setSomeStringValue(Constantes.PREF_CON_BLUETOOTH, "CORRIENDO");
             while(true)
             {
                 try {
