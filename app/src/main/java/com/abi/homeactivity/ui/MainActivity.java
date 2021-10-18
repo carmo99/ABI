@@ -358,7 +358,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             {
                 BluetoothDevice device = btAdapter.getRemoteDevice( SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MAC) );
 
-                try{
+                try
+                {
                     btSocket = createBluetoothSocket(device);
                 }catch (IOException e){
                     Toast.makeText(getBaseContext(), "La creacion del socket fallo", Toast.LENGTH_SHORT).show();
