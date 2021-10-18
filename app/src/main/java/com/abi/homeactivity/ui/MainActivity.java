@@ -351,7 +351,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        if ( SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MAC) != null)
+        if (SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MAC) != null &&
+                SharedPreferencesManager.getSomeStringValue(Constantes.PREF_CON_BLUETOOTH) == null)
         {
             boolean espremium = ValidaPremium();
             if ( espremium )
@@ -413,30 +414,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.i("abi_boton", mensaje);
                     if ( mensaje.equals("Alert"))
                     {
-                        String mensaje_pre = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE);
+                        if ( SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ESTADO).equals("EMERGENCIA") ){
+                            SharedPreferencesManager.setSomeStringValue(Constantes.PREF_ESTADO, "NORMAL");
+                            Log.i("abi_boton", "Emergencia cancelada");
+                        }else {
+                            String mensaje_pre = SharedPreferencesManager.getSomeStringValue(Constantes.PREF_MENSAJE);
 
-                        String mensaje_2   ="Última información conocida:\nFecha: "+
-                                SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FECHA)
-                                +"\nUbicación: http://maps.google.com/maps?q="+
-                                SharedPreferencesManager.getSomeStringValue(Constantes.PREF_LATITUD)+","+
-                                SharedPreferencesManager.getSomeStringValue(Constantes.PREF_LONGITUD)
-                                +"\nFoto del día: "+SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FOTO_DIA);
+                            String mensaje_2 = "Última información conocida:\nFecha: " +
+                                    SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FECHA)
+                                    + "\nUbicación: http://maps.google.com/maps?q=" +
+                                    SharedPreferencesManager.getSomeStringValue(Constantes.PREF_LATITUD) + "," +
+                                    SharedPreferencesManager.getSomeStringValue(Constantes.PREF_LONGITUD)
+                                    + "\nFoto del día: " + SharedPreferencesManager.getSomeStringValue(Constantes.PREF_FOTO_DIA);
 
-                        SharedPreferencesManager.setSomeStringValue(Constantes.PREF_ESTADO, "EMERGENCIA");
-                        if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) != null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) != "")
-                        {
-                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_1),mensaje_pre, 1);
-                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_1),mensaje_2, 0);
-                        }
-                        if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) != null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) != "")
-                        {
-                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_2), mensaje_pre, 1);
-                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_2), mensaje_2, 0);
-                        }
-                        if(SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) != null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) != "")
-                        {
-                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_3), mensaje_pre, 1);
-                            enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_3), mensaje_2, 0);
+                            SharedPreferencesManager.setSomeStringValue(Constantes.PREF_ESTADO, "EMERGENCIA");
+                            if (SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) != null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_1) != "") {
+                                enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_1), mensaje_pre, 1);
+                                enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_1), mensaje_2, 0);
+                            }
+                            if (SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) != null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_2) != "") {
+                                enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_2), mensaje_pre, 1);
+                                enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_2), mensaje_2, 0);
+                            }
+                            if (SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) != null || SharedPreferencesManager.getSomeStringValue(Constantes.NOMBRE_CONT_3) != "") {
+                                enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_3), mensaje_pre, 1);
+                                enviarMensaje(SharedPreferencesManager.getSomeStringValue(Constantes.TELEFONO_CONT_3), mensaje_2, 0);
+                            }
                         }
                     }
                     //bluetoothIn.obtainMessage(handlerState, ch).sendToTarget();

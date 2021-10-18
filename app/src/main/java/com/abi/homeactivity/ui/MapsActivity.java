@@ -257,7 +257,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
             }
         }
     }
-    
+
     @Override
     public void onDestroy() {
         super.onDestroy();
