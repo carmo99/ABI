@@ -29,10 +29,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.abi.homeactivity.GeoFireProvider;
 import com.abi.homeactivity.R;
 import com.abi.homeactivity.common.Constantes;
 import com.abi.homeactivity.common.MyApp;
 import com.abi.homeactivity.common.SharedPreferencesManager;
+import com.firebase.geofire.GeoLocation;
+import com.firebase.geofire.GeoQueryDataEventListener;
+import com.firebase.geofire.GeoQueryEventListener;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -54,9 +58,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static androidx.core.content.ContextCompat.getSystemService;
@@ -78,12 +86,20 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     private final static int LOCATION_REQUEST_CODE = 1;
     private final static int SETTINGS_REQUEST_CODE = 2;
 
+    private LatLng mCurrentLatLng;
+    private GeoFireProvider geoFireProvider;
+
+    private boolean PrimeraVez = true;
+
+    private List<Marker> mUsuariosMarkers = new ArrayList<>();
+
     LocationCallback mLocationCallBack = new LocationCallback() {
         @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onLocationResult(@NonNull LocationResult locationResult) {
             for (Location location : locationResult.getLocations()) {
                 if (getContext() != null) {
+                    mCurrentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
                     Log.i("Latitud ", location.getLatitude() + " Longitud: "+ location.getLongitude());
                     SharedPreferencesManager.setSomeStringValue(Constantes.PREF_LATITUD, String.valueOf(location.getLatitude()));
                     SharedPreferencesManager.setSomeStringValue(Constantes.PREF_LONGITUD, String.valueOf(location.getLongitude()));
@@ -91,6 +107,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                     if (currentMarker != null ){
                         currentMarker.remove();
                     }
+
                     currentMarker = mMap.addMarker(new MarkerOptions().position(
                             new LatLng(location.getLatitude(), location.getLongitude())
                             )
@@ -98,16 +115,102 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.icono_usuario))
                     );
                     //Obtenemos la ubicacion del usuario en tiempo real
-                    mMap.moveCamera(CameraUpdateFactory.newCameraPosition(
-                            new CameraPosition.Builder()
-                                    .target(new LatLng(location.getLatitude(), location.getLongitude()))
-                                    .zoom(16f)
-                                    .build()
-                    ));
+                    if(PrimeraVez == true)
+                    {
+                        PrimeraVez = false;
+                        getUsuariosActivos();
+                        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(
+                                new CameraPosition.Builder()
+                                        .target(new LatLng(location.getLatitude(), location.getLongitude()))
+                                        .zoom(16f)
+                                        .build()
+                        ));
+                    }
+                    if(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ESTADO).equals("NORMAL"))
+                    {
+                        updateLocation();
+                    }
+                    else
+                    {
+                        geoFireProvider.removeLocation(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ID));
+                    }
                 }
             }
         }
     };
+
+    private void updateLocation()
+    {
+        geoFireProvider.saveLocation(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ID), mCurrentLatLng);
+    }
+
+    private void getUsuariosActivos()
+    {
+        geoFireProvider.getUbicacionUsuario(mCurrentLatLng).addGeoQueryEventListener(new GeoQueryEventListener() {
+            @Override
+            public void onKeyEntered(String key, GeoLocation location) {
+                for(Marker marker: mUsuariosMarkers)
+                {
+                    if(marker.getTag() != null)
+                    {
+                        if(marker.getTag().equals(key))
+                        {
+                            return;
+                        }
+                    }
+                }
+                LatLng UsuarioEmergencia = new LatLng(location.latitude, location.longitude);
+                Marker nvomarker = mMap.addMarker(new MarkerOptions()
+                        .position(UsuarioEmergencia)
+                        .title("Nuevo Usuario")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.icono_usuario)));
+                nvomarker.setTag(key);
+                mUsuariosMarkers.add(nvomarker);
+            }
+
+            @Override
+            public void onKeyExited(String key) {
+                for(Marker marker: mUsuariosMarkers)
+                {
+                    if(marker.getTag() != null)
+                    {
+                        if(marker.getTag().equals(key))
+                        {
+                            marker.remove();
+                            mUsuariosMarkers.remove(marker);
+                            return;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onKeyMoved(String key, GeoLocation location) {
+                for(Marker marker: mUsuariosMarkers)
+                {
+                    if(marker.getTag() != null)
+                    {
+                        if(marker.getTag().equals(key))
+                        {
+                            marker.setPosition(new LatLng(location.latitude, location.longitude));
+                            return;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onGeoQueryReady() {
+
+            }
+
+            @Override
+            public void onGeoQueryError(DatabaseError error) {
+
+            }
+        });
+
+    }
 
     public MapsActivity(Activity a) {
         activity = a;
@@ -118,6 +221,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        geoFireProvider = new GeoFireProvider();
     }
 
     @Nullable
@@ -125,6 +229,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.activity_maps, container, false);
+
 
 
         mFusedLocation = LocationServices.getFusedLocationProviderClient(getActivity());

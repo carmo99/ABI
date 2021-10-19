@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "931374645716",
+    "project_id": "abi-ubicacion",
+    "storage_bucket": "abi-ubicacion.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931374645716:android:7690dcb08950e27ea69641",
+        "android_client_info": {
+          "package_name": "com.abi.homeactivity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931374645716-9sf08k6udf5p64rk1mklvnjjvus829k7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.abi.homeactivity",
+            "certificate_hash": "06ebd6bd05b59bd4aa0a788ac03ea2b38c657cea"
+          }
+        },
+        {
+          "client_id": "931374645716-0qagr325d6ou8b7hqkc1nm2o484he172.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2WYWEojwJ41OxMeOuB3TfKNTq7E240IM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "931374645716-0qagr325d6ou8b7hqkc1nm2o484he172.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

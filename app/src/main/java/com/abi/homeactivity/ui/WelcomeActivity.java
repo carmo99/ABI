@@ -63,6 +63,8 @@ public class WelcomeActivity extends AppCompatActivity {
                 if(response.isSuccessful())
                 {
                     SharedPreferencesManager
+                            .setSomeStringValue(Constantes.PREF_ID, response.body().getUsuario().getUid());
+                    SharedPreferencesManager
                             .setSomeStringValue(Constantes.PREF_TOKEN, response.body().getToken());
                     SharedPreferencesManager
                             .setSomeStringValue(Constantes.PREF_NOMBRE, response.body().getUsuario().getNombre());
