@@ -126,7 +126,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                                         .build()
                         ));
                     }
-                    if(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ESTADO).equals("NORMAL"))
+                    if(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ESTADO).equals("EMERGENCIA"))
                     {
                         updateLocation();
                     }
@@ -163,7 +163,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                 Marker nvomarker = mMap.addMarker(new MarkerOptions()
                         .position(UsuarioEmergencia)
                         .title("Nuevo Usuario")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.icono_usuario)));
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.marcador_emergencia)));
                 nvomarker.setTag(key);
                 mUsuariosMarkers.add(nvomarker);
             }
