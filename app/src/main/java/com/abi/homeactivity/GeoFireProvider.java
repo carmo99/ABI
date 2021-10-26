@@ -34,7 +34,7 @@ public class GeoFireProvider
 
     public GeoQuery getUbicacionUsuario(LatLng latLng)
     {
-        GeoQuery geoQuery = mGeofire.queryAtLocation(new GeoLocation(latLng.latitude, latLng.longitude), 50);
+        GeoQuery geoQuery = mGeofire.queryAtLocation(new GeoLocation(latLng.latitude, latLng.longitude), 1000);
         geoQuery.removeAllListeners();
         return geoQuery;
     }

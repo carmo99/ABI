@@ -96,7 +96,8 @@ public class PrivacidadActivity extends AppCompatActivity implements View.OnClic
                                     .setSomeStringValue(Constantes.PREF_FOTO_PERFIL, response.body().getUsuario().getFotoPerfil());
                             SharedPreferencesManager
                                     .setSomeStringValue(Constantes.PREF_FOTO_DIA, response.body().getUsuario().getFotoDia());
-
+                            SharedPreferencesManager
+                                    .setSomeArray(Constantes.PREF_CONTACT_UBI, response.body().getUsuario().getUbicacionEmergencia());
                             //DATOS CONTACTO DE EMERGENCIA 1.
                             if(response.body().getUsuario().getContactoEmergencia1() == null)
                             {

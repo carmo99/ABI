@@ -38,11 +38,15 @@ public class Constantes
     public static final String PREF_MAC         = "PREF_MAC";
     public static String PREF_CON_BLUETOOTH     = "PREF_CON_BLUETOOTH";
 
-    //Ubicacion
+    //UBICACION
     public static String PREF_LATITUD           = "PREF_LATITUD";
     public static String PREF_LONGITUD          = "PREF_LONGITUD";
     public static String PREF_FECHA             = "PREF_FECHA";
     public static String PREF_ESTADO            = "PREF_ESTADO";
     public static String PREF_CONTADOR          = "PREF_CONTADOR";
     public static String PREF_CONTADOR_TIEMPO   = "PREF_CONTADOR_TIEMPO";
+
+    //CONTACTOS QUE PUEDO VER UBICACIÓN
+    public static String PREF_CONTACT_UBI      = "PREF_CONTACT_UBI";
+
 }

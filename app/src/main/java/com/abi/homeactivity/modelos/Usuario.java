@@ -1,6 +1,7 @@
 
 package com.abi.homeactivity.modelos;
 
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -18,6 +19,9 @@ public class Usuario {
     @SerializedName("mensajeAyuda")
     @Expose
     private String mensajeAyuda;
+    @SerializedName("ubicacionEmergencia")
+    @Expose
+    private List<String> ubicacionEmergencia = null;
     @SerializedName("nombre")
     @Expose
     private String nombre;
@@ -30,6 +34,9 @@ public class Usuario {
     @SerializedName("gadget")
     @Expose
     private String gadget;
+    @SerializedName("fotoDia")
+    @Expose
+    private String fotoDia;
     @SerializedName("contactoEmergencia1")
     @Expose
     private ContactoEmergencia1 contactoEmergencia1;
@@ -39,52 +46,9 @@ public class Usuario {
     @SerializedName("contactoEmergencia3")
     @Expose
     private ContactoEmergencia3 contactoEmergencia3;
-    @SerializedName("fotoDia")
-    @Expose
-    private String fotoDia;
     @SerializedName("uid")
     @Expose
     private String uid;
-
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Usuario() {
-    }
-
-    /**
-     * 
-     * @param estado
-     * @param fotoPerfil
-     * @param fotoDia
-     * @param gadget
-     * @param contactoEmergencia3
-     * @param mensajeAyuda
-     * @param contactoEmergencia2
-     * @param nombre
-     * @param contactoEmergencia1
-     * @param rol
-     * @param uid
-     * @param correo
-     * @param telefono
-     */
-    public Usuario(String fotoPerfil, String rol, Boolean estado, String mensajeAyuda, String nombre, String correo, String telefono, String gadget, ContactoEmergencia1 contactoEmergencia1, ContactoEmergencia2 contactoEmergencia2, ContactoEmergencia3 contactoEmergencia3, String fotoDia, String uid) {
-        super();
-        this.fotoPerfil = fotoPerfil;
-        this.rol = rol;
-        this.estado = estado;
-        this.mensajeAyuda = mensajeAyuda;
-        this.nombre = nombre;
-        this.correo = correo;
-        this.telefono = telefono;
-        this.gadget = gadget;
-        this.contactoEmergencia1 = contactoEmergencia1;
-        this.contactoEmergencia2 = contactoEmergencia2;
-        this.contactoEmergencia3 = contactoEmergencia3;
-        this.fotoDia = fotoDia;
-        this.uid = uid;
-    }
 
     public String getFotoPerfil() {
         return fotoPerfil;
@@ -116,6 +80,14 @@ public class Usuario {
 
     public void setMensajeAyuda(String mensajeAyuda) {
         this.mensajeAyuda = mensajeAyuda;
+    }
+
+    public List<String> getUbicacionEmergencia() {
+        return ubicacionEmergencia;
+    }
+
+    public void setUbicacionEmergencia(List<String> ubicacionEmergencia) {
+        this.ubicacionEmergencia = ubicacionEmergencia;
     }
 
     public String getNombre() {
@@ -150,6 +122,14 @@ public class Usuario {
         this.gadget = gadget;
     }
 
+    public String getFotoDia() {
+        return fotoDia;
+    }
+
+    public void setFotoDia(String fotoDia) {
+        this.fotoDia = fotoDia;
+    }
+
     public ContactoEmergencia1 getContactoEmergencia1() {
         return contactoEmergencia1;
     }
@@ -172,14 +152,6 @@ public class Usuario {
 
     public void setContactoEmergencia3(ContactoEmergencia3 contactoEmergencia3) {
         this.contactoEmergencia3 = contactoEmergencia3;
-    }
-
-    public String getFotoDia() {
-        return fotoDia;
-    }
-
-    public void setFotoDia(String fotoDia) {
-        this.fotoDia = fotoDia;
     }
 
     public String getUid() {

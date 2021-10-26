@@ -92,6 +92,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     private boolean PrimeraVez = true;
 
     private List<Marker> mUsuariosMarkers = new ArrayList<>();
+    List<String> arreglo_ids;
 
     LocationCallback mLocationCallBack = new LocationCallback() {
         @RequiresApi(api = Build.VERSION_CODES.O)
@@ -153,19 +154,22 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                 {
                     if(marker.getTag() != null)
                     {
-                        if(marker.getTag().equals(key))
+                        if(marker.getTag().equals(key) && marker.getTag().equals(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ID)))
                         {
                             return;
                         }
                     }
                 }
-                LatLng UsuarioEmergencia = new LatLng(location.latitude, location.longitude);
-                Marker nvomarker = mMap.addMarker(new MarkerOptions()
-                        .position(UsuarioEmergencia)
-                        .title("Nuevo Usuario")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.marcador_emergencia)));
-                nvomarker.setTag(key);
-                mUsuariosMarkers.add(nvomarker);
+                if(arreglo_ids.contains(key))
+                {
+                    LatLng UsuarioEmergencia = new LatLng(location.latitude, location.longitude);
+                    Marker nvomarker = mMap.addMarker(new MarkerOptions()
+                            .position(UsuarioEmergencia)
+                            .title("Nuevo Usuario")
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.marcador_emergencia)));
+                    nvomarker.setTag(key);
+                    mUsuariosMarkers.add(nvomarker);
+                }
             }
 
             @Override
@@ -222,6 +226,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         geoFireProvider = new GeoFireProvider();
+        arreglo_ids = SharedPreferencesManager.getSomeArray(Constantes.PREF_CONTACT_UBI);
     }
 
     @Nullable
