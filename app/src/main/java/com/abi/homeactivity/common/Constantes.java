@@ -48,5 +48,6 @@ public class Constantes
 
     //CONTACTOS QUE PUEDO VER UBICACIÓN
     public static String PREF_CONTACT_UBI      = "PREF_CONTACT_UBI";
+    public static String PREF_CONTACT_NOMBRE   = "PREF_CONTACT_NOMBRE";
 
 }

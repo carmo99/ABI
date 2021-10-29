@@ -78,6 +78,8 @@ public class WelcomeActivity extends AppCompatActivity {
                             .setSomeStringValue(Constantes.PREF_FOTO_DIA, response.body().getUsuario().getFotoDia());
                     SharedPreferencesManager
                             .setSomeArray(Constantes.PREF_CONTACT_UBI, response.body().getUsuario().getUbicacionEmergencia());
+                    SharedPreferencesManager
+                            .setSomeArray(Constantes.PREF_CONTACT_NOMBRE, response.body().getUsuario().getNombreEmergencia());
                     //DATOS CONTACTO DE EMERGENCIA 1.
                     if(response.body().getUsuario().getContactoEmergencia1() == null)
                     {

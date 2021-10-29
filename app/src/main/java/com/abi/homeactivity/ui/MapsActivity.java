@@ -93,6 +93,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
     private List<Marker> mUsuariosMarkers = new ArrayList<>();
     List<String> arreglo_ids;
+    List<String> arreglo_nombres;
 
     LocationCallback mLocationCallBack = new LocationCallback() {
         @RequiresApi(api = Build.VERSION_CODES.O)
@@ -112,7 +113,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                     currentMarker = mMap.addMarker(new MarkerOptions().position(
                             new LatLng(location.getLatitude(), location.getLongitude())
                             )
-                            .title("Mi Ubicaciòn")
+                            .title("Mi Ubicación")
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.icono_usuario))
                     );
                     //Obtenemos la ubicacion del usuario en tiempo real
@@ -160,12 +161,13 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                         }
                     }
                 }
-                if(arreglo_ids.contains(key))
+                int indice = arreglo_ids.indexOf(key);
+                if(indice != -1)
                 {
                     LatLng UsuarioEmergencia = new LatLng(location.latitude, location.longitude);
                     Marker nvomarker = mMap.addMarker(new MarkerOptions()
                             .position(UsuarioEmergencia)
-                            .title("Nuevo Usuario")
+                            .title(arreglo_nombres.get(indice))
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.marcador_emergencia)));
                     nvomarker.setTag(key);
                     mUsuariosMarkers.add(nvomarker);
@@ -227,6 +229,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         super.onActivityCreated(savedInstanceState);
         geoFireProvider = new GeoFireProvider();
         arreglo_ids = SharedPreferencesManager.getSomeArray(Constantes.PREF_CONTACT_UBI);
+        arreglo_nombres = SharedPreferencesManager.getSomeArray(Constantes.PREF_CONTACT_NOMBRE);
     }
 
     @Nullable
@@ -261,8 +264,6 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         mLocationRequest.setFastestInterval(1000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setSmallestDisplacement(200);
-
-        Log.i("info", "hola hola bellakota");
 
         startLocation();
         SharedPreferencesManager.setSomeStringValue(Constantes.PREF_CONTADOR, null);
