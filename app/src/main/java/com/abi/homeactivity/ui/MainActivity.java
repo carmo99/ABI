@@ -406,14 +406,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         public void run()
         {
             byte[] byte_in = new byte[50];
+            Long startTime = new Long(0);
+            Long newTime = new Long(0);
             SharedPreferencesManager.setSomeStringValue(Constantes.PREF_CON_BLUETOOTH, "CORRIENDO");
+            int cont = 0;
             while(true)
             {
                 try {
                     String mensaje = mmInStream.readLine();
                     Log.i("abi_boton", mensaje);
-                    if ( mensaje.equals("Alert"))
+                    cont++;
+                    Log.i("abi_boton", cont+"");
+                    if ( cont == 1 ){
+                        startTime = System.currentTimeMillis();
+                    }else {
+                        newTime = System.currentTimeMillis();
+                        if ( newTime - startTime > 7000 ){
+                            cont = 1;
+                            startTime = System.currentTimeMillis();
+                        }
+                    }
+                    if ( cont == 3 )
                     {
+                        cont = 0;
                         if ( SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ESTADO).equals("EMERGENCIA") ){
                             SharedPreferencesManager.setSomeStringValue(Constantes.PREF_ESTADO, "NORMAL");
                             Log.i("abi_boton", "Emergencia cancelada");
