@@ -6,16 +6,27 @@
         <entry key="app/src/main/res/drawable/bordeBorrarContacto.xml" value="0.22864583333333333" />
         <entry key="app/src/main/res/drawable/custom_borde_borrar_contacto.xml" value="0.11822916666666666" />
         <entry key="app/src/main/res/drawable/custom_constrain.xml" value="0.11822916666666666" />
-        <entry key="app/src/main/res/layout/activity_datos_perfil.xml" value="0.20108695652173914" />
+        <entry key="app/src/main/res/layout/activity_datos_perfil.xml" value="0.23326528704404895" />
         <entry key="app/src/main/res/layout/activity_foto_dia2.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.21941490866660782" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_pop_up_borrar_contacto.xml" value="0.1766304347826087" />
+        <entry key="app/src/main/res/layout/activity_pop_up_cambio_contrasenia_olvidada.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/layout/activity_pop_up_cargando.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/layout/activity_pop_up_correcto.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/layout/activity_pop_up_error.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/layout/activity_pop_up_genera_o_t_p.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/layout/activity_pop_up_log_out.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/layout/activity_pop_up_opcion_gadget.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/layout/activity_pop_up_verifica_o_t_p.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/layout/activity_privacidad.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_registra_gadget.xml" value="0.20833333333333334" />
+        <entry key="app/src/main/res/layout/activity_sing_up.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/layout/activity_vincular_a_b_i.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/layout/fragment_contacto.xml" value="0.20471014492753623" />
-        <entry key="app/src/main/res/layout/fragment_foto.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_mensaje.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_foto.xml" value="0.27775218489537734" />
+        <entry key="app/src/main/res/layout/fragment_mensaje.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_registro_contactos.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.20108695652173914" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.2125" />

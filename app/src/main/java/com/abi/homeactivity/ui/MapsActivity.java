@@ -102,11 +102,11 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
             for (Location location : locationResult.getLocations()) {
                 if (getContext() != null) {
                     mCurrentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-                    Log.i("Latitud ", location.getLatitude() + " Longitud: "+ location.getLongitude());
+                    Log.i("Latitud ", location.getLatitude() + " Longitud: " + location.getLongitude());
                     SharedPreferencesManager.setSomeStringValue(Constantes.PREF_LATITUD, String.valueOf(location.getLatitude()));
                     SharedPreferencesManager.setSomeStringValue(Constantes.PREF_LONGITUD, String.valueOf(location.getLongitude()));
-                    SharedPreferencesManager.setSomeStringValue(Constantes.PREF_FECHA,""+DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(LocalDateTime.now()));
-                    if (currentMarker != null ){
+                    SharedPreferencesManager.setSomeStringValue(Constantes.PREF_FECHA, "" + DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(LocalDateTime.now()));
+                    if (currentMarker != null) {
                         currentMarker.remove();
                     }
 
@@ -117,8 +117,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.icono_usuario))
                     );
                     //Obtenemos la ubicacion del usuario en tiempo real
-                    if(PrimeraVez == true)
-                    {
+                    if (PrimeraVez == true) {
                         PrimeraVez = false;
                         getUsuariosActivos();
                         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(
@@ -128,12 +127,9 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                                         .build()
                         ));
                     }
-                    if(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ESTADO).equals("EMERGENCIA"))
-                    {
+                    if (SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ESTADO).equals("EMERGENCIA")) {
                         updateLocation();
-                    }
-                    else
-                    {
+                    } else {
                         geoFireProvider.removeLocation(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ID));
                     }
                 }
@@ -141,29 +137,23 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         }
     };
 
-    private void updateLocation()
-    {
+    private void updateLocation() {
         geoFireProvider.saveLocation(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ID), mCurrentLatLng);
     }
 
-    private void getUsuariosActivos()
-    {
+    private void getUsuariosActivos() {
         geoFireProvider.getUbicacionUsuario(mCurrentLatLng).addGeoQueryEventListener(new GeoQueryEventListener() {
             @Override
             public void onKeyEntered(String key, GeoLocation location) {
-                for(Marker marker: mUsuariosMarkers)
-                {
-                    if(marker.getTag() != null)
-                    {
-                        if(marker.getTag().equals(key) && marker.getTag().equals(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ID)))
-                        {
+                for (Marker marker : mUsuariosMarkers) {
+                    if (marker.getTag() != null) {
+                        if (marker.getTag().equals(key) && marker.getTag().equals(SharedPreferencesManager.getSomeStringValue(Constantes.PREF_ID))) {
                             return;
                         }
                     }
                 }
                 int indice = arreglo_ids.indexOf(key);
-                if(indice != -1)
-                {
+                if (indice != -1) {
                     LatLng UsuarioEmergencia = new LatLng(location.latitude, location.longitude);
                     Marker nvomarker = mMap.addMarker(new MarkerOptions()
                             .position(UsuarioEmergencia)
@@ -176,12 +166,9 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
             @Override
             public void onKeyExited(String key) {
-                for(Marker marker: mUsuariosMarkers)
-                {
-                    if(marker.getTag() != null)
-                    {
-                        if(marker.getTag().equals(key))
-                        {
+                for (Marker marker : mUsuariosMarkers) {
+                    if (marker.getTag() != null) {
+                        if (marker.getTag().equals(key)) {
                             marker.remove();
                             mUsuariosMarkers.remove(marker);
                             return;
@@ -192,12 +179,9 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
 
             @Override
             public void onKeyMoved(String key, GeoLocation location) {
-                for(Marker marker: mUsuariosMarkers)
-                {
-                    if(marker.getTag() != null)
-                    {
-                        if(marker.getTag().equals(key))
-                        {
+                for (Marker marker : mUsuariosMarkers) {
+                    if (marker.getTag() != null) {
+                        if (marker.getTag().equals(key)) {
                             marker.setPosition(new LatLng(location.latitude, location.longitude));
                             return;
                         }
@@ -239,7 +223,6 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         View rootView = inflater.inflate(R.layout.activity_maps, container, false);
 
 
-
         mFusedLocation = LocationServices.getFusedLocationProviderClient(getActivity());
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
@@ -263,7 +246,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         mLocationRequest.setInterval(1000);
         mLocationRequest.setFastestInterval(1000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setSmallestDisplacement(200);
+        mLocationRequest.setSmallestDisplacement(100);
 
         startLocation();
         SharedPreferencesManager.setSomeStringValue(Constantes.PREF_CONTADOR, null);
@@ -280,9 +263,9 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         if (requestCode == LOCATION_REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    if ( gpsActive() ){
+                    if (gpsActive()) {
                         mFusedLocation.requestLocationUpdates(mLocationRequest, mLocationCallBack, Looper.myLooper());
-                    }else{
+                    } else {
                         showAlertDialogNoGPS();
                     }
                 } else {
@@ -302,12 +285,12 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
                 return;
             }
             mFusedLocation.requestLocationUpdates(mLocationRequest, mLocationCallBack, Looper.myLooper());
-        }else{
+        } else {
             showAlertDialogNoGPS();
         }
     }
 
-    private void showAlertDialogNoGPS(){
+    private void showAlertDialogNoGPS() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage("Porfavor activa tu GPS para continuar")
                 .setPositiveButton("Configuraciones", new DialogInterface.OnClickListener() {
@@ -321,50 +304,51 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
     }
 
 
-    private boolean gpsActive(){
+    private boolean gpsActive() {
         boolean isActive = false;
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             isActive = true;
         }
         return isActive;
     }
-    private void startLocation(){
+
+    private void startLocation() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-                if ( gpsActive() ){
+            if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                if (gpsActive()) {
                     mFusedLocation.requestLocationUpdates(mLocationRequest, mLocationCallBack, Looper.myLooper());
-                }else{
+                } else {
                     showAlertDialogNoGPS();
                 }
-            }else{
+            } else {
                 checkLocationPermisions();
             }
-        }else{
-            if ( gpsActive() ){
+        } else {
+            if (gpsActive()) {
                 mFusedLocation.requestLocationUpdates(mLocationRequest, mLocationCallBack, Looper.myLooper());
-            }else{
+            } else {
                 showAlertDialogNoGPS();
             }
         }
     }
 
-    private void  checkLocationPermisions(){
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)){
+    private void checkLocationPermisions() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)) {
                 new AlertDialog.Builder(getActivity())
                         .setTitle("Proporciona los permisos para continuar")
-                        .setMessage("Esta aplicaciòn requiere de los permisos de ubicacion para poder utilizarse")
+                        .setMessage("Esta aplicación requiere de los permisos de ubicacion para poder utilizarse")
                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},LOCATION_REQUEST_CODE);
+                                ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
                             }
                         })
                         .create()
                         .show();
-            }else{
-                ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},LOCATION_REQUEST_CODE);
+            } else {
+                ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
             }
         }
     }
@@ -375,5 +359,4 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback {
         SharedPreferencesManager.setSomeStringValue(Constantes.PREF_CONTADOR, "Esperando");
         sale = false;
     }
-
 }

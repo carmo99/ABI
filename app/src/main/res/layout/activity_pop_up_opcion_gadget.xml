@@ -9,12 +9,17 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/imagenGadgetAcciones"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView_gadget_opciones"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         app:lottie_autoPlay="true"
         app:lottie_fileName="Animacion_Gadget.json"
         app:lottie_loop="true" />
@@ -22,27 +27,34 @@
     <TextView
         android:id="@+id/textView_gadget_opciones"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/muli_extrabold"
         android:text="@string/opcionesGdaget"
         android:textColor="@color/black"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView_texto_gadget_opciones"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagenGadgetAcciones" />
 
     <TextView
         android:id="@+id/textView_texto_gadget_opciones"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
         android:fontFamily="@font/muli_extrabold"
         android:text="@string/Opciones_gadget"
         android:textAlignment="center"
         android:textColor="@color/grisHint"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_registrar_gadget"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_gadget_opciones" />
 
@@ -63,8 +75,8 @@
         android:id="@+id/button_registrar_gadget"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/muli_extrabold"
         android:text="Registrar Gadget"
@@ -72,6 +84,9 @@
         android:textColor="@color/ourwhite"
         android:textSize="14sp"
         app:backgroundTint="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_vincular_gadget"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_texto_gadget_opciones" />
 
@@ -79,7 +94,7 @@
         android:id="@+id/button_vincular_gadget"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="48dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/muli_extrabold"
         android:text="Vincular Gadget"
@@ -87,10 +102,10 @@
         android:textColor="@color/ourwhite"
         android:textSize="14sp"
         app:backgroundTint="@color/orange"
-        app:layout_constraintBottom_toBottomOf="@+id/button_registrar_gadget"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button_registrar_gadget"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_registrar_gadget"
+        app:layout_constraintTop_toTopOf="@+id/button_registrar_gadget" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

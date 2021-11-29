@@ -12,6 +12,7 @@
         android:id="@+id/textViewTuPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/muli_extrabold"
         android:text="TU PERFIL"
         android:textColor="@color/ourwhite"
@@ -52,7 +53,7 @@
 
     <EditText
         android:id="@+id/editTextCorreoUsuario"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/custom_input"
@@ -72,7 +73,7 @@
 
     <EditText
         android:id="@+id/editTextTelefonoUsuario"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/custom_input"
@@ -123,6 +124,7 @@
         android:layout_width="wrap_content"
         android:layout_height="38dp"
         android:layout_marginTop="32dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/muli_extrabold"
         android:text="CAMBIAR CONTRASEÑA"
@@ -150,7 +152,7 @@
 
     <EditText
         android:id="@+id/editTextTextNombreUsuario"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/custom_input"
@@ -171,7 +173,7 @@
     <Button
         android:id="@+id/buttonActualizarDatos"
         android:layout_width="wrap_content"
-        android:layout_height="43dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/muli_extrabold"

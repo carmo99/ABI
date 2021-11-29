@@ -9,11 +9,14 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animacionborrarcontacto"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11"
         app:lottie_autoPlay="true"
@@ -24,27 +27,38 @@
         android:id="@+id/textView11"
         android:layout_width="350dp"
         android:layout_height="30dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/muli_extrabold"
         android:text="ELIMINAR CONTACTO"
         android:textAlignment="center"
         android:textColor="@color/ourwhite"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/animacionborrarcontacto"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
         android:fontFamily="@font/muli_extrabold"
         android:text="¿Quieres eliminar este contacto?"
         android:textAlignment="center"
         android:textColor="@color/ourwhite"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCancelarBorrarContacto"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/animacionborrarcontacto" />
 
@@ -52,12 +66,13 @@
         android:id="@+id/buttonCancelarBorrarContacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/muli_extrabold"
         android:text="Cancelar"
         android:textColor="@color/ourwhite"
         app:backgroundTint="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonAceptarBorrarContacto"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +82,6 @@
         android:id="@+id/buttonAceptarBorrarContacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/muli_extrabold"
         android:text="Eliminar"
@@ -76,7 +90,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonCancelarBorrarContacto"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toTopOf="@+id/buttonCancelarBorrarContacto" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

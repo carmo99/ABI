@@ -11,21 +11,26 @@
         android:id="@+id/textViewMensaje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/muli_extrabold"
         android:text="@string/texto_mensaje"
         android:textColor="@color/white"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/imagenDia"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/imagenDia"
-        android:layout_width="200dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputEditText"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMensaje"
         app:lottie_autoPlay="true"
@@ -36,7 +41,7 @@
         android:id="@+id/buttonMensaje"
         android:layout_width="251dp"
         android:layout_height="41dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/muli_extrabold"
         android:text="@string/boton_mensaje"
@@ -44,7 +49,9 @@
         app:backgroundTint="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOpcion3" />
 
     <ImageButton
         android:id="@+id/imageButton_atras_mensaje"
@@ -60,8 +67,12 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/textInputEditText"
-        android:layout_width="369dp"
-        android:layout_height="157dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/custom_input_grey"
         android:fontFamily="@font/muli_extrabold"
         android:foregroundGravity="center"
@@ -70,7 +81,9 @@
         android:textAlignment="center"
         android:textColor="@color/grisLetras"
         android:textColorHint="@color/grisLetras"
+        app:layout_constraintBottom_toTopOf="@+id/textView13"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagenDia" />
 
@@ -78,19 +91,37 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/muli_extrabold"
         android:text="Puedes seleccionar alguna de las siguientes opciones:"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/textViewOpcion1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputEditText" />
+
+    <TextView
+        android:id="@+id/textViewOpcion2"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/muli"
+        android:text="Necesito de tu ayuda, entra a la aplicación de ABI"
+        android:textAlignment="center"
+        android:textColor="@color/ourblack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewOpcion1"
+        app:layout_constraintTop_toTopOf="@+id/textViewOpcion1" />
 
     <TextView
         android:id="@+id/textViewOpcion1"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
         android:autoText="false"
         android:background="@drawable/custom_input"
         android:fontFamily="@font/muli"
@@ -98,49 +129,40 @@
         android:textAlignment="center"
         android:textColor="@color/ourblack"
         app:autoSizeTextType="none"
+        app:layout_constraintBottom_toTopOf="@+id/textViewOpcion3"
+        app:layout_constraintEnd_toStartOf="@+id/textViewOpcion2"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
-        android:id="@+id/textViewOpcion2"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="56dp"
-        android:background="@drawable/custom_input"
-        android:fontFamily="@font/muli"
-        android:text="Necesito de tu ayuda, entra a la aplicación de ABI"
-        android:textAlignment="center"
-        android:textColor="@color/ourblack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-    <TextView
         android:id="@+id/textViewOpcion3"
-        android:layout_width="145dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/custom_input"
         android:fontFamily="@font/muli"
         android:text="Algo me está ocurriendo, entra a la aplicación de ABI"
         android:textAlignment="center"
         android:textColor="@color/ourblack"
+        app:layout_constraintBottom_toTopOf="@+id/buttonMensaje"
+        app:layout_constraintEnd_toStartOf="@+id/textViewOpcion4"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewOpcion1" />
 
     <TextView
         android:id="@+id/textViewOpcion4"
-        android:layout_width="140dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="44dp"
         android:background="@drawable/custom_input"
         android:fontFamily="@font/muli"
         android:text="Ayudame lo antes posible, entra a la aplicación de ABI"
         android:textAlignment="center"
         android:textColor="@color/ourblack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewOpcion2" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewOpcion3"
+        app:layout_constraintTop_toTopOf="@+id/textViewOpcion3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
